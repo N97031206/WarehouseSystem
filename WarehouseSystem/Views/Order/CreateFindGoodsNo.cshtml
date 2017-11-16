@@ -1,0 +1,203 @@
+﻿@model WarehouseSystem.Models.ViewModel.FindGoodsDetailViewModel
+
+@{
+    ViewBag.Title = "CreateFindGoodsNo";
+}
+
+<!-- daterange picker -->
+<script src="../../theme/AdminLTE/plugins/daterangepicker/moment.min.js"></script>
+<script src="../../theme/AdminLTE/plugins/daterangepicker/daterangepicker.js"></script>
+
+<script src="~/Scripts/jquery.dataTables.js"></script>
+<script src="~/Scripts/dataTables.buttons.js"></script>
+<script src="~/Scripts/jszip.min.js"></script>
+<script src="~/Scripts/pdfmake.min.js"></script>
+<script src="~/Scripts/vfs_fonts.js"></script>
+<script src="~/Scripts/buttons.html5.min.js"></script>
+<!-- daterange picker -->
+<link rel="stylesheet" href="../../theme/AdminLTE/plugins/daterangepicker/daterangepicker-bs3.css">
+<link href="~/Content/buttons.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
+
+<script>
+    var fileName = '尋貨查詢表';
+
+    $(document).ready(function () {
+        var table = $('#LogTable').DataTable({
+            dom: "<'row'<'col-sm-1'l>>" + "<'row'<'col-sm-11'B>>" + "<'row'<'col-sm-12'tr>>" + "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+            //dom:'Bfrtip',
+            buttons: [
+                 { extend: 'excelHtml5', filename: fileName },
+                 { extend: 'csvHtml5', filename: fileName }
+            ],
+            searching: false,
+            pageLength: 10,
+        });
+
+        //Date range picker
+        $('#schedulePeriodDateRangePicker').daterangepicker({
+            locale: {
+                applyLabel: '確定',
+                cancelLabel: '取消'
+            },
+            format: 'YYYY/MM/DD'
+        }).on('apply.daterangepicker', function (ev, picker) {
+            scheduleDateStart = picker.startDate.format('YYYY/MM/DD');
+            scheduleDateEnd = picker.endDate.format('YYYY/MM/DD');
+        });
+
+        // single Date picker
+        $('#StartTimePicker, #EndTimePicker').daterangepicker({
+            singleDatePicker: true,
+            format: 'YYYY/MM/DD'
+        }).on('apply.daterangepicker', function (ev, picker) { });
+
+        $('#CreateButton').on('click', function (e) {
+            {
+                var WKNo = $('#WKNo').val();
+                var LotNo = $('#LotNo').val();
+                var InternalOrder = $('#InternalOrder').val();
+                var Fabric = $('#Fabric').val();
+                var Color = $('#Color').val();
+                var StartTime = $('#StartTimePicker').val();
+                var EndTime = $('#EndTimePicker').val();
+                var PLot = $('#PLot').val();
+                var Status = $('#Status').val();
+
+                $.post("@Url.Action("FindGoodsNoQuery")", { WKNo: WKNo, LotNo: LotNo, InternalOrder: InternalOrder, Fabric: Fabric, Color: Color, StartTime: StartTime, EndTime: EndTime, PLot: PLot, Status: Status, IsInsert: 'TRUE' }).done(function (data) {
+                    if (data['Result']['Success'] == true) {
+                        $("#OrderNo").val(data['OrderNo']);
+                    }
+                    alert(data['Result']['Message']);
+                });
+            }
+        });
+    });
+</script>
+
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">新增尋貨資料</h3>
+                        <div class="form-group has-error">
+                            <label class="col-sm-1"></label>
+                            <label class="col-sm-11" id="ErrorMessage">@Model.ErrorMessage</label>
+                        </div>
+                    </div><!-- /.box-header -->
+                    <!-- form start -->
+                    <form class="form-horizontal" method="post" action="@Url.Action("FindGoodsNoQuery")" onsubmit="return true;">
+                        <div class="box-body">
+                            <div id="Grp1" class="form-group">
+                                <label for="PLot" class="col-sm-1 control-label" style="color: black">布疋批號</label>
+                                <div class="col-sm-2">
+                                    <input id="PLot" type="text" class="form-control" name="PLot" value="@Model.PLot">
+                                </div>
+                                <label for="WKNo" class="col-sm-1 control-label" style="color: black">工令</label>
+                                <div class="col-sm-2">
+                                    <input id="WKNo" type="text" class="form-control" name="WKNo" value="@Model.WKNo">
+                                </div>
+                                <label for="LotNo" class="col-sm-1 control-label" style="color: black">缸號</label>
+                                <div class="col-sm-2">
+                                    <input id="LotNo" type="text" class="form-control" name="LotNo" value="@Model.LotNo">
+                                </div>
+                                <label for="Status" class="col-sm-1 control-label" style="color: black">逾時</label>
+                                <div class="col-sm-2">
+                                    <select class="form-control" id="Status" name="Status">
+                                        <option value="0">否</option>
+                                        <option value="2">是</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="Grp2" class="form-group">
+                                <label for="InternalOrder" class="col-sm-1 control-label" style="color: black">內部訂單</label>
+                                <div class="col-sm-2">
+                                    <input id="InternalOrder" type="text" class="form-control" name="InternalOrder" value="@Model.InternalOrder">
+                                </div>
+                                <label for="Color" class="col-sm-1 control-label" style="color: black">顏色</label>
+                                <div class="col-sm-2">
+                                    <input id="Color" type="text" class="form-control" name="Color" value="@Model.Color">
+                                </div>
+                                <label for="StockInTime" class="col-sm-1 control-label" style="color: black">起始時間</label>
+                                <div class="col-sm-2">
+                                    <div class="input-group col-md-12">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-clock-o"></i>
+                                        </div>
+                                        <input type="text" class="form-control pull-right" id="StartTimePicker" name="StartTime" value="@Model.StartTime">
+                                    </div>
+                                </div>
+                                <label for="StockInTime" class="col-sm-1 control-label" style="color: black">結束時間</label>
+                                <div class="col-sm-2">
+                                    <div class="input-group col-md-12">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-clock-o"></i>
+                                        </div>
+                                        <input type="text" class="form-control pull-right" id="EndTimePicker" name="EndTime" value="@Model.EndTime">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="Grp3" class="form-group">
+                                <label for="Fabric" class="col-sm-1 control-label" style="color: black">布別</label>
+                                <div class="col-sm-2">
+                                    <input id="Fabric" type="text" class="form-control" name="Fabric" value="@Model.Fabric">
+                                </div>
+                                <div class="col-sm-1">
+                                    <button type="submit" class="col-md-10 pull-right btn btn-success">查詢</button>
+                                </div>
+                            </div><!-- /.box-body -->
+                            <div class="box-footer">
+                                <div id="Grp4" class="form-group">
+                                    <label for="OrderNo" class="col-sm-1 control-label" style="color: black">尋貨單號</label>
+                                    <div class="col-sm-2">
+                                        <input id="OrderNo" type="text" class="form-control" name="OrderNo" value="@Model.OrderNo" readonly>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <button type="button" class="col-md-10 pull-right btn btn-success" id="CreateButton">建立</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    <div class="box-body">
+                        <table id="LogTable" class="row-border" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>布疋批號</th>
+                                    <th>工令</th>
+                                    <th>缸號</th>
+                                    <th>逾時</th>
+                                    <th>內部訂單</th>
+                                    <th>顏色</th>
+                                    <th>布別</th>
+                                    <th>儲位</th>
+                                    <th>入庫日期</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.FindGoodsDetail)
+                                {
+                                    <tr id="@item.WareHouseDataID">
+                                        <td>@item.PLot</td>
+                                        <td>@item.WKNo</td>
+                                        <td>@item.LotNo</td>
+                                        <td>@item.Status</td>
+                                        <td>@item.InternalOrder</td>
+                                        <td>@item.Color</td>
+                                        <td>@item.Fabric</td>
+                                        <td>@item.ParkingBlockName</td>
+                                        <td>@item.Date</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!-- /.box -->
+            </div>
+        </div>
+    </section><!-- /.content -->
+</div>

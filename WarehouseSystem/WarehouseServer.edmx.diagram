@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ad82dba21bcb4865bf700ad9c2767a06" Name="Diagram1" ZoomLevel="77">
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_ALARM" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_BEACON" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_BEACON_LOCATION" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_BEACON_PARKINGBLOCK" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_CARD" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_CARD_PATH" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_CARD_PATH_HIST" Width="1.5" PointX="6.75" PointY="4.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_EXCEPTION_LOG" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_FIELD_MAP" Width="1.5" PointX="2.75" PointY="7.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_GATE_READER" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_INV" Width="1.5" PointX="8.75" PointY="4.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_INV_DTL" Width="1.5" PointX="4.75" PointY="8.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_MAIL_GRP" Width="1.5" PointX="6.75" PointY="8.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_MAIL_GRP_DTL" Width="1.5" PointX="8.75" PointY="7.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_MAIL_LOG" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_MENU_GRP" Width="1.5" PointX="10.75" PointY="3.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_MENU_MAIN" Width="1.5" PointX="10.75" PointY="7.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_MENU_MINOR" Width="1.5" PointX="8.75" PointY="10.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_MENU_SUB" Width="1.5" PointX="10.75" PointY="10.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_ORDER_TYPE" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_PALLET" Width="1.5" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_PALLET_TYPE" Width="1.5" PointX="12.75" PointY="4.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_RFID" Width="1.5" PointX="12.75" PointY="8.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_RFID_ERROR_LOG" Width="1.5" PointX="12.75" PointY="11.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_SER_INV" Width="1.5" PointX="6.75" PointY="13.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_SER_INV_DTL" Width="1.5" PointX="8.75" PointY="13.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_STOCK_OUT" Width="1.5" PointX="14.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_STOCK_OUT_LOG" Width="1.5" PointX="0.75" PointY="14.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_STORAGE_PARKINGBLOCK" Width="1.5" PointX="2.75" PointY="14.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_USER_GRP" Width="1.5" PointX="14.75" PointY="4.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_USER_HIST" Width="1.5" PointX="14.75" PointY="7.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_USER_PROFILE" Width="1.5" PointX="14.75" PointY="11.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_WAREHOUSE" Width="1.5" PointX="10.75" PointY="15.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_WAREHOUSE_HIST" Width="1.5" PointX="12.75" PointY="15.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.CST_WAREHOUSE_LOG" Width="1.5" PointX="14.75" PointY="15.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.POS_EmpGroup" Width="1.5" PointX="16.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.POS_Employee" Width="1.5" PointX="16.75" PointY="3.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.POS_EmpPermissions" Width="1.5" PointX="4.75" PointY="16.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.POS_EmpProgram" Width="1.5" PointX="16.75" PointY="8.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.POS_OrganizationChart" Width="1.5" PointX="16.75" PointY="11.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.POS_Product" Width="1.5" PointX="16.75" PointY="14.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.POS_ProductCatrgory" Width="1.5" PointX="18.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.POS_Retail" Width="1.5" PointX="0.75" PointY="18.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.POS_RetailPurchase" Width="1.5" PointX="18.75" PointY="3.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.POS_RetailSale" Width="1.5" PointX="18.75" PointY="6.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.POS_Supplier" Width="1.5" PointX="18.75" PointY="9.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.POS_USER_PROFILE" Width="1.5" PointX="18.75" PointY="15.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.sysdiagram" Width="1.5" PointX="2.75" PointY="19.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.TEMP_ERP_INV_DTL" Width="1.5" PointX="4.75" PointY="19.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.POS_SaleList" Width="1.5" PointX="6.75" PointY="19.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.POS_Stock" Width="1.5" PointX="16.75" PointY="19.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.POS_UserLogin" Width="1.5" PointX="18.75" PointY="19.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.TEMP_ERP_STOCK_OUT" Width="1.5" PointX="20.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.vw_Lots" Width="1.5" PointX="20.75" PointY="5.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.vw_Record" Width="1.5" PointX="20.75" PointY="14.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.vw_RFIDLog" Width="1.5" PointX="20.75" PointY="18.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

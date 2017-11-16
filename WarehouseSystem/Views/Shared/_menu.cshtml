@@ -1,0 +1,27 @@
+﻿<script>
+    var MainMenu = '@Session["MainMenu"]';
+    var SubMenu = '@Session["SubMenu"]';
+    var MinorMenu = '@Session["MinorMenu"]';
+
+    $(document).ready(function () {
+        if (MainMenu != '' || MainMenu != null) $('#' + MainMenu).addClass('active treeview');
+        if (SubMenu != '' || SubMenu != null) $('#' + SubMenu).addClass('active treeview');
+        if (MinorMenu != '' || MinorMenu != null) $('#' + MinorMenu).addClass('active');
+    });
+
+</script>
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+           @if (Context.User.Identity.IsAuthenticated == true)
+           { 
+                <li class="header" style="color:#FFFFFF; font-size: 24px;">功 能 列 表</li>
+                @Html.Raw(Session["HtmlString"])
+           }
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>

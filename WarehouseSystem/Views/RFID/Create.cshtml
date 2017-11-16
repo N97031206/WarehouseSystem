@@ -1,0 +1,74 @@
+﻿@model WarehouseSystem.Models.ViewModel.RFIDViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<script>
+    function fieldValidation(field) {
+        if ($.trim($(field).val()) == '') {
+            $(field + 'Div').addClass('has-error');
+            $(field + 'Div').val('');
+            $('#ErrorMessage').text('欄位內容不得為空白');
+            return false;
+        } else {
+            $(field + 'Div').removeClass('has-error');
+        }
+        return true;
+    }
+
+    function formValidation() {
+        if (fieldValidation('#RFIDNumber')) {
+            return true;
+        }
+
+        return false;
+    }
+</script>
+
+<div class="wrapper">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>RFID管理<small>新增RFID</small></h1>
+            <ol class="breadcrumb">
+                @*<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+                <li class="active">Dashboard</li>*@
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-6">
+                    <!-- general form elements -->
+                    <div class="box box-success">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">建立新的RFID編號</h3>
+                        </div><!-- /.box-header -->
+                        <!-- form start -->
+                        <form class="form-horizontal" method="post" action="@Url.Content("CreateRFID")" onsubmit="return formValidation();">
+                            <div class="box-body">
+                                <div class="form-group has-error">
+                                    <label class="col-sm-2"></label>
+                                    <label id="ErrorMessage" class="col-sm-10">@Model.ErrorMessage</label>
+                                </div>
+                                <div id="emailDiv" class="form-group">
+                                    <label for="type" class="col-sm-2 control-label">RFID編號</label>
+                                    <div class="col-sm-10">
+                                        <input id="RFIDNumber" type="text" class="form-control" name="RFIDNumber" placeholder="輸入RFID編號" />
+                                    </div>
+                                </div>
+                            </div><!-- /.box-body -->
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-success">確定</button>
+                            </div>
+                        </form>
+                    </div><!-- /.box -->
+                </div>
+            </div>
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+</div><!-- ./wrapper -->

@@ -1,0 +1,110 @@
+﻿@model WarehouseSystem.Models.ViewModel.RecordViewModel
+@{
+    ViewBag.Title = "RecordView";
+}
+
+<!-- daterange picker -->
+<script src="../../theme/AdminLTE/plugins/daterangepicker/moment.min.js"></script>
+<script src="../../theme/AdminLTE/plugins/daterangepicker/daterangepicker.js"></script>
+
+@*<script src="~/Scripts/jquery.dataTables.js"></script>
+<script src="~/Scripts/dataTables.buttons.js"></script>
+<script src="~/Scripts/jszip.min.js"></script>
+<script src="~/Scripts/pdfmake.min.js"></script>
+<script src="~/Scripts/vfs_fonts.js"></script>
+<script src="~/Scripts/buttons.html5.min.js"></script>*@
+<!-- daterange picker -->
+<link rel="stylesheet" href="../../theme/AdminLTE/plugins/daterangepicker/daterangepicker-bs3.css">
+@*<link href="~/Content/buttons.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />*@
+
+<script>
+    $(document).ready(function () {
+        //Date range picker
+        $('#schedulePeriodDateRangePicker').daterangepicker({
+            locale: {
+                applyLabel: '確定',
+                cancelLabel: '取消'
+            },
+            format: 'YYYY/MM/DD'
+        }).on('apply.daterangepicker', function (ev, picker) {
+            //scheduleDateStart = picker.startDate.format('YYYY/MM/DD 00:00:00');
+            //scheduleDateEnd = picker.endDate.format('YYYY/MM/DD 23:59:59');
+        });
+
+        // single Date picker
+        $('#StartTimePicker, #EndTimePicker').daterangepicker({
+            singleDatePicker: true,
+            format: 'YYYY/MM/DD'
+        }).on('apply.daterangepicker', function (ev, picker) { });
+
+        $('#QueryButton').click(function () {
+            var url = "/Record/Query?" + "Code=" + $("#Code").val() + "&Name=" + $("#Name").val() + "&StartTime=" + $("#StartTimePicker").val() + "&EndTime=" + $("#EndTimePicker").val();
+
+            $("#Recorddiv").load(url);
+        });
+    });
+
+    function query() {
+        
+    };
+</script>
+
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">手持記錄查詢</h3>
+                    </div><!-- /.box-header -->
+                    <!-- form start -->
+                    <form class="form-horizontal">
+                        <div class="box-body">
+                            <div id="Grp2" class="form-group">
+                                <label for="Code" class="col-sm-1 control-label" style="color: black">工號</label>
+                                <div class="col-sm-2">
+                                    <input id="Code" type="text" class="form-control" name="Code">
+                                </div>
+                                <label for="Name" class="col-sm-1 control-label" style="color: black">姓名</label>
+                                <div class="col-sm-2">
+                                    <input id="Name" type="text" class="form-control" name="Name">
+                                </div>
+                                <label for="StartTime" class="col-sm-1 control-label" style="color: black">起始時間</label>
+                                <div class="col-sm-2">
+                                    <div class="input-group col-md-12">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-clock-o"></i>
+                                        </div>
+                                        <input type="text" class="form-control pull-right" id="StartTimePicker" name="StartTime">
+                                    </div>
+                                </div>
+                                <label for="EndTime" class="col-sm-1 control-label" style="color: black">結束時間</label>
+                                <div class="col-sm-2">
+                                    <div class="input-group col-md-12">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-clock-o"></i>
+                                        </div>
+                                        <input type="text" class="form-control pull-right" id="EndTimePicker" name="EndTime">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <button type="button" class="col-md-1 pull-right btn btn-success" id="QueryButton">查詢</button>
+                            </div>
+                        </div><!-- /.box-body -->
+                        <div class="box-footer">
+
+                        </div>
+                    </form>
+                    <div id="Recorddiv">
+                        @Html.Partial("_QueryPartial")
+                    </div>
+                </div><!-- /.box -->
+            </div>
+        </div>
+    </section><!-- /.content -->
+</div>

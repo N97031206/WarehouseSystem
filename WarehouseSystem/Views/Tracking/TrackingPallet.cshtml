@@ -1,0 +1,624 @@
+﻿@using WarehouseSystem.Models.ViewModel
+
+@{
+    ViewBag.Title = "TrackingPallet";
+}
+
+<link href="~/Content/myCss.css" rel="stylesheet" />
+<link href="~/Content/cart.css" rel="stylesheet" />
+<link href="~/Content/typeaheadjs.css" rel="stylesheet" />
+
+<!-- daterange picker -->
+@*<link rel="stylesheet" href="../../theme/AdminLTE/plugins/daterangepicker/daterangepicker-bs3.css">*@
+
+<!-- svg pan and zoom -->
+<script src="~/Scripts/svg-pan-zoom.min.js"></script>
+
+<!-- auto complete support -->
+<script src="~/Scripts/typeahead.bundle.min.js"></script>
+
+<!-- cart rendering support -->
+<script src="~/Scripts/cartTracking.js"></script>
+
+<!-- GreenSock draggable -->
+<script src="~/Scripts/TweenMax.min.js"></script>
+<script src="~/Scripts/Draggable.min.js"></script>
+
+
+ @*daterange picker 
+<script src="../../theme/AdminLTE/plugins/daterangepicker/moment.min.js"></script>
+<script src="../../theme/AdminLTE/plugins/daterangepicker/daterangepicker.js"></script>*@
+
+<script>
+
+    var selectedCartQueryKey = 'ShowAll';
+    var fieldQueryCache = {};
+    var queryTimeout;
+    var QUERY_DELAY = 600000; // 1000 ms * 30 seconds
+
+    function closeLotInfoPanel() {
+        $('#lotInfoPanel').addClass('hide');
+    };
+
+    //function switchUnselectedCartLayer(tabindex) {
+    //    var fieldId = Object.keys(fieldQueryCache)[tabindex];
+    //    var tab = tabindex + 1;
+    //    showUnselectedCartLayer(fieldId, $('#mapLayer' + tab + 'UnselectedCheckbox').is(':checked'));
+    //};
+
+    function testAndLoadFile(url, fieldId, tabIndex) {
+        $.ajax({
+            url: url, //or your url
+            type: 'HEAD',
+            success: function (data) {
+                //console.log('test ok');
+                loadMap(url, fieldId, tabIndex);
+            },
+            error: function (data) {
+                console.log('test failure');
+            },
+        })
+    };
+
+    function executQueryPalletNumber(PalletNumber) {
+        $.post("@Url.Action("GetFieldMapByPalletNumber")", { PalletNumber: PalletNumber }).done(function (data) {
+            var queryResultFieldData = data;
+
+            if ('FieldData' in queryResultFieldData) {
+                if (!(queryResultFieldData['FieldData']['FieldID'] in fieldQueryCache)) {
+                    // if the field is not cached, show new field map
+                    fieldQueryCache[queryResultFieldData['FieldData']['FieldID']] = queryResultFieldData;
+
+                    var fieldQueryCacheSize = Object.keys(fieldQueryCache).length;
+                    // update tab UI
+                    $('#mapTabLi' + fieldQueryCacheSize).removeClass('hide');
+                    $('#mapTabName' + fieldQueryCacheSize).text(queryResultFieldData['FieldData']['FieldName']);
+                    // show layer
+                    $('#mapLayer' + fieldQueryCacheSize).removeClass('hide');
+
+                    var mapName = queryResultFieldData['FieldData']['MapName'];
+                    if (mapName != '' && mapName != null) {
+                        testAndLoadFile("@Url.Content("~/Media/Map/")" + queryResultFieldData['FieldData']['MapName'],
+                            queryResultFieldData['FieldData']['FieldID'],
+                            fieldQueryCacheSize);
+
+                        queryTrackingObjectTimer();
+                    }
+                }
+            } else {
+                alert('查無此棧板: ' + PalletNumber);
+            }
+        });
+    };
+
+    function executQueryClothNumber(ClothNumber) {
+        $.post("@Url.Action("GetFieldMapByClothNumber")", { ClothNumber: ClothNumber }).done(function (data) {
+            var queryResultFieldData = data;
+
+            if (queryResultFieldData.length > 0) {
+                $.each(queryResultFieldData, function (index, value) {
+                    if (!(value['FieldData']['FieldID'] in fieldQueryCache)) {
+                        // if the field is not cached, show new field map
+                        fieldQueryCache[value['FieldData']['FieldID']] = value;
+
+                        var fieldQueryCacheSize = Object.keys(fieldQueryCache).length;
+                        // update tab UI
+                        $('#mapTabLi' + fieldQueryCacheSize).removeClass('hide');
+                        $('#mapTabName' + fieldQueryCacheSize).text(value['FieldData']['FieldName']);
+                        // show layer
+                        $('#mapLayer' + fieldQueryCacheSize).removeClass('hide');
+
+                        var mapName = value['FieldData']['MapName'];
+                        if (mapName != '' && mapName != null) {
+                            testAndLoadFile("@Url.Content("~/Media/Map/")" + value['FieldData']['MapName'],
+                                value['FieldData']['FieldID'],
+                                fieldQueryCacheSize);
+                        }
+                    }
+                })
+                queryTrackingObjectTimer();
+            }
+            else {
+                alert('查無此布號: ' + ClothNumber);
+            }
+        });
+    };
+
+    function executQueryWorkOrder(WorkOrder) {
+        $.post("@Url.Action("GetFieldMapByWorkOrder")", { WorkOrder: WorkOrder }).done(function (data) {
+            var queryResultFieldData = data;
+
+            if (queryResultFieldData.length > 0) {
+                $.each(queryResultFieldData, function (index, value) {
+                    if (!(value['FieldData']['FieldID'] in fieldQueryCache)) {
+                        // if the field is not cached, show new field map
+                        fieldQueryCache[value['FieldData']['FieldID']] = value;
+
+                        var fieldQueryCacheSize = Object.keys(fieldQueryCache).length;
+                        // update tab UI
+                        $('#mapTabLi' + fieldQueryCacheSize).removeClass('hide');
+                        $('#mapTabName' + fieldQueryCacheSize).text(value['FieldData']['FieldName']);
+                        // show layer
+                        $('#mapLayer' + fieldQueryCacheSize).removeClass('hide');
+
+                        var mapName = value['FieldData']['MapName'];
+                        if (mapName != '' && mapName != null) {
+                            testAndLoadFile("@Url.Content("~/Media/Map/")" + value['FieldData']['MapName'],
+                                value['FieldData']['FieldID'],
+                                fieldQueryCacheSize);
+                        }
+                    }
+                })
+                queryTrackingObjectTimer();
+            }
+            else {
+                alert('查無此工單: ' + WorkOrder);
+            }
+        });
+    };
+
+    function executQueryPalletType(PalletTypeID) {
+        $.post("@Url.Action("GetFieldMapByPalletType")", { PalletTypeID: PalletTypeID }).done(function (data) {
+            var queryResultFieldData = data;
+
+            if (queryResultFieldData.length > 0) {
+                $.each(queryResultFieldData, function (index, value) {
+                    if (!(value['FieldData']['FieldID'] in fieldQueryCache)) {
+                        // if the field is not cached, show new field map
+                        fieldQueryCache[value['FieldData']['FieldID']] = value;
+
+                        var fieldQueryCacheSize = Object.keys(fieldQueryCache).length;
+                        // update tab UI
+                        $('#mapTabLi' + fieldQueryCacheSize).removeClass('hide');
+                        $('#mapTabName' + fieldQueryCacheSize).text(value['FieldData']['FieldName']);
+                        // show layer
+                        $('#mapLayer' + fieldQueryCacheSize).removeClass('hide');
+
+                        var mapName = value['FieldData']['MapName'];
+                        if (mapName != '' && mapName != null) {
+                            testAndLoadFile("@Url.Content("~/Media/Map/")" + value['FieldData']['MapName'],
+                                value['FieldData']['FieldID'],
+                                fieldQueryCacheSize);
+                        }
+                    }
+                })
+                queryTrackingObjectTimer();
+            }
+            else {
+                alert('查無此棧板類型');
+            }
+        });
+    };
+
+    function executQueryOverTime() {
+        $.post("@Url.Action("GetFieldMapByOverTime")").done(function (data) {
+            var queryResultFieldData = data;
+
+            if (queryResultFieldData.length > 0) {
+                $.each(queryResultFieldData, function (index, value) {
+                    if (!(value['FieldData']['FieldID'] in fieldQueryCache)) {
+                        // if the field is not cached, show new field map
+                        fieldQueryCache[value['FieldData']['FieldID']] = value;
+
+                        var fieldQueryCacheSize = Object.keys(fieldQueryCache).length;
+                        // update tab UI
+                        $('#mapTabLi' + fieldQueryCacheSize).removeClass('hide');
+                        $('#mapTabName' + fieldQueryCacheSize).text(value['FieldData']['FieldName']);
+                        // show layer
+                        $('#mapLayer' + fieldQueryCacheSize).removeClass('hide');
+
+                        var mapName = value['FieldData']['MapName'];
+                        if (mapName != '' && mapName != null) {
+                            testAndLoadFile("@Url.Content("~/Media/Map/")" + value['FieldData']['MapName'],
+                                value['FieldData']['FieldID'],
+                                fieldQueryCacheSize);
+                        }
+                    }
+                })
+                queryTrackingObjectTimer();
+            }
+            else {
+                alert('查無此棧板類型');
+            }
+        });
+    };
+
+    function executQueryShowAll() {
+        $.post("@Url.Action("GetFieldMapByAll")").done(function (data) {
+            var queryResultFieldData = data;
+
+            if (queryResultFieldData.length > 0) {
+                $.each(queryResultFieldData, function (index, value) {
+                    if (!(value['FieldData']['FieldID'] in fieldQueryCache)) {
+                        // if the field is not cached, show new field map
+                        fieldQueryCache[value['FieldData']['FieldID']] = value;
+
+                        var fieldQueryCacheSize = Object.keys(fieldQueryCache).length;
+                        // update tab UI
+                        $('#mapTabLi' + fieldQueryCacheSize).removeClass('hide');
+                        $('#mapTabName' + fieldQueryCacheSize).text(value['FieldData']['FieldName']);
+                        // show layer
+                        $('#mapLayer' + fieldQueryCacheSize).removeClass('hide');
+
+                        var mapName = value['FieldData']['MapName'];
+                        if (mapName != '' && mapName != null) {
+                            testAndLoadFile("@Url.Content("~/Media/Map/")" + value['FieldData']['MapName'],
+                                value['FieldData']['FieldID'],
+                                fieldQueryCacheSize);
+                        }
+                    }
+                })
+                queryTrackingObjectTimer();
+            }
+            else {
+                alert('查無此棧板類型');
+            }
+        });
+    };
+
+    function reset() {
+        // clear field array cache
+        fieldQueryCache = {};
+
+        for (var i = 1; i <= 3; i++) {
+            $('#mapTabLi' + i).addClass('hide');
+            $('#mapLayer' + i).addClass('hide');
+        }
+    };
+
+    function ContentIsNull(Content) {
+        Content = $.trim(Content);
+        if (Content != '') {
+            return false;
+        }
+        else {
+            alert('輸入內容不得為空白');
+            return true;
+        }
+    };
+
+    function queryCart() {
+        reset();
+        switch (selectedCartQueryKey) {
+            case 'ShowAll':
+                executQueryShowAll();
+                break;
+            case 'WorkOrder':
+                var WorkOrder = $('#WorkOrderInput').val();
+                if (!ContentIsNull(WorkOrder)) executQueryWorkOrder(WorkOrder);
+                break;
+
+            case 'ClothNumber':
+                var ClothNumber = $('#ClothNumberInput').val();
+                if (!ContentIsNull(ClothNumber)) executQueryClothNumber(ClothNumber);
+                break;
+
+            case 'PalletNumber':
+                var PalletNumber = $('#PalletNumberInput').val();
+                if (!ContentIsNull(PalletNumber)) executQueryPalletNumber(PalletNumber);
+                break;
+
+            case 'PalletType':
+                PalletTypeID = $('#PalletTypeSelect').val();
+                if (!ContentIsNull(PalletTypeID)) executQueryPalletType(PalletTypeID);
+                break;
+
+            case 'OverTime':
+                executQueryOverTime();
+                break;
+            default:
+                break;
+        }
+    };
+
+    function updateTracking() {
+        clearPopover();
+
+        switch (selectedCartQueryKey) {
+            case 'ShowAll':
+                $.each(fieldQueryCache, function (key, value) {
+                    clearParkingBlock(key);
+                    $.post("@Url.Action("GetPalletByAll")", { FieldID: key }).done(function (data) {
+                        $.each(data, function (index, value) {
+                            AddPalletToParkingBlock(key, value['PalletNumber']);
+                        });
+                    });
+                });
+                break;
+
+            case 'WorkOrder':
+                $.each(fieldQueryCache, function (key, value) {
+                    clearParkingBlock(key);
+                    $.post("@Url.Action("GetPalletByWorkOrder")", { FieldID: key, WorkOrder: $('#WorkOrderInput').val() }).done(function (data) {
+                        $.each(data, function (index, value) {
+                            AddPalletToParkingBlock(key, value['PalletNumber']);
+                        });
+                    });
+                });
+                break;
+
+            case 'ClothNumber':
+                $.each(fieldQueryCache, function (key, value) {
+                    clearParkingBlock(key);
+                    $.post("@Url.Action("GetPalletByClothNumber")", { FieldID: key, ClothNumber: $('#ClothNumberInput').val() }).done(function (data) {
+                        $.each(data, function (index, value) {
+                            AddPalletToParkingBlock(key, value['PalletNumber']);
+                        });
+                    });
+                });
+                break;
+
+            case 'PalletNumber':
+                var PalletNumber = $.trim($('#PalletNumberInput').val());
+                var FieldID = Object.keys(fieldQueryCache)[0];
+                clearParkingBlock(FieldID);
+                AddPalletToParkingBlock(FieldID, PalletNumber);
+                break;
+
+            case 'PalletType':
+                $.each(fieldQueryCache, function (key, value) {
+                    clearParkingBlock(key);
+                    $.post("@Url.Action("GetPalletByPalletType")", { FieldID: key, PalletTypeID: $('#PalletTypeSelect').val() }).done(function (data) {
+                        $.each(data, function (index, value) {
+                            AddPalletToParkingBlock(key, value['PalletNumber']);
+                        });
+                    });
+                });
+                break;
+
+            case 'OverTime':
+                $.each(fieldQueryCache, function (key, value) {
+                    clearParkingBlock(key);
+                    $.post("@Url.Action("GetPalletByOverTime")", { FieldID: key }).done(function (data) {
+                    
+                        $.each(data, function (index, value) {
+                            AddPalletToParkingBlock(key, value['PalletNumber']);
+                        });
+                    });
+                });
+                break;
+        }
+    };
+
+    function timeoutExecution() {
+        queryTrackingObjectTimer();
+    };
+
+    function queryTrackingObjectTimer() {
+        updateTracking();
+        //restart timer
+        clearTimeout(queryTimeout);
+        queryTimeout = setTimeout(function () {
+            timeoutExecution();
+        }, QUERY_DELAY);
+    };
+
+    // load a field map SVG
+    function loadMap(svg, fieldId, tabIndex) {
+        $('#fieldMap' + tabIndex).load(svg, function (response, status, xhr) {
+            $('.nav-tabs a[href="#mapTab' + tabIndex +'"]').tab('show');
+            $('#fieldMap' + tabIndex + ' svg').attr('id', fieldId + '_svg');
+
+            // enable pan and zoom features
+            var panZoom = window.panZoom = svgPanZoom('#fieldMap' + tabIndex + ' svg', {
+                zoomEnabled: true,
+                controlIconsEnabled: true,
+                fit: true,
+                center: true,
+                mouseWheelZoomEnabled: true,
+                // viewportSelector: document.getElementById('demo-tiger').querySelector('#g4') // this option will make library to misbehave. Viewport should have no transform attribute
+            });
+            $(window).resize(function () {
+                panZoom.resize();
+                panZoom.fit();
+                panZoom.center();
+            })
+
+            // create map object
+            createMapObject(fieldId);
+
+            // add and draw parking blocks
+            addParkingBlock(fieldId, fieldQueryCache[fieldId]['ParkingBlockData']);
+
+            if (tabIndex != 1) {
+                $('.nav-tabs a[href="#mapTab1"]').tab('show');
+            }
+
+            //queryTrackingObjectTimer();
+        });
+    };
+
+    $(document).ready(function () {
+        $('#cartQueryTypeSelect').change(function () {
+            $('#' + selectedCartQueryKey).css('display', 'none');
+            selectedCartQueryKey = $(this).val();
+            $('#' + selectedCartQueryKey).css('display', '');
+        });
+
+        var newDrag = $('#lotInfoPanel');
+        var newDraggable = Draggable.create(newDrag, {
+        })[0];
+        newDraggable.enable();
+        $(newDrag).on('mousedown', function (event) {
+            newDraggable.startDrag(event);
+            return false;
+        });
+
+    });
+</script>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>查詢管理<small>棧板查詢</small></h1>
+        <ol class="breadcrumb">
+            @*<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+            <li class="active">Dashboard</li>*@
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Custom Tabs -->
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab_1" data-toggle="tab">設定</a></li>
+                        <li id="mapTabLi1" class="hide"><a id="mapTabName1" href="#mapTab1" data-toggle="tab"></a></li>
+                        <li id="mapTabLi2" class="hide"><a id="mapTabName2" href="#mapTab2" data-toggle="tab"></a></li>
+                        <li id="mapTabLi3" class="hide"><a id="mapTabName3" href="#mapTab3" data-toggle="tab"></a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab_1">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="box box-warning">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title">設定選項</h3>
+                                        </div>
+
+                                        <div class="row" id="cartQueryPanel">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>棧板查詢選項</label>
+                                                    <select class="form-control" id="cartQueryTypeSelect">
+                                                        <option value="ShowAll">全部</option>
+                                                        <option value="WorkOrder">內部訂單</option>
+                                                        <option value="ClothNumber">布別</option>
+                                                        <option value="PalletType">棧板類型</option>
+                                                        <option value="PalletNumber">棧板編號</option>
+                                                        <option value="OverTime">停滯超時</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group" id="ShowAll">
+                                                    <button class="btn btn-success" onclick="queryCart()">確定</button>
+                                                </div>
+                                                <div class="form-group" id="WorkOrder" style="display: none;">
+                                                    <div class="input-group">
+                                                        <div class="input-group-btn">
+                                                            <button type="button" class="btn btn-success">內部訂單</button>
+                                                        </div>
+                                                        <!-- /btn-group -->
+                                                        <input type="text" class="form-control typeahead" id="WorkOrderInput" value="7DSM3608A4">
+                                                    </div>
+                                                    <br>
+                                                    <button class="btn btn-success" onclick="queryCart()">確定</button>
+                                                </div>
+
+                                                <div class="form-group" id="ClothNumber" style="display: none;">
+                                                    <div class="input-group">
+                                                        <div class="input-group-btn">
+                                                            <button type="button" class="btn btn-success">布別</button>
+                                                        </div>
+                                                        <!-- /btn-group -->
+                                                        <input type="text" class="form-control typeahead" id="ClothNumberInput" value="578652">
+                                                    </div>
+                                                    <br>
+                                                    <button class="btn btn-success" onclick="queryCart()">確定</button>
+                                                </div>
+
+                                                <div class="form-group" id="PalletType" style="display: none;">
+                                                    <label>棧板類型</label>
+                                                    <select class="form-control" id="PalletTypeSelect">
+                                                        @foreach (var item in (List<CST_PALLET_TYPE>)ViewData["PalletType"])
+                                                        {
+                                                            <option value="@item.PalletTypeID">@item.TypeName (@item.TypeCode)</option>
+                                                        }
+                                                    </select>
+                                                    <br>
+                                                    <button class="btn btn-success" onclick="queryCart()">確定</button>
+                                                </div>
+
+                                                <div class="form-group" id="PalletNumber" style="display: none;">
+                                                    <div class="input-group">
+                                                        <div class="input-group-btn">
+                                                            <button type="button" class="btn btn-success">棧板編號</button>
+                                                        </div>
+                                                        <!-- /btn-group -->
+                                                        <input type="text" class="form-control typeahead" id="PalletNumberInput" value="D0001">
+                                                    </div>
+                                                    <br>
+                                                    <button class="btn btn-success" onclick="queryCart()">確定</button>
+                                                </div>
+                                                <div class="form-group" id="OverTime" style="display: none;">
+                                                    <button class="btn btn-success" onclick="queryCart()">確定</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="box-footer">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.tab-pane -->
+
+                        <div class="tab-pane" id="mapTab1">
+                            <div id="mapLayer1" class="row hide">
+                                <div class="col-md-6">
+                                    <div class="box box-primary">
+                                        <h3 class="box-title">圖層</h3>
+                                        <label class="checkbox-inline">
+                                            @*<input id="mapLayer1UnselectedCheckbox" type="checkbox" onclick="switchUnselectedCartLayer(0)">顯示其它布車*@
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="fieldMap1"></div>
+                        </div><!-- /.tab-pane -->
+
+                        <div class="tab-pane" id="mapTab2">
+                            <div id="mapLayer2" class="row hide">
+                                <div class="col-md-6">
+                                    <div class="box box-primary">
+                                        <h3 class="box-title">圖層</h3>
+                                        <label class="checkbox-inline">
+                                            @*<input id="mapLayer2UnselectedCheckbox" type="checkbox" onclick="switchUnselectedCartLayer(1)">顯示其它布車*@
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="fieldMap2"></div>
+                        </div><!-- /.tab-pane -->
+
+                        <div class="tab-pane" id="mapTab3">
+                            <div id="mapLayer3" class="row hide">
+                                <div class="col-md-6">
+                                    <div class="box box-primary">
+                                        <h3 class="box-title">圖層</h3>
+                                        <label class="checkbox-inline">
+                                            @*<input id="mapLayer3UnselectedCheckbox" type="checkbox" onclick="switchUnselectedCartLayer(2)">顯示其它布車*@
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="fieldMap3"></div>
+                        </div><!-- /.tab-pane -->
+                    </div><!-- /.tab-content -->
+                </div><!-- nav-tabs-custom -->
+            </div><!-- /.col -->
+        </div>
+
+        <div id="lotInfoPanel" class="col-md-6 hide centerScreen">
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    <h3 class="box-title">布疋批號內容</h3>
+                    <button class="btn pull-right" onclick="closeLotInfoPanel()"><i class="fa fa-close"></i></button>
+                </div>
+                <table id="lotTable" class="table table-bordered" cellspacing="0" width="100%">
+                    <tbody>
+                        <tr><td class="lotItemBackground col-md-2">布疋批號</td><td id="Lot" colspan="3"></td></tr>
+                        <tr><td class="lotItemBackground col-md-2">工令</td><td id="WKNo" colspan="3"></td></tr>
+                        <tr><td class="lotItemBackground col-md-2">缸號</td><td id="LotNo" colspan="3"></td></tr>
+                        <tr><td class="lotItemBackground col-md-2">訂單</td><td id="Order"></td><td class="lotItemBackground col-md-2">內部訂單</td><td id="InternalOrder"></td></tr>
+                        <tr><td class="lotItemBackground col-md-2">布別</td><td id="Fabric" colspan="3"></td></tr>
+                        <tr><td class="lotItemBackground col-md-2">顏色</td><td id="Color" colspan="3"></td></tr>
+                        <tr><td class="lotItemBackground col-md-2">幅寬</td><td id="Width"></td><td class="lotItemBackground col-md-2">碼重</td><td id="YdWt"></td></tr>
+                        <tr><td class="lotItemBackground col-md-2">重量</td><td id="Weight"></td><td class="lotItemBackground col-md-2">碼數</td><td id="Length"></td></tr>
+                        <tr><td class="lotItemBackground col-md-2">疋數</td><td id="PNo"></td><td class="lotItemBackground col-md-2">日期</td><td id="Date"></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->

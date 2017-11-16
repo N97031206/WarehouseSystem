@@ -1,0 +1,2924 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WarehouseServerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CST_ALARM">
+          <Key>
+            <PropertyRef Name="AlarmID" />
+          </Key>
+          <Property Name="AlarmID" Type="nvarchar" MaxLength="23" Nullable="false" />
+          <Property Name="MailGroupID" Type="nvarchar" MaxLength="23" />
+          <Property Name="DeviceName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="WarningDay" Type="nvarchar" MaxLength="10" />
+          <Property Name="Active" Type="int" Nullable="false" />
+          <Property Name="IsDelete" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="LastUpdateTime" Type="nvarchar" MaxLength="20" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="CST_BEACON">
+          <Key>
+            <PropertyRef Name="BeaconID" />
+          </Key>
+          <Property Name="BeaconID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BeaconNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Active" Type="int" Nullable="false" />
+          <Property Name="IsDelete" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastUpdateTime" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CST_BEACON_LOCATION">
+          <Key>
+            <PropertyRef Name="BeaconInstallLocationID" />
+          </Key>
+          <Property Name="BeaconInstallLocationID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BeaconName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FieldID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="X" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Y" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Power" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="Active" Type="int" Nullable="false" />
+          <Property Name="IsDelete" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastUpdateTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CST_BEACON_PARKINGBLOCK">
+          <Key>
+            <PropertyRef Name="ParkingBlockID" />
+          </Key>
+          <Property Name="ParkingBlockID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ParkingBlockName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FieldID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="X" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Y" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Width" Type="int" Nullable="false" />
+          <Property Name="Height" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastUpdateTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CST_CARD">
+          <Key>
+            <PropertyRef Name="CardID" />
+          </Key>
+          <Property Name="CardID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CardNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Active" Type="int" Nullable="false" />
+          <Property Name="IsDelete" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastUpdateTime" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CST_CARD_PATH">
+          <Key>
+            <PropertyRef Name="CardPathID" />
+            <PropertyRef Name="UDateTime" />
+          </Key>
+          <Property Name="CardPathID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CardNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BeaconNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AreaID" Type="nvarchar" MaxLength="30" />
+          <Property Name="RouterDis" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Battery" Type="nvarchar" MaxLength="30" />
+          <Property Name="NOEXETime" Type="nvarchar" MaxLength="50" />
+          <Property Name="SleepTime" Type="nvarchar" MaxLength="50" />
+          <Property Name="RDateTime" Type="nvarchar" MaxLength="50" />
+          <Property Name="UDateTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CST_CARD_PATH_HIST">
+          <Key>
+            <PropertyRef Name="CardPathID" />
+            <PropertyRef Name="UDateTime" />
+          </Key>
+          <Property Name="CardPathID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CardNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BeaconNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AreaID" Type="nvarchar" MaxLength="30" />
+          <Property Name="RouterDis" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Battery" Type="nvarchar" MaxLength="30" />
+          <Property Name="NOEXETime" Type="nvarchar" MaxLength="50" />
+          <Property Name="SleepTime" Type="nvarchar" MaxLength="50" />
+          <Property Name="RDateTime" Type="nvarchar" MaxLength="50" />
+          <Property Name="UDateTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CST_EXCEPTION_LOG">
+          <Key>
+            <PropertyRef Name="ExceptionLogID" />
+          </Key>
+          <Property Name="ExceptionLogID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ExceptionLogType" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExceptionLogContent" Type="nvarchar" MaxLength="50" />
+          <Property Name="StartTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EndTime" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CST_FIELD_MAP">
+          <Key>
+            <PropertyRef Name="FieldID" />
+          </Key>
+          <Property Name="FieldID" Type="nvarchar" MaxLength="23" Nullable="false" />
+          <Property Name="FieldName" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="MapName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Active" Type="int" Nullable="false" />
+          <Property Name="IsDelete" Type="int" Nullable="false" />
+          <Property Name="Version" Type="nvarchar" MaxLength="10" />
+          <Property Name="CreateTime" Type="nvarchar" MaxLength="20" />
+          <Property Name="LastUpdateTime" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CST_GATE_READER">
+          <Key>
+            <PropertyRef Name="GateReaderID" />
+          </Key>
+          <Property Name="GateReaderID" Type="nvarchar" MaxLength="23" Nullable="false" />
+          <Property Name="GateReaderNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="HostAddress" Type="nvarchar" MaxLength="20" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="Active" Type="int" Nullable="false" />
+          <Property Name="IsDelete" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="nvarchar" MaxLength="20" />
+          <Property Name="LastUpdateTime" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CST_INV">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="nvarchar" MaxLength="23" Nullable="false" />
+          <Property Name="OrderNo" Type="nvarchar" MaxLength="23" />
+          <Property Name="CreateTime" Type="nvarchar" MaxLength="20" />
+          <Property Name="LastUpdateTime" Type="nvarchar" MaxLength="20" />
+          <Property Name="Remark" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="CST_INV_DTL">
+          <Key>
+            <PropertyRef Name="OrderDetailID" />
+          </Key>
+          <Property Name="OrderDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderID" Type="nvarchar" MaxLength="23" />
+          <Property Name="RFID" Type="nvarchar" MaxLength="24" />
+          <Property Name="Location" Type="nvarchar" MaxLength="10" />
+          <Property Name="PalletNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="PalletRFID" Type="nvarchar" MaxLength="24" />
+          <Property Name="Date" Type="nvarchar" MaxLength="15" />
+          <Property Name="LotNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="PNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="Weight" Type="nvarchar" MaxLength="10" />
+          <Property Name="Length" Type="nvarchar" MaxLength="10" />
+          <Property Name="Order" Type="nvarchar" MaxLength="14" />
+          <Property Name="InternalOrder" Type="nvarchar" MaxLength="12" />
+          <Property Name="WKNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="Fabric" Type="nvarchar" MaxLength="10" />
+          <Property Name="ColorCode" Type="nvarchar" MaxLength="5" />
+          <Property Name="Color" Type="nvarchar" MaxLength="5" />
+          <Property Name="Status" Type="nvarchar" MaxLength="10" />
+          <Property Name="Lot" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="CST_MAIL_GRP">
+          <Key>
+            <PropertyRef Name="MailGroupID" />
+          </Key>
+          <Property Name="MailGroupID" Type="nvarchar" MaxLength="23" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="15" />
+          <Property Name="Active" Type="int" />
+          <Property Name="CreatTime" Type="nvarchar" MaxLength="20" />
+          <Property Name="LastUpdateTime" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="CST_MAIL_GRP_DTL">
+          <Key>
+            <PropertyRef Name="MailDetailID" />
+          </Key>
+          <Property Name="MailDetailID" Type="nvarchar" MaxLength="23" Nullable="false" />
+          <Property Name="MailGroupID" Type="nvarchar" MaxLength="23" />
+          <Property Name="UserGroupID" Type="nvarchar" MaxLength="23" />
+          <Property Name="UserProfileID" Type="nvarchar" MaxLength="23" />
+          <Property Name="Active" Type="int" />
+        </EntityType>
+        <EntityType Name="CST_MAIL_LOG">
+          <Key>
+            <PropertyRef Name="MailLogID" />
+          </Key>
+          <Property Name="MailLogID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MailTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReceiveMail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MailAccount" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MailContent" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CST_MENU_GRP">
+          <Key>
+            <PropertyRef Name="MenuGroupID" />
+          </Key>
+          <Property Name="MenuGroupID" Type="nvarchar" MaxLength="23" Nullable="false" />
+          <Property Name="UserGroupID" Type="nvarchar" MaxLength="23" />
+          <Property Name="MainMenuID" Type="nvarchar" MaxLength="23" />
+          <Property Name="MainMenuName" Type="nvarchar" MaxLength="15" />
+          <Property Name="SubMenuID" Type="nvarchar" MaxLength="23" />
+          <Property Name="SubMenuName" Type="nvarchar" MaxLength="15" />
+          <Property Name="MinorMenuID" Type="nvarchar" MaxLength="23" />
+          <Property Name="MinorMenuName" Type="nvarchar" MaxLength="15" />
+          <Property Name="Active" Type="int" />
+        </EntityType>
+        <EntityType Name="CST_MENU_MAIN">
+          <Key>
+            <PropertyRef Name="MainMenuID" />
+          </Key>
+          <Property Name="MainMenuID" Type="nvarchar" MaxLength="23" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="15" />
+          <Property Name="Action" Type="nvarchar" MaxLength="15" />
+          <Property Name="Controller" Type="nvarchar" MaxLength="15" />
+          <Property Name="Order" Type="nvarchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="CST_MENU_MINOR">
+          <Key>
+            <PropertyRef Name="MinorMenuID" />
+          </Key>
+          <Property Name="MinorMenuID" Type="nvarchar" MaxLength="23" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="15" />
+          <Property Name="Action" Type="nvarchar" MaxLength="15" />
+          <Property Name="Controller" Type="nvarchar" MaxLength="15" />
+          <Property Name="SubMenuID" Type="nvarchar" MaxLength="23" />
+          <Property Name="Order" Type="nvarchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="CST_MENU_SUB">
+          <Key>
+            <PropertyRef Name="SubMenuID" />
+          </Key>
+          <Property Name="SubMenuID" Type="nvarchar" MaxLength="23" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="15" />
+          <Property Name="Action" Type="nvarchar" MaxLength="15" />
+          <Property Name="Controller" Type="nvarchar" MaxLength="15" />
+          <Property Name="MainMenuID" Type="nvarchar" MaxLength="23" />
+          <Property Name="Order" Type="nvarchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="CST_ORDER_TYPE">
+          <Key>
+            <PropertyRef Name="OrderTypeID" />
+          </Key>
+          <Property Name="OrderTypeID" Type="nvarchar" MaxLength="23" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="10" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateTime" Type="nvarchar" MaxLength="20" />
+          <Property Name="LastUpdateTime" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="CST_PALLET">
+          <Key>
+            <PropertyRef Name="PalletID" />
+          </Key>
+          <Property Name="PalletID" Type="nvarchar" MaxLength="23" Nullable="false" />
+          <Property Name="PalletNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PalletTypeID" Type="nvarchar" MaxLength="23" />
+          <Property Name="Status" Type="nvarchar" MaxLength="10" />
+          <Property Name="RFIDID" Type="nvarchar" MaxLength="23" />
+          <Property Name="CardNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="Active" Type="int" Nullable="false" />
+          <Property Name="IsDelete" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="LastUpdateTime" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="CST_PALLET_TYPE">
+          <Key>
+            <PropertyRef Name="PalletTypeID" />
+          </Key>
+          <Property Name="PalletTypeID" Type="nvarchar" MaxLength="23" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="TypeCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="Active" Type="int" Nullable="false" />
+          <Property Name="IsDelete" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="LastUpdateTime" Type="nvarchar" MaxLength="20" />
+          <Property Name="IconName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CST_RFID">
+          <Key>
+            <PropertyRef Name="RFIDID" />
+          </Key>
+          <Property Name="RFIDID" Type="nvarchar" MaxLength="23" Nullable="false" />
+          <Property Name="RFIDNumber" Type="nvarchar" MaxLength="24" Nullable="false" />
+          <Property Name="Active" Type="int" Nullable="false" />
+          <Property Name="IsDelete" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="LastUpdateTime" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="CST_RFID_ERROR_LOG">
+          <Key>
+            <PropertyRef Name="No" />
+          </Key>
+          <Property Name="No" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="StartTime" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="EndTime" Type="nvarchar" MaxLength="20" />
+          <Property Name="ErrorMessage" Type="nvarchar(max)" />
+          <Property Name="PalletRFID" Type="nvarchar" MaxLength="24" />
+          <Property Name="RFID" Type="nvarchar" MaxLength="24" Nullable="false" />
+          <Property Name="GateReaderNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="UpLoadType" Type="nvarchar" MaxLength="10" />
+          <Property Name="Lot" Type="nvarchar" MaxLength="30" />
+          <Property Name="Remark" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="CST_SER_INV">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="nvarchar" MaxLength="23" Nullable="false" />
+          <Property Name="OrderNo" Type="nvarchar" MaxLength="23" />
+          <Property Name="CreateTime" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="LastUpdateTime" Type="nvarchar" MaxLength="20" />
+          <Property Name="Remark" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="CST_SER_INV_DTL">
+          <Key>
+            <PropertyRef Name="OrderDetailID" />
+          </Key>
+          <Property Name="OrderDetailID" Type="nvarchar" MaxLength="23" Nullable="false" />
+          <Property Name="OrderID" Type="nvarchar" MaxLength="23" />
+          <Property Name="RFID" Type="nvarchar" MaxLength="24" />
+          <Property Name="Lot" Type="nvarchar" MaxLength="15" />
+          <Property Name="WKNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="LotNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="Order" Type="nvarchar" MaxLength="15" />
+          <Property Name="Fabric" Type="nvarchar" MaxLength="15" />
+          <Property Name="Color" Type="nvarchar" MaxLength="10" />
+          <Property Name="Width" Type="nvarchar" MaxLength="10" />
+          <Property Name="YdWt" Type="nvarchar" MaxLength="10" />
+          <Property Name="Weight" Type="nvarchar" MaxLength="10" />
+          <Property Name="Length" Type="nvarchar" MaxLength="10" />
+          <Property Name="PNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="Date" Type="nvarchar" MaxLength="15" />
+          <Property Name="CreateTime" Type="nvarchar" MaxLength="20" />
+          <Property Name="LastUpdateTime" Type="nvarchar" MaxLength="20" />
+          <Property Name="Location" Type="nvarchar" MaxLength="20" />
+          <Property Name="InternalOrder" Type="nvarchar" MaxLength="15" />
+          <Property Name="Status" Type="nvarchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="CST_STOCK_OUT">
+          <Key>
+            <PropertyRef Name="StockOutID" />
+          </Key>
+          <Property Name="StockOutID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StockOutNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="Lot" Type="nvarchar" MaxLength="20" />
+          <Property Name="RFID" Type="nvarchar" MaxLength="24" />
+          <Property Name="PNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="WKNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="PalletRFID" Type="nvarchar" MaxLength="24" />
+          <Property Name="CreateTime" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="CST_STOCK_OUT_LOG">
+          <Key>
+            <PropertyRef Name="StockOutLogID" />
+          </Key>
+          <Property Name="StockOutLogID" Type="nvarchar" MaxLength="23" Nullable="false" />
+          <Property Name="StockOutID" Type="int" Nullable="false" />
+          <Property Name="StockOutNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="Lot" Type="nvarchar" MaxLength="20" />
+          <Property Name="RFID" Type="nvarchar" MaxLength="24" />
+          <Property Name="PNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="WKNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="PalletRFID" Type="nvarchar" MaxLength="24" />
+          <Property Name="CreateTime" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="CST_STORAGE_PARKINGBLOCK">
+          <Key>
+            <PropertyRef Name="ParkingBlockID" />
+          </Key>
+          <Property Name="ParkingBlockID" Type="nvarchar" MaxLength="23" Nullable="false" />
+          <Property Name="ParkingBlockName" Type="nvarchar" MaxLength="20" />
+          <Property Name="StorageID" Type="nvarchar" MaxLength="24" />
+          <Property Name="FieldID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="X" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Y" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Width" Type="int" Nullable="false" />
+          <Property Name="Height" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="nvarchar" MaxLength="20" />
+          <Property Name="LastUpdateTime" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CST_USER_GRP">
+          <Key>
+            <PropertyRef Name="UserGroupID" />
+          </Key>
+          <Property Name="UserGroupID" Type="nvarchar" MaxLength="23" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="15" />
+          <Property Name="Active" Type="int" />
+          <Property Name="CreatTime" Type="nvarchar" MaxLength="20" />
+          <Property Name="LastUpdateTime" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="CST_USER_HIST">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserProfileID" Type="nvarchar" MaxLength="23" />
+          <Property Name="FunctionName" Type="nvarchar" MaxLength="20" />
+          <Property Name="Parameter" Type="nvarchar" MaxLength="20" />
+          <Property Name="NewValue" Type="nvarchar" MaxLength="20" />
+          <Property Name="OldValue" Type="nvarchar" MaxLength="10" />
+          <Property Name="CreateTime" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="CST_USER_PROFILE">
+          <Key>
+            <PropertyRef Name="UserProfileID" />
+          </Key>
+          <Property Name="UserProfileID" Type="nvarchar" MaxLength="23" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="15" />
+          <Property Name="UserGroupID" Type="nvarchar" MaxLength="23" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="30" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" />
+          <Property Name="Code" Type="nvarchar" MaxLength="10" />
+          <Property Name="UserTitleID" Type="nvarchar" MaxLength="20" />
+          <Property Name="Active" Type="int" Nullable="false" />
+          <Property Name="IsDelete" Type="int" />
+          <Property Name="CreateTime" Type="nvarchar" MaxLength="20" />
+          <Property Name="LastUpdateTime" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="CST_WAREHOUSE">
+          <Key>
+            <PropertyRef Name="WareHouseDataID" />
+          </Key>
+          <Property Name="WareHouseDataID" Type="nvarchar" MaxLength="23" Nullable="false" />
+          <Property Name="DeviceName" Type="nvarchar" MaxLength="20" />
+          <Property Name="PalletNumber" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="PalletTypeID" Type="nvarchar" MaxLength="23" />
+          <Property Name="ParkingBlockID" Type="nvarchar" MaxLength="23" />
+          <Property Name="RFIDID" Type="nvarchar" MaxLength="23" Nullable="false" />
+          <Property Name="StockInTime" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="StockOutTime" Type="nvarchar" MaxLength="20" />
+          <Property Name="Quantity" Type="nvarchar" MaxLength="15" />
+          <Property Name="PreGateReaderNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="LastGateReaderNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="WO" Type="nvarchar" MaxLength="20" />
+          <Property Name="Lot" Type="nvarchar" MaxLength="30" />
+          <Property Name="OverTime" Type="nvarchar" MaxLength="20" />
+          <Property Name="MailFlag" Type="nvarchar" MaxLength="10" />
+          <Property Name="LastUpdateTime" Type="nvarchar" MaxLength="20" />
+          <Property Name="WarningDay" Type="nvarchar" MaxLength="5" />
+          <Property Name="StockIn" Type="nvarchar" MaxLength="20" />
+          <Property Name="StockOut" Type="nvarchar" MaxLength="20" />
+          <Property Name="RFID" Type="nvarchar" MaxLength="24" />
+          <Property Name="WKNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="LotNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="Order" Type="nvarchar" MaxLength="15" />
+          <Property Name="InternalOrder" Type="nvarchar" MaxLength="15" />
+          <Property Name="Fabric" Type="nvarchar" MaxLength="20" />
+          <Property Name="Color" Type="nvarchar" MaxLength="20" />
+          <Property Name="Width" Type="nvarchar" MaxLength="10" />
+          <Property Name="YdWt" Type="nvarchar" MaxLength="10" />
+          <Property Name="Weight" Type="nvarchar" MaxLength="10" />
+          <Property Name="Length" Type="nvarchar" MaxLength="10" />
+          <Property Name="PNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="Date" Type="nvarchar" MaxLength="15" />
+          <Property Name="ColorCode" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="CST_WAREHOUSE_HIST">
+          <Key>
+            <PropertyRef Name="WareHouseDataHisID" />
+          </Key>
+          <Property Name="WareHouseDataHisID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WareHouseDataID" Type="nvarchar" MaxLength="23" Nullable="false" />
+          <Property Name="DeviceName" Type="nvarchar" MaxLength="20" />
+          <Property Name="PalletNumber" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="PalletTypeID" Type="nvarchar" MaxLength="23" />
+          <Property Name="ParkingBlockID" Type="nvarchar" MaxLength="23" />
+          <Property Name="RFIDID" Type="nvarchar" MaxLength="23" Nullable="false" />
+          <Property Name="StockInTime" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="StockOutTime" Type="nvarchar" MaxLength="20" />
+          <Property Name="Quantity" Type="nvarchar" MaxLength="15" />
+          <Property Name="PreGateReaderNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="LastGateReaderNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="WO" Type="nvarchar" MaxLength="20" />
+          <Property Name="Lot" Type="nvarchar" MaxLength="30" />
+          <Property Name="OverTime" Type="nvarchar" MaxLength="20" />
+          <Property Name="MailFlag" Type="nvarchar" MaxLength="10" />
+          <Property Name="LastUpdateTime" Type="nvarchar" MaxLength="20" />
+          <Property Name="WarningDay" Type="nvarchar" MaxLength="5" />
+          <Property Name="StockIn" Type="nvarchar" MaxLength="20" />
+          <Property Name="StockOut" Type="nvarchar" MaxLength="20" />
+          <Property Name="RFID" Type="nvarchar" MaxLength="30" />
+          <Property Name="WKNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="LotNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="Order" Type="nvarchar" MaxLength="20" />
+          <Property Name="InternalOrder" Type="nvarchar" MaxLength="15" />
+          <Property Name="Fabric" Type="nvarchar" MaxLength="15" />
+          <Property Name="Color" Type="nvarchar" MaxLength="20" />
+          <Property Name="Width" Type="nvarchar" MaxLength="10" />
+          <Property Name="YdWt" Type="nvarchar" MaxLength="10" />
+          <Property Name="Weight" Type="nvarchar" MaxLength="10" />
+          <Property Name="Length" Type="nvarchar" MaxLength="10" />
+          <Property Name="PNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="Date" Type="nvarchar" MaxLength="50" />
+          <Property Name="ColorCode" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="CST_WAREHOUSE_LOG">
+          <Key>
+            <PropertyRef Name="WareHouseDataLogID" />
+          </Key>
+          <Property Name="WareHouseDataLogID" Type="nvarchar" MaxLength="23" Nullable="false" />
+          <Property Name="DeviceName" Type="nvarchar" MaxLength="20" />
+          <Property Name="PalletNumber" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="PalletTypeID" Type="nvarchar" MaxLength="23" />
+          <Property Name="ParkingBlockID" Type="nvarchar" MaxLength="23" />
+          <Property Name="RFIDID" Type="nvarchar" MaxLength="23" Nullable="false" />
+          <Property Name="StockInTime" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="StockOutTime" Type="nvarchar" MaxLength="20" />
+          <Property Name="Quantity" Type="nvarchar" MaxLength="15" />
+          <Property Name="PreGateReaderNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="LastGateReaderNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="WO" Type="nvarchar" MaxLength="20" />
+          <Property Name="Lot" Type="nvarchar" MaxLength="30" />
+          <Property Name="OverTime" Type="nvarchar" MaxLength="20" />
+          <Property Name="MailFlag" Type="nvarchar" MaxLength="10" />
+          <Property Name="LastUpdateTime" Type="nvarchar" MaxLength="20" />
+          <Property Name="WarningDay" Type="nvarchar" MaxLength="5" />
+          <Property Name="StockIn" Type="nvarchar" MaxLength="20" />
+          <Property Name="StockOut" Type="nvarchar" MaxLength="20" />
+          <Property Name="RFID" Type="nvarchar" MaxLength="24" />
+          <Property Name="WKNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="LotNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="Order" Type="nvarchar" MaxLength="15" />
+          <Property Name="InternalOrder" Type="nvarchar" MaxLength="15" />
+          <Property Name="Fabric" Type="nvarchar" MaxLength="20" />
+          <Property Name="Color" Type="nvarchar" MaxLength="20" />
+          <Property Name="Width" Type="nvarchar" MaxLength="10" />
+          <Property Name="YdWt" Type="nvarchar" MaxLength="10" />
+          <Property Name="Weight" Type="nvarchar" MaxLength="10" />
+          <Property Name="Length" Type="nvarchar" MaxLength="10" />
+          <Property Name="PNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="Date" Type="nvarchar" MaxLength="15" />
+          <Property Name="ColorCode" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="POS_EmpGroup">
+          <Key>
+            <PropertyRef Name="EpgID" />
+          </Key>
+          <Property Name="EpgID" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="EppID" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="modifyDate" Type="datetime" />
+          <Property Name="modifyUserID" Type="int" />
+        </EntityType>
+        <EntityType Name="POS_Employee">
+          <Key>
+            <PropertyRef Name="EmpID" />
+          </Key>
+          <Property Name="EmpID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nchar" MaxLength="50" />
+          <Property Name="LastName" Type="nchar" MaxLength="50" />
+          <Property Name="Gende" Type="nchar" MaxLength="1" />
+          <Property Name="BirthDate" Type="datetime" />
+          <Property Name="Title" Type="nchar" MaxLength="50" />
+          <Property Name="HireDate" Type="datetime" />
+          <Property Name="QuitDate" Type="datetime" />
+          <Property Name="Country" Type="nchar" MaxLength="50" />
+          <Property Name="PostalCode" Type="int" />
+          <Property Name="City" Type="nchar" MaxLength="50" />
+          <Property Name="Region" Type="nchar" MaxLength="50" />
+          <Property Name="Address" Type="nchar" MaxLength="50" />
+          <Property Name="Phone" Type="nchar" MaxLength="50" />
+          <Property Name="Notes" Type="nchar" MaxLength="50" />
+          <Property Name="Photo" Type="nchar" MaxLength="50" />
+          <Property Name="PhotoPath" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="POS_EmpPermissions">
+          <Key>
+            <PropertyRef Name="EPID" />
+          </Key>
+          <Property Name="EPID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmpID" Type="int" />
+          <Property Name="EpgID" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="POS_EmpProgram">
+          <Key>
+            <PropertyRef Name="EppID" />
+          </Key>
+          <Property Name="EppID" Type="int" Nullable="false" />
+          <Property Name="EppAlias" Type="nchar" MaxLength="10" />
+          <Property Name="EmpProgramName" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmpProgramDrescript" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="POS_OrganizationChart">
+          <Key>
+            <PropertyRef Name="OID" />
+          </Key>
+          <Property Name="OID" Type="int" Nullable="false" />
+          <Property Name="OLevel" Type="int" />
+          <Property Name="OName" Type="nvarchar" MaxLength="50" />
+          <Property Name="OUrl" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="POS_Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SupID" Type="nchar" MaxLength="10" />
+          <Property Name="CategoryID" Type="nchar" MaxLength="10" />
+          <Property Name="QuantityPerUnit" Type="nchar" MaxLength="10" />
+          <Property Name="UnitPrice" Type="nchar" MaxLength="10" />
+          <Property Name="Discontinued" Type="nchar" MaxLength="10" />
+          <Property Name="CreateTime" Type="nvarchar" MaxLength="20" />
+          <Property Name="LastUpdateTime" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="POS_ProductCatrgory">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="Picture" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="POS_Retail">
+          <Key>
+            <PropertyRef Name="RetailID" />
+          </Key>
+          <Property Name="RetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RetailName" Type="nvarchar" MaxLength="50" />
+          <Property Name="RetailSuperVisor" Type="nchar" MaxLength="10" />
+          <Property Name="RetailAdd" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nchar" MaxLength="10" />
+          <Property Name="Fax" Type="nchar" MaxLength="10" />
+          <Property Name="Descript" Type="nvarchar" MaxLength="50" />
+          <Property Name="Note" Type="ntext" />
+        </EntityType>
+        <EntityType Name="POS_RetailPurchase">
+          <Key>
+            <PropertyRef Name="PurchaseID" />
+          </Key>
+          <Property Name="PurchaseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RetailID" Type="int" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="InnerNum" Type="int" />
+          <Property Name="innerDate" Type="datetime2" Precision="7" />
+          <Property Name="note" Type="ntext" />
+        </EntityType>
+        <EntityType Name="POS_RetailSale">
+          <Key>
+            <PropertyRef Name="SaleID" />
+          </Key>
+          <Property Name="SaleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RetailID" Type="int" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="orderNum" Type="int" />
+          <Property Name="UnitPrice" Type="int" />
+          <Property Name="TotalPrice" Type="int" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'WarehouseServer.dbo.POS_SaleList' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="POS_SaleList">
+          <Key>
+            <PropertyRef Name="SaleID" />
+            <PropertyRef Name="TransDate" />
+          </Key>
+          <Property Name="SaleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmpID" Type="int" />
+          <Property Name="RetailID" Type="int" />
+          <Property Name="WorkDate" Type="datetime" />
+          <Property Name="TransDate" Type="datetime" Nullable="false" />
+          <Property Name="Other" Type="ntext" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'WarehouseServer.dbo.POS_Stock' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="POS_Stock">
+          <Key>
+            <PropertyRef Name="StockID" />
+          </Key>
+          <Property Name="StockID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RetailID" Type="int" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="ProductQuantity" Type="int" />
+        </EntityType>
+        <EntityType Name="POS_Supplier">
+          <Key>
+            <PropertyRef Name="SupID" />
+          </Key>
+          <Property Name="SupID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContactName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContactTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="Region" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="50" />
+          <Property Name="EMail" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserProfileID" Type="nvarchar" MaxLength="23" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserGroupID" Type="nvarchar" MaxLength="30" />
+          <Property Name="Password" Type="nvarchar" MaxLength="20" />
+          <Property Name="Name" Type="nvarchar" MaxLength="10" />
+          <Property Name="Code" Type="nchar" MaxLength="10" />
+          <Property Name="UserTitle" Type="nvarchar" MaxLength="20" />
+          <Property Name="Active" Type="int" />
+          <Property Name="IsDelete" Type="int" />
+          <Property Name="CreateTime" Type="nvarchar" MaxLength="20" />
+          <Property Name="LastUpdateTime" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="POS_USER_PROFILE">
+          <Key>
+            <PropertyRef Name="UserProfileID" />
+          </Key>
+          <Property Name="UserProfileID" Type="nvarchar" MaxLength="23" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="15" />
+          <Property Name="UserGroupID" Type="nvarchar" MaxLength="23" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="30" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" />
+          <Property Name="Code" Type="nvarchar" MaxLength="10" />
+          <Property Name="Active" Type="int" Nullable="false" />
+          <Property Name="IsDelete" Type="int" />
+          <Property Name="CreateTime" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="LastUpdateTime" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'WarehouseServer.dbo.POS_UserLogin' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="POS_UserLogin">
+          <Key>
+            <PropertyRef Name="LoginID" />
+          </Key>
+          <Property Name="LoginID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmpID" Type="int" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TEMP_ERP_INV_DTL">
+          <Key>
+            <PropertyRef Name="OrderDetailID" />
+          </Key>
+          <Property Name="OrderDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RFID" Type="nvarchar" MaxLength="24" />
+          <Property Name="Location" Type="nvarchar" MaxLength="10" />
+          <Property Name="PalletNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="PalletRFID" Type="nvarchar" MaxLength="24" />
+          <Property Name="Date" Type="nvarchar" MaxLength="15" />
+          <Property Name="LotNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="PNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="Weight" Type="nvarchar" MaxLength="10" />
+          <Property Name="Length" Type="nvarchar" MaxLength="10" />
+          <Property Name="Order" Type="nvarchar" MaxLength="14" />
+          <Property Name="InternalOrder" Type="nvarchar" MaxLength="12" />
+          <Property Name="WKNO" Type="nvarchar" MaxLength="10" />
+          <Property Name="Fabric" Type="nvarchar" MaxLength="10" />
+          <Property Name="ColorCode" Type="nvarchar" MaxLength="5" />
+          <Property Name="Color" Type="nvarchar" MaxLength="5" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6013: 資料表/檢視 'WarehouseServer.dbo.TEMP_ERP_STOCK_IN' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
+        <EntityType Name="TEMP_ERP_STOCK_IN">
+          <Property Name="Lot" Type="nvarchar" MaxLength="20" />
+          <Property Name="PalletRFID" Type="nvarchar" MaxLength="24" />
+          <Property Name="StockInNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="WKNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="LotNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="Order" Type="nvarchar" MaxLength="30" />
+          <Property Name="InternalOrder" Type="nvarchar" MaxLength="15" />
+          <Property Name="Fabric" Type="nvarchar" MaxLength="20" />
+          <Property Name="Color" Type="nvarchar" MaxLength="20" />
+          <Property Name="Width" Type="nvarchar" MaxLength="20" />
+          <Property Name="YdWt" Type="nvarchar" MaxLength="20" />
+          <Property Name="Weight" Type="nvarchar" MaxLength="20" />
+          <Property Name="Length" Type="nvarchar" MaxLength="20" />
+          <Property Name="PNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="Date" Type="nvarchar" MaxLength="20" />
+          <Property Name="RFID" Type="nvarchar" MaxLength="24" />
+          <Property Name="ColorCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="PalletNumber" Type="nvarchar" MaxLength="20" />
+        </EntityType>-->
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'WarehouseServer.dbo.TEMP_ERP_STOCK_OUT' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="TEMP_ERP_STOCK_OUT">
+          <Key>
+            <PropertyRef Name="Lot" />
+          </Key>
+          <Property Name="Lot" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PalletRFID" Type="nvarchar" MaxLength="24" />
+          <Property Name="StockOutNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="WKNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="LotNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="Order" Type="nvarchar" MaxLength="30" />
+          <Property Name="InternalOrder" Type="nvarchar" MaxLength="15" />
+          <Property Name="Fabric" Type="nvarchar" MaxLength="20" />
+          <Property Name="Color" Type="nvarchar" MaxLength="20" />
+          <Property Name="Width" Type="nvarchar" MaxLength="20" />
+          <Property Name="YdWt" Type="nvarchar" MaxLength="20" />
+          <Property Name="Weight" Type="nvarchar" MaxLength="20" />
+          <Property Name="Length" Type="nvarchar" MaxLength="20" />
+          <Property Name="PNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="Date" Type="nvarchar" MaxLength="20" />
+          <Property Name="RFID" Type="nvarchar" MaxLength="24" />
+          <Property Name="ColorCode" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'WarehouseServer.dbo.vw_Lots' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="vw_Lots">
+          <Key>
+            <PropertyRef Name="WareHouseDataID" />
+            <PropertyRef Name="PalletNumber" />
+            <PropertyRef Name="RFIDID" />
+            <PropertyRef Name="StockInTime" />
+            <PropertyRef Name="Status" />
+          </Key>
+          <Property Name="WareHouseDataID" Type="nvarchar" MaxLength="23" Nullable="false" />
+          <Property Name="DeviceName" Type="nvarchar" MaxLength="20" />
+          <Property Name="PalletNumber" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="PalletTypeID" Type="nvarchar" MaxLength="23" />
+          <Property Name="ParkingBlockID" Type="nvarchar" MaxLength="23" />
+          <Property Name="RFIDID" Type="nvarchar" MaxLength="23" Nullable="false" />
+          <Property Name="StockInTime" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="StockOutTime" Type="nvarchar" MaxLength="20" />
+          <Property Name="Quantity" Type="nvarchar" MaxLength="15" />
+          <Property Name="PreGateReaderNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="LastGateReaderNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="WO" Type="nvarchar" MaxLength="20" />
+          <Property Name="Lot" Type="nvarchar" MaxLength="30" />
+          <Property Name="OverTime" Type="nvarchar" MaxLength="20" />
+          <Property Name="MailFlag" Type="nvarchar" MaxLength="10" />
+          <Property Name="LastUpdateTime" Type="nvarchar" MaxLength="20" />
+          <Property Name="WarningDay" Type="nvarchar" MaxLength="5" />
+          <Property Name="StockIn" Type="nvarchar" MaxLength="20" />
+          <Property Name="StockOut" Type="nvarchar" MaxLength="20" />
+          <Property Name="RFID" Type="nvarchar" MaxLength="24" />
+          <Property Name="ParkingBlockName" Type="nvarchar" MaxLength="20" />
+          <Property Name="Status" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="Date" Type="nvarchar" MaxLength="15" />
+          <Property Name="PNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="Length" Type="nvarchar" MaxLength="10" />
+          <Property Name="Weight" Type="nvarchar" MaxLength="10" />
+          <Property Name="YdWt" Type="nvarchar" MaxLength="10" />
+          <Property Name="Width" Type="nvarchar" MaxLength="10" />
+          <Property Name="Color" Type="nvarchar" MaxLength="20" />
+          <Property Name="Fabric" Type="nvarchar" MaxLength="20" />
+          <Property Name="Order" Type="nvarchar" MaxLength="15" />
+          <Property Name="LotNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="WKNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="InternalOrder" Type="nvarchar" MaxLength="15" />
+          <Property Name="PLot" Type="nvarchar" MaxLength="21" />
+          <Property Name="ColorCode" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'WarehouseServer.dbo.vw_Record' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="vw_Record">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="Code" Type="nvarchar" MaxLength="23" />
+          <Property Name="Name" Type="nvarchar" MaxLength="23" />
+          <Property Name="FunctionName" Type="nvarchar" MaxLength="10" />
+          <Property Name="Parameter" Type="nvarchar" MaxLength="10" />
+          <Property Name="NewValue" Type="nvarchar" MaxLength="10" />
+          <Property Name="OldValue" Type="nvarchar" MaxLength="10" />
+          <Property Name="CreateTime" Type="nvarchar" MaxLength="20" />
+          <Property Name="SID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'WarehouseServer.dbo.vw_RFIDLog' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="vw_RFIDLog">
+          <Key>
+            <PropertyRef Name="No" />
+            <PropertyRef Name="StartTime" />
+            <PropertyRef Name="RFID" />
+          </Key>
+          <Property Name="No" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="StartTime" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="EndTime" Type="nvarchar" MaxLength="20" />
+          <Property Name="ErrorMessage" Type="nvarchar(max)" />
+          <Property Name="PalletRFID" Type="nvarchar" MaxLength="24" />
+          <Property Name="RFID" Type="nvarchar" MaxLength="24" Nullable="false" />
+          <Property Name="GateReaderNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="UpLoadType" Type="nvarchar" MaxLength="10" />
+          <Property Name="Lot" Type="nvarchar" MaxLength="30" />
+          <Property Name="Remark" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityContainer Name="WarehouseServerModelStoreContainer">
+          <EntitySet Name="CST_ALARM" EntityType="Self.CST_ALARM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_BEACON" EntityType="Self.CST_BEACON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_BEACON_LOCATION" EntityType="Self.CST_BEACON_LOCATION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_BEACON_PARKINGBLOCK" EntityType="Self.CST_BEACON_PARKINGBLOCK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_CARD" EntityType="Self.CST_CARD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_CARD_PATH" EntityType="Self.CST_CARD_PATH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_CARD_PATH_HIST" EntityType="Self.CST_CARD_PATH_HIST" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_EXCEPTION_LOG" EntityType="Self.CST_EXCEPTION_LOG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_FIELD_MAP" EntityType="Self.CST_FIELD_MAP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_GATE_READER" EntityType="Self.CST_GATE_READER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_INV" EntityType="Self.CST_INV" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_INV_DTL" EntityType="Self.CST_INV_DTL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_MAIL_GRP" EntityType="Self.CST_MAIL_GRP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_MAIL_GRP_DTL" EntityType="Self.CST_MAIL_GRP_DTL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_MAIL_LOG" EntityType="Self.CST_MAIL_LOG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_MENU_GRP" EntityType="Self.CST_MENU_GRP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_MENU_MAIN" EntityType="Self.CST_MENU_MAIN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_MENU_MINOR" EntityType="Self.CST_MENU_MINOR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_MENU_SUB" EntityType="Self.CST_MENU_SUB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_ORDER_TYPE" EntityType="Self.CST_ORDER_TYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_PALLET" EntityType="Self.CST_PALLET" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_PALLET_TYPE" EntityType="Self.CST_PALLET_TYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_RFID" EntityType="Self.CST_RFID" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_RFID_ERROR_LOG" EntityType="Self.CST_RFID_ERROR_LOG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_SER_INV" EntityType="Self.CST_SER_INV" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_SER_INV_DTL" EntityType="Self.CST_SER_INV_DTL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_STOCK_OUT" EntityType="Self.CST_STOCK_OUT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_STOCK_OUT_LOG" EntityType="Self.CST_STOCK_OUT_LOG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_STORAGE_PARKINGBLOCK" EntityType="Self.CST_STORAGE_PARKINGBLOCK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_USER_GRP" EntityType="Self.CST_USER_GRP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_USER_HIST" EntityType="Self.CST_USER_HIST" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_USER_PROFILE" EntityType="Self.CST_USER_PROFILE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_WAREHOUSE" EntityType="Self.CST_WAREHOUSE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_WAREHOUSE_HIST" EntityType="Self.CST_WAREHOUSE_HIST" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CST_WAREHOUSE_LOG" EntityType="Self.CST_WAREHOUSE_LOG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="POS_EmpGroup" EntityType="Self.POS_EmpGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="POS_Employee" EntityType="Self.POS_Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="POS_EmpPermissions" EntityType="Self.POS_EmpPermissions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="POS_EmpProgram" EntityType="Self.POS_EmpProgram" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="POS_OrganizationChart" EntityType="Self.POS_OrganizationChart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="POS_Product" EntityType="Self.POS_Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="POS_ProductCatrgory" EntityType="Self.POS_ProductCatrgory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="POS_Retail" EntityType="Self.POS_Retail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="POS_RetailPurchase" EntityType="Self.POS_RetailPurchase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="POS_RetailSale" EntityType="Self.POS_RetailSale" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="POS_Supplier" EntityType="Self.POS_Supplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="POS_USER_PROFILE" EntityType="Self.POS_USER_PROFILE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TEMP_ERP_INV_DTL" EntityType="Self.TEMP_ERP_INV_DTL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="POS_SaleList" EntityType="Self.POS_SaleList" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [POS_SaleList].[SaleID] AS [SaleID], 
+    [POS_SaleList].[EmpID] AS [EmpID], 
+    [POS_SaleList].[RetailID] AS [RetailID], 
+    [POS_SaleList].[WorkDate] AS [WorkDate], 
+    [POS_SaleList].[TransDate] AS [TransDate], 
+    [POS_SaleList].[Other] AS [Other]
+    FROM [dbo].[POS_SaleList] AS [POS_SaleList]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="POS_Stock" EntityType="Self.POS_Stock" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [POS_Stock].[StockID] AS [StockID], 
+    [POS_Stock].[RetailID] AS [RetailID], 
+    [POS_Stock].[ProductID] AS [ProductID], 
+    [POS_Stock].[ProductQuantity] AS [ProductQuantity]
+    FROM [dbo].[POS_Stock] AS [POS_Stock]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="POS_UserLogin" EntityType="Self.POS_UserLogin" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [POS_UserLogin].[LoginID] AS [LoginID], 
+    [POS_UserLogin].[EmpID] AS [EmpID], 
+    [POS_UserLogin].[UserName] AS [UserName], 
+    [POS_UserLogin].[Password] AS [Password]
+    FROM [dbo].[POS_UserLogin] AS [POS_UserLogin]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TEMP_ERP_STOCK_OUT" EntityType="Self.TEMP_ERP_STOCK_OUT" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TEMP_ERP_STOCK_OUT].[Lot] AS [Lot], 
+    [TEMP_ERP_STOCK_OUT].[PalletRFID] AS [PalletRFID], 
+    [TEMP_ERP_STOCK_OUT].[StockOutNo] AS [StockOutNo], 
+    [TEMP_ERP_STOCK_OUT].[WKNo] AS [WKNo], 
+    [TEMP_ERP_STOCK_OUT].[LotNo] AS [LotNo], 
+    [TEMP_ERP_STOCK_OUT].[Order] AS [Order], 
+    [TEMP_ERP_STOCK_OUT].[InternalOrder] AS [InternalOrder], 
+    [TEMP_ERP_STOCK_OUT].[Fabric] AS [Fabric], 
+    [TEMP_ERP_STOCK_OUT].[Color] AS [Color], 
+    [TEMP_ERP_STOCK_OUT].[Width] AS [Width], 
+    [TEMP_ERP_STOCK_OUT].[YdWt] AS [YdWt], 
+    [TEMP_ERP_STOCK_OUT].[Weight] AS [Weight], 
+    [TEMP_ERP_STOCK_OUT].[Length] AS [Length], 
+    [TEMP_ERP_STOCK_OUT].[PNo] AS [PNo], 
+    [TEMP_ERP_STOCK_OUT].[Date] AS [Date], 
+    [TEMP_ERP_STOCK_OUT].[RFID] AS [RFID], 
+    [TEMP_ERP_STOCK_OUT].[ColorCode] AS [ColorCode]
+    FROM [dbo].[TEMP_ERP_STOCK_OUT] AS [TEMP_ERP_STOCK_OUT]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_Lots" EntityType="Self.vw_Lots" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_Lots].[WareHouseDataID] AS [WareHouseDataID], 
+    [vw_Lots].[DeviceName] AS [DeviceName], 
+    [vw_Lots].[PalletNumber] AS [PalletNumber], 
+    [vw_Lots].[PalletTypeID] AS [PalletTypeID], 
+    [vw_Lots].[ParkingBlockID] AS [ParkingBlockID], 
+    [vw_Lots].[RFIDID] AS [RFIDID], 
+    [vw_Lots].[StockInTime] AS [StockInTime], 
+    [vw_Lots].[StockOutTime] AS [StockOutTime], 
+    [vw_Lots].[Quantity] AS [Quantity], 
+    [vw_Lots].[PreGateReaderNumber] AS [PreGateReaderNumber], 
+    [vw_Lots].[LastGateReaderNumber] AS [LastGateReaderNumber], 
+    [vw_Lots].[WO] AS [WO], 
+    [vw_Lots].[Lot] AS [Lot], 
+    [vw_Lots].[OverTime] AS [OverTime], 
+    [vw_Lots].[MailFlag] AS [MailFlag], 
+    [vw_Lots].[LastUpdateTime] AS [LastUpdateTime], 
+    [vw_Lots].[WarningDay] AS [WarningDay], 
+    [vw_Lots].[StockIn] AS [StockIn], 
+    [vw_Lots].[StockOut] AS [StockOut], 
+    [vw_Lots].[RFID] AS [RFID], 
+    [vw_Lots].[ParkingBlockName] AS [ParkingBlockName], 
+    [vw_Lots].[Status] AS [Status], 
+    [vw_Lots].[Date] AS [Date], 
+    [vw_Lots].[PNo] AS [PNo], 
+    [vw_Lots].[Length] AS [Length], 
+    [vw_Lots].[Weight] AS [Weight], 
+    [vw_Lots].[YdWt] AS [YdWt], 
+    [vw_Lots].[Width] AS [Width], 
+    [vw_Lots].[Color] AS [Color], 
+    [vw_Lots].[Fabric] AS [Fabric], 
+    [vw_Lots].[Order] AS [Order], 
+    [vw_Lots].[LotNo] AS [LotNo], 
+    [vw_Lots].[WKNo] AS [WKNo], 
+    [vw_Lots].[InternalOrder] AS [InternalOrder], 
+    [vw_Lots].[PLot] AS [PLot], 
+    [vw_Lots].[ColorCode] AS [ColorCode]
+    FROM [dbo].[vw_Lots] AS [vw_Lots]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_Record" EntityType="Self.vw_Record" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_Record].[Code] AS [Code], 
+    [vw_Record].[Name] AS [Name], 
+    [vw_Record].[FunctionName] AS [FunctionName], 
+    [vw_Record].[Parameter] AS [Parameter], 
+    [vw_Record].[NewValue] AS [NewValue], 
+    [vw_Record].[OldValue] AS [OldValue], 
+    [vw_Record].[CreateTime] AS [CreateTime], 
+    [vw_Record].[SID] AS [SID]
+    FROM [dbo].[vw_Record] AS [vw_Record]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_RFIDLog" EntityType="Self.vw_RFIDLog" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_RFIDLog].[No] AS [No], 
+    [vw_RFIDLog].[OrderNo] AS [OrderNo], 
+    [vw_RFIDLog].[StartTime] AS [StartTime], 
+    [vw_RFIDLog].[EndTime] AS [EndTime], 
+    [vw_RFIDLog].[ErrorMessage] AS [ErrorMessage], 
+    [vw_RFIDLog].[PalletRFID] AS [PalletRFID], 
+    [vw_RFIDLog].[RFID] AS [RFID], 
+    [vw_RFIDLog].[GateReaderNumber] AS [GateReaderNumber], 
+    [vw_RFIDLog].[UpLoadType] AS [UpLoadType], 
+    [vw_RFIDLog].[Lot] AS [Lot], 
+    [vw_RFIDLog].[Remark] AS [Remark]
+    FROM [dbo].[vw_RFIDLog] AS [vw_RFIDLog]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WarehouseServerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="WarehouseServerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CST_ALARM" EntityType="WarehouseServerModel.CST_ALARM" />
+          <EntitySet Name="CST_BEACON" EntityType="WarehouseServerModel.CST_BEACON" />
+          <EntitySet Name="CST_BEACON_LOCATION" EntityType="WarehouseServerModel.CST_BEACON_LOCATION" />
+          <EntitySet Name="CST_BEACON_PARKINGBLOCK" EntityType="WarehouseServerModel.CST_BEACON_PARKINGBLOCK" />
+          <EntitySet Name="CST_CARD" EntityType="WarehouseServerModel.CST_CARD" />
+          <EntitySet Name="CST_CARD_PATH" EntityType="WarehouseServerModel.CST_CARD_PATH" />
+          <EntitySet Name="CST_CARD_PATH_HIST" EntityType="WarehouseServerModel.CST_CARD_PATH_HIST" />
+          <EntitySet Name="CST_EXCEPTION_LOG" EntityType="WarehouseServerModel.CST_EXCEPTION_LOG" />
+          <EntitySet Name="CST_FIELD_MAP" EntityType="WarehouseServerModel.CST_FIELD_MAP" />
+          <EntitySet Name="CST_GATE_READER" EntityType="WarehouseServerModel.CST_GATE_READER" />
+          <EntitySet Name="CST_INV" EntityType="WarehouseServerModel.CST_INV" />
+          <EntitySet Name="CST_INV_DTL" EntityType="WarehouseServerModel.CST_INV_DTL" />
+          <EntitySet Name="CST_MAIL_GRP" EntityType="WarehouseServerModel.CST_MAIL_GRP" />
+          <EntitySet Name="CST_MAIL_GRP_DTL" EntityType="WarehouseServerModel.CST_MAIL_GRP_DTL" />
+          <EntitySet Name="CST_MAIL_LOG" EntityType="WarehouseServerModel.CST_MAIL_LOG" />
+          <EntitySet Name="CST_MENU_GRP" EntityType="WarehouseServerModel.CST_MENU_GRP" />
+          <EntitySet Name="CST_MENU_MAIN" EntityType="WarehouseServerModel.CST_MENU_MAIN" />
+          <EntitySet Name="CST_MENU_MINOR" EntityType="WarehouseServerModel.CST_MENU_MINOR" />
+          <EntitySet Name="CST_MENU_SUB" EntityType="WarehouseServerModel.CST_MENU_SUB" />
+          <EntitySet Name="CST_ORDER_TYPE" EntityType="WarehouseServerModel.CST_ORDER_TYPE" />
+          <EntitySet Name="CST_PALLET" EntityType="WarehouseServerModel.CST_PALLET" />
+          <EntitySet Name="CST_PALLET_TYPE" EntityType="WarehouseServerModel.CST_PALLET_TYPE" />
+          <EntitySet Name="CST_RFID" EntityType="WarehouseServerModel.CST_RFID" />
+          <EntitySet Name="CST_RFID_ERROR_LOG" EntityType="WarehouseServerModel.CST_RFID_ERROR_LOG" />
+          <EntitySet Name="CST_SER_INV" EntityType="WarehouseServerModel.CST_SER_INV" />
+          <EntitySet Name="CST_SER_INV_DTL" EntityType="WarehouseServerModel.CST_SER_INV_DTL" />
+          <EntitySet Name="CST_STOCK_OUT" EntityType="WarehouseServerModel.CST_STOCK_OUT" />
+          <EntitySet Name="CST_STOCK_OUT_LOG" EntityType="WarehouseServerModel.CST_STOCK_OUT_LOG" />
+          <EntitySet Name="CST_STORAGE_PARKINGBLOCK" EntityType="WarehouseServerModel.CST_STORAGE_PARKINGBLOCK" />
+          <EntitySet Name="CST_USER_GRP" EntityType="WarehouseServerModel.CST_USER_GRP" />
+          <EntitySet Name="CST_USER_HIST" EntityType="WarehouseServerModel.CST_USER_HIST" />
+          <EntitySet Name="CST_USER_PROFILE" EntityType="WarehouseServerModel.CST_USER_PROFILE" />
+          <EntitySet Name="CST_WAREHOUSE" EntityType="WarehouseServerModel.CST_WAREHOUSE" />
+          <EntitySet Name="CST_WAREHOUSE_HIST" EntityType="WarehouseServerModel.CST_WAREHOUSE_HIST" />
+          <EntitySet Name="CST_WAREHOUSE_LOG" EntityType="WarehouseServerModel.CST_WAREHOUSE_LOG" />
+          <EntitySet Name="POS_EmpGroup" EntityType="WarehouseServerModel.POS_EmpGroup" />
+          <EntitySet Name="POS_Employee" EntityType="WarehouseServerModel.POS_Employee" />
+          <EntitySet Name="POS_EmpPermissions" EntityType="WarehouseServerModel.POS_EmpPermissions" />
+          <EntitySet Name="POS_EmpProgram" EntityType="WarehouseServerModel.POS_EmpProgram" />
+          <EntitySet Name="POS_OrganizationChart" EntityType="WarehouseServerModel.POS_OrganizationChart" />
+          <EntitySet Name="POS_Product" EntityType="WarehouseServerModel.POS_Product" />
+          <EntitySet Name="POS_ProductCatrgory" EntityType="WarehouseServerModel.POS_ProductCatrgory" />
+          <EntitySet Name="POS_Retail" EntityType="WarehouseServerModel.POS_Retail" />
+          <EntitySet Name="POS_RetailPurchase" EntityType="WarehouseServerModel.POS_RetailPurchase" />
+          <EntitySet Name="POS_RetailSale" EntityType="WarehouseServerModel.POS_RetailSale" />
+          <EntitySet Name="POS_Supplier" EntityType="WarehouseServerModel.POS_Supplier" />
+          <EntitySet Name="POS_USER_PROFILE" EntityType="WarehouseServerModel.POS_USER_PROFILE" />
+          <EntitySet Name="sysdiagrams" EntityType="WarehouseServerModel.sysdiagram" />
+          <EntitySet Name="TEMP_ERP_INV_DTL" EntityType="WarehouseServerModel.TEMP_ERP_INV_DTL" />
+          <EntitySet Name="POS_SaleList" EntityType="WarehouseServerModel.POS_SaleList" />
+          <EntitySet Name="POS_Stock" EntityType="WarehouseServerModel.POS_Stock" />
+          <EntitySet Name="POS_UserLogin" EntityType="WarehouseServerModel.POS_UserLogin" />
+          <EntitySet Name="TEMP_ERP_STOCK_OUT" EntityType="WarehouseServerModel.TEMP_ERP_STOCK_OUT" />
+          <EntitySet Name="vw_Lots" EntityType="WarehouseServerModel.vw_Lots" />
+          <EntitySet Name="vw_Record" EntityType="WarehouseServerModel.vw_Record" />
+          <EntitySet Name="vw_RFIDLog" EntityType="WarehouseServerModel.vw_RFIDLog" />
+        </EntityContainer>
+        <EntityType Name="CST_ALARM">
+          <Key>
+            <PropertyRef Name="AlarmID" />
+          </Key>
+          <Property Name="AlarmID" Type="String" Nullable="false" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="MailGroupID" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="DeviceName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="WarningDay" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <Property Name="IsDelete" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TypeName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CST_BEACON">
+          <Key>
+            <PropertyRef Name="BeaconID" />
+          </Key>
+          <Property Name="BeaconID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BeaconNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <Property Name="IsDelete" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdateTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CST_BEACON_LOCATION">
+          <Key>
+            <PropertyRef Name="BeaconInstallLocationID" />
+          </Key>
+          <Property Name="BeaconInstallLocationID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BeaconName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FieldID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="X" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Y" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Power" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <Property Name="IsDelete" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdateTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CST_BEACON_PARKINGBLOCK">
+          <Key>
+            <PropertyRef Name="ParkingBlockID" />
+          </Key>
+          <Property Name="ParkingBlockID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ParkingBlockName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FieldID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="X" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Y" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Width" Type="Int32" Nullable="false" />
+          <Property Name="Height" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdateTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CST_CARD">
+          <Key>
+            <PropertyRef Name="CardID" />
+          </Key>
+          <Property Name="CardID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CardNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <Property Name="IsDelete" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdateTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CST_CARD_PATH">
+          <Key>
+            <PropertyRef Name="CardPathID" />
+            <PropertyRef Name="UDateTime" />
+          </Key>
+          <Property Name="CardPathID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CardNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BeaconNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AreaID" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="RouterDis" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Battery" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="NOEXETime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SleepTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RDateTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UDateTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CST_CARD_PATH_HIST">
+          <Key>
+            <PropertyRef Name="CardPathID" />
+            <PropertyRef Name="UDateTime" />
+          </Key>
+          <Property Name="CardPathID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CardNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BeaconNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AreaID" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="RouterDis" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Battery" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="NOEXETime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SleepTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RDateTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UDateTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CST_EXCEPTION_LOG">
+          <Key>
+            <PropertyRef Name="ExceptionLogID" />
+          </Key>
+          <Property Name="ExceptionLogID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ExceptionLogType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ExceptionLogContent" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StartTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EndTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CST_FIELD_MAP">
+          <Key>
+            <PropertyRef Name="FieldID" />
+          </Key>
+          <Property Name="FieldID" Type="String" Nullable="false" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="FieldName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MapName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <Property Name="IsDelete" Type="Int32" Nullable="false" />
+          <Property Name="Version" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdateTime" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CST_GATE_READER">
+          <Key>
+            <PropertyRef Name="GateReaderID" />
+          </Key>
+          <Property Name="GateReaderID" Type="String" Nullable="false" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="GateReaderNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="HostAddress" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <Property Name="IsDelete" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdateTime" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CST_INV">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="String" Nullable="false" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="OrderNo" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CST_INV_DTL">
+          <Key>
+            <PropertyRef Name="OrderDetailID" />
+          </Key>
+          <Property Name="OrderDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="RFID" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="PalletNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="PalletRFID" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="LotNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="PNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Weight" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Length" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Order" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+          <Property Name="InternalOrder" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="WKNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Fabric" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ColorCode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Color" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Lot" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CST_MAIL_GRP">
+          <Key>
+            <PropertyRef Name="MailGroupID" />
+          </Key>
+          <Property Name="MailGroupID" Type="String" Nullable="false" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="GroupName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Int32" />
+          <Property Name="CreatTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CST_MAIL_GRP_DTL">
+          <Key>
+            <PropertyRef Name="MailDetailID" />
+          </Key>
+          <Property Name="MailDetailID" Type="String" Nullable="false" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="MailGroupID" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="UserGroupID" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="UserProfileID" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Int32" />
+        </EntityType>
+        <EntityType Name="CST_MAIL_LOG">
+          <Key>
+            <PropertyRef Name="MailLogID" />
+          </Key>
+          <Property Name="MailLogID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MailTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReceiveMail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MailAccount" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MailContent" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CST_MENU_GRP">
+          <Key>
+            <PropertyRef Name="MenuGroupID" />
+          </Key>
+          <Property Name="MenuGroupID" Type="String" Nullable="false" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="UserGroupID" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="MainMenuID" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="MainMenuName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="SubMenuID" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="SubMenuName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="MinorMenuID" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="MinorMenuName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Int32" />
+        </EntityType>
+        <EntityType Name="CST_MENU_MAIN">
+          <Key>
+            <PropertyRef Name="MainMenuID" />
+          </Key>
+          <Property Name="MainMenuID" Type="String" Nullable="false" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Action" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Controller" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Order" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CST_MENU_MINOR">
+          <Key>
+            <PropertyRef Name="MinorMenuID" />
+          </Key>
+          <Property Name="MinorMenuID" Type="String" Nullable="false" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Action" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Controller" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="SubMenuID" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="Order" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CST_MENU_SUB">
+          <Key>
+            <PropertyRef Name="SubMenuID" />
+          </Key>
+          <Property Name="SubMenuID" Type="String" Nullable="false" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Action" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Controller" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="MainMenuID" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="Order" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CST_ORDER_TYPE">
+          <Key>
+            <PropertyRef Name="OrderTypeID" />
+          </Key>
+          <Property Name="OrderTypeID" Type="String" Nullable="false" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CST_PALLET">
+          <Key>
+            <PropertyRef Name="PalletID" />
+          </Key>
+          <Property Name="PalletID" Type="String" Nullable="false" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="PalletNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PalletTypeID" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="RFIDID" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="CardNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <Property Name="IsDelete" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CST_PALLET_TYPE">
+          <Key>
+            <PropertyRef Name="PalletTypeID" />
+          </Key>
+          <Property Name="PalletTypeID" Type="String" Nullable="false" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="TypeName" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="TypeCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <Property Name="IsDelete" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IconName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CST_RFID">
+          <Key>
+            <PropertyRef Name="RFIDID" />
+          </Key>
+          <Property Name="RFIDID" Type="String" Nullable="false" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="RFIDNumber" Type="String" Nullable="false" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <Property Name="IsDelete" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CST_RFID_ERROR_LOG">
+          <Key>
+            <PropertyRef Name="No" />
+          </Key>
+          <Property Name="No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="StartTime" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="EndTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ErrorMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PalletRFID" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="RFID" Type="String" Nullable="false" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="GateReaderNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="UpLoadType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Lot" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CST_SER_INV">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="String" Nullable="false" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="OrderNo" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CST_SER_INV_DTL">
+          <Key>
+            <PropertyRef Name="OrderDetailID" />
+          </Key>
+          <Property Name="OrderDetailID" Type="String" Nullable="false" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="OrderID" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="RFID" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="Lot" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="WKNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="LotNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Order" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Fabric" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Color" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Width" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="YdWt" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Weight" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Length" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="PNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="InternalOrder" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CST_STOCK_OUT">
+          <Key>
+            <PropertyRef Name="StockOutID" />
+          </Key>
+          <Property Name="StockOutID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StockOutNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Lot" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="RFID" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="PNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="WKNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PalletRFID" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CST_STOCK_OUT_LOG">
+          <Key>
+            <PropertyRef Name="StockOutLogID" />
+          </Key>
+          <Property Name="StockOutLogID" Type="String" Nullable="false" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="StockOutID" Type="Int32" Nullable="false" />
+          <Property Name="StockOutNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Lot" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="RFID" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="PNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="WKNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PalletRFID" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CST_STORAGE_PARKINGBLOCK">
+          <Key>
+            <PropertyRef Name="ParkingBlockID" />
+          </Key>
+          <Property Name="ParkingBlockID" Type="String" Nullable="false" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="ParkingBlockName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="StorageID" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="FieldID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="X" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Y" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Width" Type="Int32" Nullable="false" />
+          <Property Name="Height" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdateTime" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CST_USER_GRP">
+          <Key>
+            <PropertyRef Name="UserGroupID" />
+          </Key>
+          <Property Name="UserGroupID" Type="String" Nullable="false" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="GroupName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Int32" />
+          <Property Name="CreatTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CST_USER_HIST">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserProfileID" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="FunctionName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Parameter" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="NewValue" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="OldValue" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CST_USER_PROFILE">
+          <Key>
+            <PropertyRef Name="UserProfileID" />
+          </Key>
+          <Property Name="UserProfileID" Type="String" Nullable="false" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="UserGroupID" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="UserTitleID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <Property Name="IsDelete" Type="Int32" />
+          <Property Name="CreateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CST_WAREHOUSE">
+          <Key>
+            <PropertyRef Name="WareHouseDataID" />
+          </Key>
+          <Property Name="WareHouseDataID" Type="String" Nullable="false" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="DeviceName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PalletNumber" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="PalletTypeID" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="ParkingBlockID" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="RFIDID" Type="String" Nullable="false" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="StockInTime" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="StockOutTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="PreGateReaderNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LastGateReaderNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="WO" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Lot" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="OverTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MailFlag" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="WarningDay" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="StockIn" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="StockOut" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="RFID" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="WKNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="LotNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Order" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="InternalOrder" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Fabric" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Color" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Width" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="YdWt" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Weight" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Length" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="PNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ColorCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CST_WAREHOUSE_HIST">
+          <Key>
+            <PropertyRef Name="WareHouseDataHisID" />
+          </Key>
+          <Property Name="WareHouseDataHisID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WareHouseDataID" Type="String" Nullable="false" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="DeviceName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PalletNumber" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="PalletTypeID" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="ParkingBlockID" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="RFIDID" Type="String" Nullable="false" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="StockInTime" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="StockOutTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="PreGateReaderNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LastGateReaderNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="WO" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Lot" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="OverTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MailFlag" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="WarningDay" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="StockIn" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="StockOut" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="RFID" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="WKNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="LotNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Order" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="InternalOrder" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Fabric" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Color" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Width" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="YdWt" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Weight" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Length" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="PNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ColorCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CST_WAREHOUSE_LOG">
+          <Key>
+            <PropertyRef Name="WareHouseDataLogID" />
+          </Key>
+          <Property Name="WareHouseDataLogID" Type="String" Nullable="false" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="DeviceName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PalletNumber" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="PalletTypeID" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="ParkingBlockID" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="RFIDID" Type="String" Nullable="false" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="StockInTime" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="StockOutTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="PreGateReaderNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LastGateReaderNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="WO" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Lot" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="OverTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MailFlag" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="WarningDay" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="StockIn" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="StockOut" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="RFID" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="WKNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="LotNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Order" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="InternalOrder" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Fabric" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Color" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Width" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="YdWt" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Weight" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Length" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="PNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ColorCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="POS_EmpGroup">
+          <Key>
+            <PropertyRef Name="EpgID" />
+          </Key>
+          <Property Name="EpgID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="EppID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="modifyDate" Type="DateTime" Precision="3" />
+          <Property Name="modifyUserID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="POS_Employee">
+          <Key>
+            <PropertyRef Name="EmpID" />
+          </Key>
+          <Property Name="EmpID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Gende" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="BirthDate" Type="DateTime" Precision="3" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="HireDate" Type="DateTime" Precision="3" />
+          <Property Name="QuitDate" Type="DateTime" Precision="3" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="PostalCode" Type="Int32" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Region" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Photo" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="PhotoPath" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="POS_EmpPermissions">
+          <Key>
+            <PropertyRef Name="EPID" />
+          </Key>
+          <Property Name="EPID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpID" Type="Int32" />
+          <Property Name="EpgID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="POS_EmpProgram">
+          <Key>
+            <PropertyRef Name="EppID" />
+          </Key>
+          <Property Name="EppID" Type="Int32" Nullable="false" />
+          <Property Name="EppAlias" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="EmpProgramName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmpProgramDrescript" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="POS_OrganizationChart">
+          <Key>
+            <PropertyRef Name="OID" />
+          </Key>
+          <Property Name="OID" Type="Int32" Nullable="false" />
+          <Property Name="OLevel" Type="Int32" />
+          <Property Name="OName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="POS_Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SupID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="CategoryID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="QuantityPerUnit" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="UnitPrice" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Discontinued" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="CreateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="POS_ProductCatrgory">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Picture" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="POS_Retail">
+          <Key>
+            <PropertyRef Name="RetailID" />
+          </Key>
+          <Property Name="RetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RetailName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RetailSuperVisor" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="RetailAdd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Descript" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="POS_RetailPurchase">
+          <Key>
+            <PropertyRef Name="PurchaseID" />
+          </Key>
+          <Property Name="PurchaseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RetailID" Type="Int32" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="InnerNum" Type="Int32" />
+          <Property Name="innerDate" Type="DateTime" Precision="7" />
+          <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="POS_RetailSale">
+          <Key>
+            <PropertyRef Name="SaleID" />
+          </Key>
+          <Property Name="SaleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RetailID" Type="Int32" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="orderNum" Type="Int32" />
+          <Property Name="UnitPrice" Type="Int32" />
+          <Property Name="TotalPrice" Type="Int32" />
+        </EntityType>
+        <EntityType Name="POS_Supplier">
+          <Key>
+            <PropertyRef Name="SupID" />
+          </Key>
+          <Property Name="SupID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContactName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContactTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserProfileID" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserGroupID" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="UserTitle" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Int32" />
+          <Property Name="IsDelete" Type="Int32" />
+          <Property Name="CreateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="POS_USER_PROFILE">
+          <Key>
+            <PropertyRef Name="UserProfileID" />
+          </Key>
+          <Property Name="UserProfileID" Type="String" Nullable="false" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="UserGroupID" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <Property Name="IsDelete" Type="Int32" />
+          <Property Name="CreateTime" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TEMP_ERP_INV_DTL">
+          <Key>
+            <PropertyRef Name="OrderDetailID" />
+          </Key>
+          <Property Name="OrderDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RFID" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="PalletNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="PalletRFID" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="LotNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="PNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Weight" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Length" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Order" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+          <Property Name="InternalOrder" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="WKNO" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Fabric" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ColorCode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Color" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="POS_SaleList">
+          <Key>
+            <PropertyRef Name="SaleID" />
+            <PropertyRef Name="TransDate" />
+          </Key>
+          <Property Name="SaleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpID" Type="Int32" />
+          <Property Name="RetailID" Type="Int32" />
+          <Property Name="WorkDate" Type="DateTime" Precision="3" />
+          <Property Name="TransDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Other" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="POS_Stock">
+          <Key>
+            <PropertyRef Name="StockID" />
+          </Key>
+          <Property Name="StockID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RetailID" Type="Int32" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="ProductQuantity" Type="Int32" />
+        </EntityType>
+        <EntityType Name="POS_UserLogin">
+          <Key>
+            <PropertyRef Name="LoginID" />
+          </Key>
+          <Property Name="LoginID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpID" Type="Int32" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TEMP_ERP_STOCK_OUT">
+          <Key>
+            <PropertyRef Name="Lot" />
+          </Key>
+          <Property Name="Lot" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PalletRFID" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="StockOutNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="WKNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LotNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Order" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="InternalOrder" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Fabric" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Color" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Width" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="YdWt" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Weight" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Length" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="RFID" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="ColorCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vw_Lots">
+          <Key>
+            <PropertyRef Name="WareHouseDataID" />
+            <PropertyRef Name="PalletNumber" />
+            <PropertyRef Name="RFIDID" />
+            <PropertyRef Name="StockInTime" />
+            <PropertyRef Name="Status" />
+          </Key>
+          <Property Name="WareHouseDataID" Type="String" Nullable="false" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="DeviceName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PalletNumber" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="PalletTypeID" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="ParkingBlockID" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="RFIDID" Type="String" Nullable="false" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="StockInTime" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="StockOutTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="PreGateReaderNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LastGateReaderNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="WO" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Lot" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="OverTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MailFlag" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="WarningDay" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="StockIn" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="StockOut" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="RFID" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="ParkingBlockName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="PNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Length" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Weight" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="YdWt" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Width" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Color" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Fabric" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Order" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="LotNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="WKNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="InternalOrder" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="PLot" Type="String" MaxLength="21" FixedLength="false" Unicode="true" />
+          <Property Name="ColorCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vw_Record">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="Code" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="FunctionName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Parameter" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="NewValue" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="OldValue" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="vw_RFIDLog">
+          <Key>
+            <PropertyRef Name="No" />
+            <PropertyRef Name="StartTime" />
+            <PropertyRef Name="RFID" />
+          </Key>
+          <Property Name="No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="StartTime" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="EndTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ErrorMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PalletRFID" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="RFID" Type="String" Nullable="false" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="GateReaderNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="UpLoadType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Lot" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WarehouseServerModelStoreContainer" CdmEntityContainer="WarehouseServerEntities">
+          <EntitySetMapping Name="CST_ALARM">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_ALARM">
+              <MappingFragment StoreEntitySet="CST_ALARM">
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="WarningDay" ColumnName="WarningDay" />
+                <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
+                <ScalarProperty Name="MailGroupID" ColumnName="MailGroupID" />
+                <ScalarProperty Name="AlarmID" ColumnName="AlarmID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_BEACON">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_BEACON">
+              <MappingFragment StoreEntitySet="CST_BEACON">
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="BeaconNumber" ColumnName="BeaconNumber" />
+                <ScalarProperty Name="BeaconID" ColumnName="BeaconID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_BEACON_LOCATION">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_BEACON_LOCATION">
+              <MappingFragment StoreEntitySet="CST_BEACON_LOCATION">
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Power" ColumnName="Power" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="FieldID" ColumnName="FieldID" />
+                <ScalarProperty Name="BeaconName" ColumnName="BeaconName" />
+                <ScalarProperty Name="BeaconInstallLocationID" ColumnName="BeaconInstallLocationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_BEACON_PARKINGBLOCK">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_BEACON_PARKINGBLOCK">
+              <MappingFragment StoreEntitySet="CST_BEACON_PARKINGBLOCK">
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="FieldID" ColumnName="FieldID" />
+                <ScalarProperty Name="ParkingBlockName" ColumnName="ParkingBlockName" />
+                <ScalarProperty Name="ParkingBlockID" ColumnName="ParkingBlockID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_CARD">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_CARD">
+              <MappingFragment StoreEntitySet="CST_CARD">
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+                <ScalarProperty Name="CardID" ColumnName="CardID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_CARD_PATH">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_CARD_PATH">
+              <MappingFragment StoreEntitySet="CST_CARD_PATH">
+                <ScalarProperty Name="UDateTime" ColumnName="UDateTime" />
+                <ScalarProperty Name="RDateTime" ColumnName="RDateTime" />
+                <ScalarProperty Name="SleepTime" ColumnName="SleepTime" />
+                <ScalarProperty Name="NOEXETime" ColumnName="NOEXETime" />
+                <ScalarProperty Name="Battery" ColumnName="Battery" />
+                <ScalarProperty Name="RouterDis" ColumnName="RouterDis" />
+                <ScalarProperty Name="AreaID" ColumnName="AreaID" />
+                <ScalarProperty Name="BeaconNumber" ColumnName="BeaconNumber" />
+                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+                <ScalarProperty Name="CardPathID" ColumnName="CardPathID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_CARD_PATH_HIST">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_CARD_PATH_HIST">
+              <MappingFragment StoreEntitySet="CST_CARD_PATH_HIST">
+                <ScalarProperty Name="UDateTime" ColumnName="UDateTime" />
+                <ScalarProperty Name="RDateTime" ColumnName="RDateTime" />
+                <ScalarProperty Name="SleepTime" ColumnName="SleepTime" />
+                <ScalarProperty Name="NOEXETime" ColumnName="NOEXETime" />
+                <ScalarProperty Name="Battery" ColumnName="Battery" />
+                <ScalarProperty Name="RouterDis" ColumnName="RouterDis" />
+                <ScalarProperty Name="AreaID" ColumnName="AreaID" />
+                <ScalarProperty Name="BeaconNumber" ColumnName="BeaconNumber" />
+                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+                <ScalarProperty Name="CardPathID" ColumnName="CardPathID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_EXCEPTION_LOG">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_EXCEPTION_LOG">
+              <MappingFragment StoreEntitySet="CST_EXCEPTION_LOG">
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="ExceptionLogContent" ColumnName="ExceptionLogContent" />
+                <ScalarProperty Name="ExceptionLogType" ColumnName="ExceptionLogType" />
+                <ScalarProperty Name="ExceptionLogID" ColumnName="ExceptionLogID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_FIELD_MAP">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_FIELD_MAP">
+              <MappingFragment StoreEntitySet="CST_FIELD_MAP">
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="MapName" ColumnName="MapName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="FieldName" ColumnName="FieldName" />
+                <ScalarProperty Name="FieldID" ColumnName="FieldID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_GATE_READER">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_GATE_READER">
+              <MappingFragment StoreEntitySet="CST_GATE_READER">
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="HostAddress" ColumnName="HostAddress" />
+                <ScalarProperty Name="GateReaderNumber" ColumnName="GateReaderNumber" />
+                <ScalarProperty Name="GateReaderID" ColumnName="GateReaderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_INV">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_INV">
+              <MappingFragment StoreEntitySet="CST_INV">
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_INV_DTL">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_INV_DTL">
+              <MappingFragment StoreEntitySet="CST_INV_DTL">
+                <ScalarProperty Name="Lot" ColumnName="Lot" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="ColorCode" ColumnName="ColorCode" />
+                <ScalarProperty Name="Fabric" ColumnName="Fabric" />
+                <ScalarProperty Name="WKNo" ColumnName="WKNo" />
+                <ScalarProperty Name="InternalOrder" ColumnName="InternalOrder" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="PNo" ColumnName="PNo" />
+                <ScalarProperty Name="LotNo" ColumnName="LotNo" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="PalletRFID" ColumnName="PalletRFID" />
+                <ScalarProperty Name="PalletNo" ColumnName="PalletNo" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="RFID" ColumnName="RFID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_MAIL_GRP">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_MAIL_GRP">
+              <MappingFragment StoreEntitySet="CST_MAIL_GRP">
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="CreatTime" ColumnName="CreatTime" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="MailGroupID" ColumnName="MailGroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_MAIL_GRP_DTL">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_MAIL_GRP_DTL">
+              <MappingFragment StoreEntitySet="CST_MAIL_GRP_DTL">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UserProfileID" ColumnName="UserProfileID" />
+                <ScalarProperty Name="UserGroupID" ColumnName="UserGroupID" />
+                <ScalarProperty Name="MailGroupID" ColumnName="MailGroupID" />
+                <ScalarProperty Name="MailDetailID" ColumnName="MailDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_MAIL_LOG">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_MAIL_LOG">
+              <MappingFragment StoreEntitySet="CST_MAIL_LOG">
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="MailContent" ColumnName="MailContent" />
+                <ScalarProperty Name="MailAccount" ColumnName="MailAccount" />
+                <ScalarProperty Name="ReceiveMail" ColumnName="ReceiveMail" />
+                <ScalarProperty Name="MailTitle" ColumnName="MailTitle" />
+                <ScalarProperty Name="MailLogID" ColumnName="MailLogID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_MENU_GRP">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_MENU_GRP">
+              <MappingFragment StoreEntitySet="CST_MENU_GRP">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="MinorMenuName" ColumnName="MinorMenuName" />
+                <ScalarProperty Name="MinorMenuID" ColumnName="MinorMenuID" />
+                <ScalarProperty Name="SubMenuName" ColumnName="SubMenuName" />
+                <ScalarProperty Name="SubMenuID" ColumnName="SubMenuID" />
+                <ScalarProperty Name="MainMenuName" ColumnName="MainMenuName" />
+                <ScalarProperty Name="MainMenuID" ColumnName="MainMenuID" />
+                <ScalarProperty Name="UserGroupID" ColumnName="UserGroupID" />
+                <ScalarProperty Name="MenuGroupID" ColumnName="MenuGroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_MENU_MAIN">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_MENU_MAIN">
+              <MappingFragment StoreEntitySet="CST_MENU_MAIN">
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MainMenuID" ColumnName="MainMenuID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_MENU_MINOR">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_MENU_MINOR">
+              <MappingFragment StoreEntitySet="CST_MENU_MINOR">
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="SubMenuID" ColumnName="SubMenuID" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MinorMenuID" ColumnName="MinorMenuID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_MENU_SUB">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_MENU_SUB">
+              <MappingFragment StoreEntitySet="CST_MENU_SUB">
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="MainMenuID" ColumnName="MainMenuID" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SubMenuID" ColumnName="SubMenuID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_ORDER_TYPE">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_ORDER_TYPE">
+              <MappingFragment StoreEntitySet="CST_ORDER_TYPE">
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="OrderTypeID" ColumnName="OrderTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_PALLET">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_PALLET">
+              <MappingFragment StoreEntitySet="CST_PALLET">
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+                <ScalarProperty Name="RFIDID" ColumnName="RFIDID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="PalletTypeID" ColumnName="PalletTypeID" />
+                <ScalarProperty Name="PalletNumber" ColumnName="PalletNumber" />
+                <ScalarProperty Name="PalletID" ColumnName="PalletID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_PALLET_TYPE">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_PALLET_TYPE">
+              <MappingFragment StoreEntitySet="CST_PALLET_TYPE">
+                <ScalarProperty Name="IconName" ColumnName="IconName" />
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="PalletTypeID" ColumnName="PalletTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_RFID">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_RFID">
+              <MappingFragment StoreEntitySet="CST_RFID">
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="RFIDNumber" ColumnName="RFIDNumber" />
+                <ScalarProperty Name="RFIDID" ColumnName="RFIDID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_RFID_ERROR_LOG">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_RFID_ERROR_LOG">
+              <MappingFragment StoreEntitySet="CST_RFID_ERROR_LOG">
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Lot" ColumnName="Lot" />
+                <ScalarProperty Name="UpLoadType" ColumnName="UpLoadType" />
+                <ScalarProperty Name="GateReaderNumber" ColumnName="GateReaderNumber" />
+                <ScalarProperty Name="RFID" ColumnName="RFID" />
+                <ScalarProperty Name="PalletRFID" ColumnName="PalletRFID" />
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+                <ScalarProperty Name="No" ColumnName="No" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_SER_INV">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_SER_INV">
+              <MappingFragment StoreEntitySet="CST_SER_INV">
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_SER_INV_DTL">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_SER_INV_DTL">
+              <MappingFragment StoreEntitySet="CST_SER_INV_DTL">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="InternalOrder" ColumnName="InternalOrder" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="PNo" ColumnName="PNo" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="YdWt" ColumnName="YdWt" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Fabric" ColumnName="Fabric" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="LotNo" ColumnName="LotNo" />
+                <ScalarProperty Name="WKNo" ColumnName="WKNo" />
+                <ScalarProperty Name="Lot" ColumnName="Lot" />
+                <ScalarProperty Name="RFID" ColumnName="RFID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_STOCK_OUT">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_STOCK_OUT">
+              <MappingFragment StoreEntitySet="CST_STOCK_OUT">
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="PalletRFID" ColumnName="PalletRFID" />
+                <ScalarProperty Name="WKNo" ColumnName="WKNo" />
+                <ScalarProperty Name="PNo" ColumnName="PNo" />
+                <ScalarProperty Name="RFID" ColumnName="RFID" />
+                <ScalarProperty Name="Lot" ColumnName="Lot" />
+                <ScalarProperty Name="StockOutNo" ColumnName="StockOutNo" />
+                <ScalarProperty Name="StockOutID" ColumnName="StockOutID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_STOCK_OUT_LOG">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_STOCK_OUT_LOG">
+              <MappingFragment StoreEntitySet="CST_STOCK_OUT_LOG">
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="PalletRFID" ColumnName="PalletRFID" />
+                <ScalarProperty Name="WKNo" ColumnName="WKNo" />
+                <ScalarProperty Name="PNo" ColumnName="PNo" />
+                <ScalarProperty Name="RFID" ColumnName="RFID" />
+                <ScalarProperty Name="Lot" ColumnName="Lot" />
+                <ScalarProperty Name="StockOutNo" ColumnName="StockOutNo" />
+                <ScalarProperty Name="StockOutID" ColumnName="StockOutID" />
+                <ScalarProperty Name="StockOutLogID" ColumnName="StockOutLogID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_STORAGE_PARKINGBLOCK">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_STORAGE_PARKINGBLOCK">
+              <MappingFragment StoreEntitySet="CST_STORAGE_PARKINGBLOCK">
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="FieldID" ColumnName="FieldID" />
+                <ScalarProperty Name="StorageID" ColumnName="StorageID" />
+                <ScalarProperty Name="ParkingBlockName" ColumnName="ParkingBlockName" />
+                <ScalarProperty Name="ParkingBlockID" ColumnName="ParkingBlockID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_USER_GRP">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_USER_GRP">
+              <MappingFragment StoreEntitySet="CST_USER_GRP">
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="CreatTime" ColumnName="CreatTime" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="UserGroupID" ColumnName="UserGroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_USER_HIST">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_USER_HIST">
+              <MappingFragment StoreEntitySet="CST_USER_HIST">
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="OldValue" ColumnName="OldValue" />
+                <ScalarProperty Name="NewValue" ColumnName="NewValue" />
+                <ScalarProperty Name="Parameter" ColumnName="Parameter" />
+                <ScalarProperty Name="FunctionName" ColumnName="FunctionName" />
+                <ScalarProperty Name="UserProfileID" ColumnName="UserProfileID" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_USER_PROFILE">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_USER_PROFILE">
+              <MappingFragment StoreEntitySet="CST_USER_PROFILE">
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UserTitleID" ColumnName="UserTitleID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserGroupID" ColumnName="UserGroupID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserProfileID" ColumnName="UserProfileID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_WAREHOUSE">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_WAREHOUSE">
+              <MappingFragment StoreEntitySet="CST_WAREHOUSE">
+                <ScalarProperty Name="ColorCode" ColumnName="ColorCode" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="PNo" ColumnName="PNo" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="YdWt" ColumnName="YdWt" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Fabric" ColumnName="Fabric" />
+                <ScalarProperty Name="InternalOrder" ColumnName="InternalOrder" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="LotNo" ColumnName="LotNo" />
+                <ScalarProperty Name="WKNo" ColumnName="WKNo" />
+                <ScalarProperty Name="RFID" ColumnName="RFID" />
+                <ScalarProperty Name="StockOut" ColumnName="StockOut" />
+                <ScalarProperty Name="StockIn" ColumnName="StockIn" />
+                <ScalarProperty Name="WarningDay" ColumnName="WarningDay" />
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="MailFlag" ColumnName="MailFlag" />
+                <ScalarProperty Name="OverTime" ColumnName="OverTime" />
+                <ScalarProperty Name="Lot" ColumnName="Lot" />
+                <ScalarProperty Name="WO" ColumnName="WO" />
+                <ScalarProperty Name="LastGateReaderNumber" ColumnName="LastGateReaderNumber" />
+                <ScalarProperty Name="PreGateReaderNumber" ColumnName="PreGateReaderNumber" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="StockOutTime" ColumnName="StockOutTime" />
+                <ScalarProperty Name="StockInTime" ColumnName="StockInTime" />
+                <ScalarProperty Name="RFIDID" ColumnName="RFIDID" />
+                <ScalarProperty Name="ParkingBlockID" ColumnName="ParkingBlockID" />
+                <ScalarProperty Name="PalletTypeID" ColumnName="PalletTypeID" />
+                <ScalarProperty Name="PalletNumber" ColumnName="PalletNumber" />
+                <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
+                <ScalarProperty Name="WareHouseDataID" ColumnName="WareHouseDataID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_WAREHOUSE_HIST">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_WAREHOUSE_HIST">
+              <MappingFragment StoreEntitySet="CST_WAREHOUSE_HIST">
+                <ScalarProperty Name="ColorCode" ColumnName="ColorCode" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="PNo" ColumnName="PNo" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="YdWt" ColumnName="YdWt" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Fabric" ColumnName="Fabric" />
+                <ScalarProperty Name="InternalOrder" ColumnName="InternalOrder" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="LotNo" ColumnName="LotNo" />
+                <ScalarProperty Name="WKNo" ColumnName="WKNo" />
+                <ScalarProperty Name="RFID" ColumnName="RFID" />
+                <ScalarProperty Name="StockOut" ColumnName="StockOut" />
+                <ScalarProperty Name="StockIn" ColumnName="StockIn" />
+                <ScalarProperty Name="WarningDay" ColumnName="WarningDay" />
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="MailFlag" ColumnName="MailFlag" />
+                <ScalarProperty Name="OverTime" ColumnName="OverTime" />
+                <ScalarProperty Name="Lot" ColumnName="Lot" />
+                <ScalarProperty Name="WO" ColumnName="WO" />
+                <ScalarProperty Name="LastGateReaderNumber" ColumnName="LastGateReaderNumber" />
+                <ScalarProperty Name="PreGateReaderNumber" ColumnName="PreGateReaderNumber" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="StockOutTime" ColumnName="StockOutTime" />
+                <ScalarProperty Name="StockInTime" ColumnName="StockInTime" />
+                <ScalarProperty Name="RFIDID" ColumnName="RFIDID" />
+                <ScalarProperty Name="ParkingBlockID" ColumnName="ParkingBlockID" />
+                <ScalarProperty Name="PalletTypeID" ColumnName="PalletTypeID" />
+                <ScalarProperty Name="PalletNumber" ColumnName="PalletNumber" />
+                <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
+                <ScalarProperty Name="WareHouseDataID" ColumnName="WareHouseDataID" />
+                <ScalarProperty Name="WareHouseDataHisID" ColumnName="WareHouseDataHisID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CST_WAREHOUSE_LOG">
+            <EntityTypeMapping TypeName="WarehouseServerModel.CST_WAREHOUSE_LOG">
+              <MappingFragment StoreEntitySet="CST_WAREHOUSE_LOG">
+                <ScalarProperty Name="ColorCode" ColumnName="ColorCode" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="PNo" ColumnName="PNo" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="YdWt" ColumnName="YdWt" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Fabric" ColumnName="Fabric" />
+                <ScalarProperty Name="InternalOrder" ColumnName="InternalOrder" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="LotNo" ColumnName="LotNo" />
+                <ScalarProperty Name="WKNo" ColumnName="WKNo" />
+                <ScalarProperty Name="RFID" ColumnName="RFID" />
+                <ScalarProperty Name="StockOut" ColumnName="StockOut" />
+                <ScalarProperty Name="StockIn" ColumnName="StockIn" />
+                <ScalarProperty Name="WarningDay" ColumnName="WarningDay" />
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="MailFlag" ColumnName="MailFlag" />
+                <ScalarProperty Name="OverTime" ColumnName="OverTime" />
+                <ScalarProperty Name="Lot" ColumnName="Lot" />
+                <ScalarProperty Name="WO" ColumnName="WO" />
+                <ScalarProperty Name="LastGateReaderNumber" ColumnName="LastGateReaderNumber" />
+                <ScalarProperty Name="PreGateReaderNumber" ColumnName="PreGateReaderNumber" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="StockOutTime" ColumnName="StockOutTime" />
+                <ScalarProperty Name="StockInTime" ColumnName="StockInTime" />
+                <ScalarProperty Name="RFIDID" ColumnName="RFIDID" />
+                <ScalarProperty Name="ParkingBlockID" ColumnName="ParkingBlockID" />
+                <ScalarProperty Name="PalletTypeID" ColumnName="PalletTypeID" />
+                <ScalarProperty Name="PalletNumber" ColumnName="PalletNumber" />
+                <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
+                <ScalarProperty Name="WareHouseDataLogID" ColumnName="WareHouseDataLogID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POS_EmpGroup">
+            <EntityTypeMapping TypeName="WarehouseServerModel.POS_EmpGroup">
+              <MappingFragment StoreEntitySet="POS_EmpGroup">
+                <ScalarProperty Name="modifyUserID" ColumnName="modifyUserID" />
+                <ScalarProperty Name="modifyDate" ColumnName="modifyDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="EppID" ColumnName="EppID" />
+                <ScalarProperty Name="EpgID" ColumnName="EpgID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POS_Employee">
+            <EntityTypeMapping TypeName="WarehouseServerModel.POS_Employee">
+              <MappingFragment StoreEntitySet="POS_Employee">
+                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="QuitDate" ColumnName="QuitDate" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Gende" ColumnName="Gende" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POS_EmpPermissions">
+            <EntityTypeMapping TypeName="WarehouseServerModel.POS_EmpPermissions">
+              <MappingFragment StoreEntitySet="POS_EmpPermissions">
+                <ScalarProperty Name="EpgID" ColumnName="EpgID" />
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+                <ScalarProperty Name="EPID" ColumnName="EPID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POS_EmpProgram">
+            <EntityTypeMapping TypeName="WarehouseServerModel.POS_EmpProgram">
+              <MappingFragment StoreEntitySet="POS_EmpProgram">
+                <ScalarProperty Name="EmpProgramDrescript" ColumnName="EmpProgramDrescript" />
+                <ScalarProperty Name="EmpProgramName" ColumnName="EmpProgramName" />
+                <ScalarProperty Name="EppAlias" ColumnName="EppAlias" />
+                <ScalarProperty Name="EppID" ColumnName="EppID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POS_OrganizationChart">
+            <EntityTypeMapping TypeName="WarehouseServerModel.POS_OrganizationChart">
+              <MappingFragment StoreEntitySet="POS_OrganizationChart">
+                <ScalarProperty Name="OUrl" ColumnName="OUrl" />
+                <ScalarProperty Name="OName" ColumnName="OName" />
+                <ScalarProperty Name="OLevel" ColumnName="OLevel" />
+                <ScalarProperty Name="OID" ColumnName="OID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POS_Product">
+            <EntityTypeMapping TypeName="WarehouseServerModel.POS_Product">
+              <MappingFragment StoreEntitySet="POS_Product">
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Discontinued" ColumnName="Discontinued" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="QuantityPerUnit" ColumnName="QuantityPerUnit" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="SupID" ColumnName="SupID" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POS_ProductCatrgory">
+            <EntityTypeMapping TypeName="WarehouseServerModel.POS_ProductCatrgory">
+              <MappingFragment StoreEntitySet="POS_ProductCatrgory">
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POS_Retail">
+            <EntityTypeMapping TypeName="WarehouseServerModel.POS_Retail">
+              <MappingFragment StoreEntitySet="POS_Retail">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Descript" ColumnName="Descript" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="RetailAdd" ColumnName="RetailAdd" />
+                <ScalarProperty Name="RetailSuperVisor" ColumnName="RetailSuperVisor" />
+                <ScalarProperty Name="RetailName" ColumnName="RetailName" />
+                <ScalarProperty Name="RetailID" ColumnName="RetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POS_RetailPurchase">
+            <EntityTypeMapping TypeName="WarehouseServerModel.POS_RetailPurchase">
+              <MappingFragment StoreEntitySet="POS_RetailPurchase">
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="innerDate" ColumnName="innerDate" />
+                <ScalarProperty Name="InnerNum" ColumnName="InnerNum" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="RetailID" ColumnName="RetailID" />
+                <ScalarProperty Name="PurchaseID" ColumnName="PurchaseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POS_RetailSale">
+            <EntityTypeMapping TypeName="WarehouseServerModel.POS_RetailSale">
+              <MappingFragment StoreEntitySet="POS_RetailSale">
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="orderNum" ColumnName="orderNum" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="RetailID" ColumnName="RetailID" />
+                <ScalarProperty Name="SaleID" ColumnName="SaleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POS_Supplier">
+            <EntityTypeMapping TypeName="WarehouseServerModel.POS_Supplier">
+              <MappingFragment StoreEntitySet="POS_Supplier">
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UserTitle" ColumnName="UserTitle" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserGroupID" ColumnName="UserGroupID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserProfileID" ColumnName="UserProfileID" />
+                <ScalarProperty Name="EMail" ColumnName="EMail" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="ContactTitle" ColumnName="ContactTitle" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="SupID" ColumnName="SupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POS_USER_PROFILE">
+            <EntityTypeMapping TypeName="WarehouseServerModel.POS_USER_PROFILE">
+              <MappingFragment StoreEntitySet="POS_USER_PROFILE">
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserGroupID" ColumnName="UserGroupID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserProfileID" ColumnName="UserProfileID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="WarehouseServerModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TEMP_ERP_INV_DTL">
+            <EntityTypeMapping TypeName="WarehouseServerModel.TEMP_ERP_INV_DTL">
+              <MappingFragment StoreEntitySet="TEMP_ERP_INV_DTL">
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="ColorCode" ColumnName="ColorCode" />
+                <ScalarProperty Name="Fabric" ColumnName="Fabric" />
+                <ScalarProperty Name="WKNO" ColumnName="WKNO" />
+                <ScalarProperty Name="InternalOrder" ColumnName="InternalOrder" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="PNo" ColumnName="PNo" />
+                <ScalarProperty Name="LotNo" ColumnName="LotNo" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="PalletRFID" ColumnName="PalletRFID" />
+                <ScalarProperty Name="PalletNo" ColumnName="PalletNo" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="RFID" ColumnName="RFID" />
+                <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POS_SaleList">
+            <EntityTypeMapping TypeName="WarehouseServerModel.POS_SaleList">
+              <MappingFragment StoreEntitySet="POS_SaleList">
+                <ScalarProperty Name="Other" ColumnName="Other" />
+                <ScalarProperty Name="TransDate" ColumnName="TransDate" />
+                <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+                <ScalarProperty Name="RetailID" ColumnName="RetailID" />
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+                <ScalarProperty Name="SaleID" ColumnName="SaleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POS_Stock">
+            <EntityTypeMapping TypeName="WarehouseServerModel.POS_Stock">
+              <MappingFragment StoreEntitySet="POS_Stock">
+                <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="RetailID" ColumnName="RetailID" />
+                <ScalarProperty Name="StockID" ColumnName="StockID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POS_UserLogin">
+            <EntityTypeMapping TypeName="WarehouseServerModel.POS_UserLogin">
+              <MappingFragment StoreEntitySet="POS_UserLogin">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TEMP_ERP_STOCK_OUT">
+            <EntityTypeMapping TypeName="WarehouseServerModel.TEMP_ERP_STOCK_OUT">
+              <MappingFragment StoreEntitySet="TEMP_ERP_STOCK_OUT">
+                <ScalarProperty Name="ColorCode" ColumnName="ColorCode" />
+                <ScalarProperty Name="RFID" ColumnName="RFID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="PNo" ColumnName="PNo" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="YdWt" ColumnName="YdWt" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Fabric" ColumnName="Fabric" />
+                <ScalarProperty Name="InternalOrder" ColumnName="InternalOrder" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="LotNo" ColumnName="LotNo" />
+                <ScalarProperty Name="WKNo" ColumnName="WKNo" />
+                <ScalarProperty Name="StockOutNo" ColumnName="StockOutNo" />
+                <ScalarProperty Name="PalletRFID" ColumnName="PalletRFID" />
+                <ScalarProperty Name="Lot" ColumnName="Lot" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_Lots">
+            <EntityTypeMapping TypeName="WarehouseServerModel.vw_Lots">
+              <MappingFragment StoreEntitySet="vw_Lots">
+                <ScalarProperty Name="ColorCode" ColumnName="ColorCode" />
+                <ScalarProperty Name="PLot" ColumnName="PLot" />
+                <ScalarProperty Name="InternalOrder" ColumnName="InternalOrder" />
+                <ScalarProperty Name="WKNo" ColumnName="WKNo" />
+                <ScalarProperty Name="LotNo" ColumnName="LotNo" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="Fabric" ColumnName="Fabric" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="YdWt" ColumnName="YdWt" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="PNo" ColumnName="PNo" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ParkingBlockName" ColumnName="ParkingBlockName" />
+                <ScalarProperty Name="RFID" ColumnName="RFID" />
+                <ScalarProperty Name="StockOut" ColumnName="StockOut" />
+                <ScalarProperty Name="StockIn" ColumnName="StockIn" />
+                <ScalarProperty Name="WarningDay" ColumnName="WarningDay" />
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="MailFlag" ColumnName="MailFlag" />
+                <ScalarProperty Name="OverTime" ColumnName="OverTime" />
+                <ScalarProperty Name="Lot" ColumnName="Lot" />
+                <ScalarProperty Name="WO" ColumnName="WO" />
+                <ScalarProperty Name="LastGateReaderNumber" ColumnName="LastGateReaderNumber" />
+                <ScalarProperty Name="PreGateReaderNumber" ColumnName="PreGateReaderNumber" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="StockOutTime" ColumnName="StockOutTime" />
+                <ScalarProperty Name="StockInTime" ColumnName="StockInTime" />
+                <ScalarProperty Name="RFIDID" ColumnName="RFIDID" />
+                <ScalarProperty Name="ParkingBlockID" ColumnName="ParkingBlockID" />
+                <ScalarProperty Name="PalletTypeID" ColumnName="PalletTypeID" />
+                <ScalarProperty Name="PalletNumber" ColumnName="PalletNumber" />
+                <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
+                <ScalarProperty Name="WareHouseDataID" ColumnName="WareHouseDataID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_Record">
+            <EntityTypeMapping TypeName="WarehouseServerModel.vw_Record">
+              <MappingFragment StoreEntitySet="vw_Record">
+                <ScalarProperty Name="SID" ColumnName="SID" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="OldValue" ColumnName="OldValue" />
+                <ScalarProperty Name="NewValue" ColumnName="NewValue" />
+                <ScalarProperty Name="Parameter" ColumnName="Parameter" />
+                <ScalarProperty Name="FunctionName" ColumnName="FunctionName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_RFIDLog">
+            <EntityTypeMapping TypeName="WarehouseServerModel.vw_RFIDLog">
+              <MappingFragment StoreEntitySet="vw_RFIDLog">
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Lot" ColumnName="Lot" />
+                <ScalarProperty Name="UpLoadType" ColumnName="UpLoadType" />
+                <ScalarProperty Name="GateReaderNumber" ColumnName="GateReaderNumber" />
+                <ScalarProperty Name="RFID" ColumnName="RFID" />
+                <ScalarProperty Name="PalletRFID" ColumnName="PalletRFID" />
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+                <ScalarProperty Name="No" ColumnName="No" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

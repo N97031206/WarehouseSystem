@@ -1,0 +1,70 @@
+﻿@model IEnumerable<WarehouseSystem.Models.ViewModel.FindGoodsViewModel>
+@{
+    ViewBag.Title = "FindGoodsList";
+}
+
+<script>
+    $(function () {
+        $('#RFIDTable').DataTable({
+            'paging': true,
+            'info': false,
+            'searching': true,
+            'columnDefs': [
+                { "targets": 0, 'width': '40%', 'orderable': true },
+                { "targets": 1, 'width': '20%', 'orderable': false },
+                { "targets": 2, 'width': '20%', 'orderable': false },
+                { "targets": 3, 'width': '20%', 'orderable': false }
+            ],
+        });
+    });
+</script>
+
+<div class="wrapper">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>尋貨管理<small>單號列表</small></h1>
+            <ol class="breadcrumb"></ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <a href="@Url.Action("CreateFindGoodsNo")"><button class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-plus"> 新增</i></button></a>
+                        </div>
+                        <div class="box-body">
+                            <table id="RFIDTable" class="row-border" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>尋貨單號</th>
+                                        <th>建立時間</th>
+                                        <th>最後變更時間</th>
+                                        <th>操作選項</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                   
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr id="@item.Order.OrderID">
+                                            <td>@item.Order.OrderNo</td>
+                                            <td>@item.Order.CreateTime</td>
+                                            <td>@item.Order.LastUpdateTime</td>
+                                            <td>
+                                                <a href="@Url.Action("FindGoodsNoEdit", new { OrderID = item.Order.OrderID })"><button class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-list-alt"></i></button></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+</div><!-- ./wrapper -->

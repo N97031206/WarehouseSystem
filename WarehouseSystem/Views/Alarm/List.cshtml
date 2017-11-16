@@ -1,0 +1,124 @@
+﻿@model IEnumerable<WarehouseSystem.Models.ViewModel.AlarmMailViewModel>
+@{
+    ViewBag.Title = "List";
+}
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script>
+
+    var toDeleteUserId;
+
+    function storeId(userId) { toDeleteUserId = userId; };
+
+    $(function () {
+        function deleteUser() {
+            $.ajax({
+                type: "DELETE",
+                url: "@Url.Content("~/Alarm/Delete")",
+                data: $.param({ "AlarmID": toDeleteUserId }),
+
+            }).done(function (msg) {
+                $("#" + toDeleteUserId).remove();
+            })
+        };
+
+        $('#myModal .modal-footer button').on('click', function (e) {
+            var $target = $(e.target);
+            if ($target.index() == 1) {
+                deleteUser();
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        $('#AlarmTable').DataTable({
+            "paging": true,
+            "info": true,
+            "searching": true,
+            "columnDefs": [
+                { "targets": 0, "width": "25%", "orderable": true },
+                { "targets": 1, "width": "25%", "orderable": true },
+                { "targets": 2, "width": "20%", "orderable": false },
+                { "targets": 3, "width": "20%", "orderable": false },
+                { "targets": 3, "width": "10%", "orderable": false }
+            ],
+        });
+    });
+</script>
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>警示管理<small>警示列表</small></h1>
+        <ol class="breadcrumb">
+            @*<li><a href="#"><i class="fa fa-dashboard"></i>home</a></li>
+                <li class="active">權限列表</li>*@
+        </ol>
+    </section>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <a href="@Url.Action("Create")"><button class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-plus"> 新增</i></button></a>
+                </div>
+                <div class="box-body">
+                    <table id="AlarmTable" class="row-border" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>布號名稱</th>
+                                <th>天數</th>
+                                <th>建立時間</th>
+                                <th>最後變更時間</th>
+                                <th>操作選項</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr id="@item.Alarm.AlarmID">
+                                    <td>@item.Alarm.DeviceName</td>
+                                    <td>@item.Alarm.WarningDay</td>
+                                    <td>@item.Alarm.CreateTime</td>
+                                    <td>@item.Alarm.LastUpdateTime</td>
+                                    <td>
+                                        <a href="@Url.Action("Edit", new { AlarmID = item.Alarm.AlarmID })">
+                                            <button class="btn btn-sm btn-primary">
+                                                <i class="glyphicon glyphicon-list-alt"></i>
+                                            </button>
+                                        </a>
+                                        <a href="#" data-toggle=modal data-target=#myModal>
+                                            <button class="btn btn-sm btn-danger" onclick="storeId('@item.Alarm.AlarmID')">
+                                                <i class="glyphicon glyphicon-remove"></i>
+                                            </button>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal modal-success" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">刪除確認</h4>
+                </div>
+                <div class="modal-body">
+                    <p>是否刪除此權限群組？刪除此權限群組會將一併刪除所有的相關資料。</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">否</button>
+                    <button id="modalYes" type="button" class="btn btn-outline" data-dismiss="modal">是</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>

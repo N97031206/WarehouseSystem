@@ -1,0 +1,45 @@
+@CHARSET "UTF-8";
+
+.beaconReceiver {
+	width: 12px;
+    height: 12px;
+    background: #00b050;
+    border: 2px solid #92d050;
+}
+
+.parkingBlockIcon {
+  width: 12px;
+  height: 12px;
+  background: lightblue;
+}
+
+.parkingBlock {
+  fill: lightblue;
+  stroke: blue;
+  stroke-width: 2px;
+  fill-opacity: 0.5
+}
+
+.centerScreen {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+.lotItemBackground {
+	background: #d9d9d9;
+}
+
+.blinkClass {
+	-webkit-animation-name: blink 1.5s infinite;
+	-webkit-animation-delay: 3s;
+	animation: blink 1.5s infinite;
+	animation-delay: 3s;
+}
+
+@-webkit-keyframes blink {
+  50% { opacity: 0.0; }
+}
+

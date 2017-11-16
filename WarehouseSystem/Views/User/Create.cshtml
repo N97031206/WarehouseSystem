@@ -1,0 +1,92 @@
+﻿@model WarehouseSystem.Models.ViewModel.UserViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<script>
+    function fieldValidation(field) {
+        if ($.trim($(field).val()) == '') {
+            $(field + 'Div').addClass('has-error');
+            $(field + 'Div').val('');
+            $('#ErrorMessage').text('欄位內容不得為空白');
+            return false;
+        }
+        else {
+            $(field + 'Div').removeClass('has-error');
+        }
+        return true;
+    };
+
+    function formValidation() {
+        if (fieldValidation('#UserID') && fieldValidation('#Password') && fieldValidation('#ConfirmPassword')) {
+            var password = $('#PasswordDiv input').val();
+            var repeatPassword = $('#ConfirmPasswordDiv input').val();
+            if (password == repeatPassword) {
+                return true;
+            }
+            else {
+                $('#ConfirmPasswordDiv').addClass('has-error');
+                $('#ErrorMessage').text('密碼不一致');
+            }
+        }
+        return false;
+    };
+</script>
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>帳號管理<small>新增帳號</small></h1>
+        <ol class="breadcrumb">
+            @*<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+            <li class="active">Dashboard</li>*@
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-6">
+                <!-- general form elements -->
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">建立新的帳號</h3>
+                    </div><!-- /.box-header -->
+                    <!-- form start -->
+                    <form class="form-horizontal" method="post" action="@Url.Action("CreateUserProfile")" onsubmit="return formValidation();">
+                        <div class="box-body">
+                            <div class="form-group has-error">
+                                <label class="col-sm-2"></label>
+                                <label class="col-sm-10" id="ErrorMessage">@Model.ErrorMessage</label>
+                            </div>
+                            <div id="EmailDiv" class="form-group">
+                                <label for="UserID" class="col-sm-2 control-label" style="color: Red">帳號</label>
+                                <div class="col-sm-10">
+                                    <input id="UserID" type="text" class="form-control" name="UserID" placeholder="輸入帳號" value="@Model.UserProfile.UserID">
+                                </div>
+                            </div>
+                            <div id="PasswordDiv" class="form-group">
+                                <label for="Password" class="col-sm-2 control-label" style="color: Red">密碼</label>
+                                <div class="col-sm-10">
+                                    <input id="Password" type="password" class="form-control" name="Password" placeholder="輸入密碼" value="@Model.UserProfile.Password">
+                                </div>
+                            </div>
+                            <div id="ConfirmPasswordDiv" class="form-group">
+                                <label for="ConfirmPassword" class="col-sm-2 control-label" style="color: Red">重複輸入密碼</label>
+                                <div class="col-sm-10">
+                                    <input id="ConfirmPassword" type="password" class="form-control" name="ConfirmPassword" placeholder="重複輸入密碼" value="@Model.UserProfile.Password">
+                                </div>
+                            </div>
+                        </div><!-- /.box-body -->
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-success">確定</button>
+                        </div>
+                    </form>
+                </div><!-- /.box -->
+            </div>
+        </div>
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->

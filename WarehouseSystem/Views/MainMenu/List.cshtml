@@ -1,0 +1,120 @@
+﻿@model IEnumerable<WarehouseSystem.Models.ViewModel.MainMenuViewModel>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<script>
+    var toDeleteMainMenuID;
+
+    function storeId(MainMenuID) { toDeleteMainMenuID = MainMenuID; };
+
+    function deleteMainMenu() {
+        // The DELETE method requests that the origin server delete the resource identified by the Request-URI.
+        $.ajax({
+            type: 'DELETE',
+            url: "@Url.Content("~/MainMenu/Delete")",
+            data: $.param({ "MainMenuID": toDeleteMainMenuID }),
+
+        }).done(function (msg) {
+            $('#' + toDeleteMainMenuID).remove();
+        });
+    };
+
+    $(function () {
+        $('#MainMenuTable').DataTable({
+            'paging': false,
+            'info': true,
+            'searching': true,
+            'columnDefs': [
+                { "targets": 0, 'width': '20%', 'orderable': true },
+                { "targets": 1, 'width': '20%', 'orderable': true },
+                { "targets": 2, 'width': '20%', 'orderable': true },
+                { "targets": 3, 'width': '20%', 'orderable': true },
+                { "targets": 4, 'width': '20%', 'orderable': false }
+            ],
+        });
+
+        $('#myModal .modal-footer button').on('click', function (e) {
+            var $target = $(e.target);
+            if ($target.index() == 1) {
+                deleteMainMenu();
+            }
+        });
+    });
+</script>
+
+<div class="wrapper">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>選單管理<small>主選單列表</small></h1>
+            <ol class="breadcrumb">
+                @*<li><a href="#"><i class="fa fa-dashboard"></i>選單管理</a></li>
+                <li class="active">主選單列表</li>*@
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <a href="@Url.Action("Create")"><button class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-plus"> 新增</i></button></a>
+                        </div>
+                        <div class="box-body">
+                            <table id="MainMenuTable" class="row-border" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>順序</th>
+                                        <th>主選單名稱</th>
+                                        <th>Action</th>
+                                        <th>Controller</th>
+                                        <th>操作選項</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr id="@item.MainMenu.MainMenuID">
+                                            <td>@item.MainMenu.Order</td>
+                                            <td>@item.MainMenu.Name</td>
+                                            <td>@item.MainMenu.Action</td>
+                                            <td>@item.MainMenu.Controller</td>
+                                            <td>
+                                                <a href="@Url.Action("Edit", new { MainMenuID = item.MainMenu.MainMenuID })"><button class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-list-alt"></i></button></a>
+                                                <a href="#" data-toggle=modal data-target=#myModal><button class="btn btn-sm btn-danger" onclick="storeId('@item.MainMenu.MainMenuID')"> <i class="glyphicon glyphicon-remove"></i></button></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal modal-success" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title">刪除確認</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>是否刪除此主選單？刪除此主選單會將一併刪除所有的相關資料。</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">否</button>
+                            <button id="modalYes" type="button" class="btn btn-outline" data-dismiss="modal">是</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+</div><!-- ./wrapper -->

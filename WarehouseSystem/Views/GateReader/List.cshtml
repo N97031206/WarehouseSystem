@@ -1,0 +1,117 @@
+﻿@model IEnumerable<WarehouseSystem.Models.ViewModel.GateReaderViewModel>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<script>
+    var toDeleteGateReaderID;
+
+    function storeId(GateReaderID) { toDeleteGateReaderID = GateReaderID; };
+
+    function deleteGateReader() {
+        // The DELETE method requests that the origin server delete the resource identified by the Request-URI.
+        $.ajax({
+            type: 'DELETE',
+            url: "@Url.Content("~/GateReader/Delete")",
+            data: $.param({ "GateReaderID": toDeleteGateReaderID }),
+
+        }).done(function (msg) {
+            $('#' + toDeleteGateReaderID).remove();
+        });
+    };
+
+    $(function () {
+        $('#GateReaderTable').DataTable({
+            'paging': true,
+            'info': true,
+            'searching': true,
+            'columnDefs': [
+                { "targets": 0, 'width': '20%', 'orderable': true },
+                { "targets": 1, 'width': '30%', 'orderable': true },
+                { "targets": 2, 'width': '30%', 'orderable': true },
+                { "targets": 3, 'width': '15%', 'orderable': false }
+            ],
+        });
+
+        $('#myModal .modal-footer button').on('click', function (e) {
+            var $target = $(e.target);
+            if ($target.index() == 1) {
+                deleteGateReader();
+            }
+        });
+    });
+</script>
+
+<div class="wrapper">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>RFID接收器管理<small>RFID接收器列表</small></h1>
+            <ol class="breadcrumb">
+                @*<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+                <li class="active">RFID接收器管理</li>*@
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <a href="@Url.Action("Create")"><button class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-plus"> 新增</i></button></a>
+                        </div>
+                        <div class="box-body">
+                            <table id="GateReaderTable" class="row-border" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>接收器編號</th>
+                                        <th>建立時間</th>
+                                        <th>最後變更時間</th>
+                                        <th>操作選項</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr id="@item.GateReader.GateReaderID">
+                                            <td>@item.GateReader.GateReaderNumber</td>
+                                            <td>@item.GateReader.CreateTime</td>
+                                            <td>@item.GateReader.LastUpdateTime</td>
+                                            <td>
+                                                <a href="@Url.Action("Edit", new { GateReaderID = item.GateReader.GateReaderID })"><button class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-list-alt"></i></button></a>
+                                                <a href="#" data-toggle=modal data-target=#myModal><button class="btn btn-sm btn-danger" onclick="storeId('@item.GateReader.GateReaderID')"> <i class="glyphicon glyphicon-remove"></i></button></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal modal-success" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title">刪除確認</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>是否刪除此RFID接收器？刪除此RFID接收器會將一併刪除所有的相關資料。</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">否</button>
+                            <button id="modalYes" type="button" class="btn btn-outline" data-dismiss="modal">是</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+</div><!-- ./wrapper -->

@@ -1,0 +1,65 @@
+﻿@model WarehouseSystem.Models.ViewModel.InventoryDetailViewModel
+
+<script src="~/Scripts/jquery.dataTables.js"></script>
+<script src="~/Scripts/dataTables.buttons.js"></script>
+<script src="~/Scripts/jszip.min.js"></script>
+<script src="~/Scripts/pdfmake.min.js"></script>
+<script src="~/Scripts/vfs_fonts.js"></script>
+<script src="~/Scripts/buttons.html5.min.js"></script>
+
+<link href="~/Content/buttons.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
+
+<script>
+        var fileName = '盤點表';
+
+    $(document).ready(function () {
+        var table = $('#LogTable').DataTable({
+            dom: "<'row'<'col-sm-1'l>>" + "<'row'<'col-sm-11'B>>" + "<'row'<'col-sm-12'tr>>" + "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+            //dom:'Bfrtip',
+            buttons: [
+                  { extend: 'excelHtml5', filename: fileName },
+                  { extend: 'csvHtml5', filename: fileName }
+            ],
+            searching: false,
+            pageLength: 10,
+        });
+    });
+</script>
+
+<div class="box-body">
+    <table id="LogTable" class="row-border" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>布疋批號</th>
+                <th>缸號</th>
+                <th>訂單單號</th>
+                <th>內部訂單</th>
+                <th>棧板編號</th>
+                <th>疋號</th>
+                <th>數量(kg)</th>
+                <th>碼長(yd)</th>
+                <th>儲位編號</th>
+                <th>狀態</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model.InventoryDetail)
+            {
+                <tr id="@item.OrderDetailID">
+                    <td>@item.Lot</td>
+                    <td>@item.LotNo</td>
+                    <td>@item.Order</td>
+                    <td>@item.InternalOrder</td>
+                    <td>@item.PalletNo</td>
+                    <td>@item.PNo</td>
+                    <td>@item.Weight</td>
+                    <td>@item.Length</td>
+                    <td>@item.Location</td>
+                    <td>@item.Status</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>             

@@ -1,0 +1,106 @@
+﻿@model IEnumerable<WarehouseSystem.Models.ViewModel.FieldMapViewModel>
+@{
+    ViewBag.Title = "List";
+}
+
+<script>
+    var toDeleteFieldID;
+
+    function storeId(fieldId) {
+        toDeleteFieldID = fieldId;
+    }
+
+    $(function () {
+
+        function deleteField() {
+            $.ajax({
+                type: "DELETE",
+                url: "@Url.Action("Delete")",
+                data: $.param({ "FieldID": toDeleteFieldID })
+        }).done(function (msg) {
+            $("#" + toDeleteFieldID).remove();
+        });
+    };
+
+    $("#myModal .modal-footer button").on("click", function (e) {
+        var $target = $(e.target);
+        if ($target.index() == 1) {
+            deleteField();
+        }
+    });
+    });
+
+</script>
+
+<div class="wrapper">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>圖資管理<small>儲位管理</small></h1>
+            <ol class="breadcrumb">
+                @*<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+                <li class="active">儲位管理</li>*@
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            @*<h3 class="box-title">儲位場域列表</h3>*@
+                            <a href="@Url.Action("Create")"><button class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-plus"> 新增</i></button></a>
+                        </div>
+                        <div class="box-body">
+                            <table id="fieldTable" class="row-border" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>名稱</th>
+                                        <th>建立時間</th>
+                                        <th>最後變更時間</th>
+                                        <th>操作選項</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr id="@item.FieldMap.FieldID">
+                                            <td>@item.FieldMap.FieldName</td>
+                                            <td>@item.FieldMap.CreateTime</td>
+                                            <td>@item.FieldMap.LastUpdateTime</td>
+                                            <td>
+                                                <a href="@Url.Action("Edit", new { FieldID = item.FieldMap.FieldID })"><button class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-menu-hamburger"></i></button></a>
+                                                <a href="#" data-toggle=modal data-target=#myModal><button class="btn btn-sm btn-danger" onclick="storeId('@item.FieldMap.FieldID')"> <i class="glyphicon glyphicon-remove"></i></button></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal modal-success" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title">刪除確認</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>是否刪除此儲位場域？刪除此儲位場域會將一併刪除所有的相關資料。</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">否</button>
+                            <button id="modalYes" type="button" class="btn btn-outline" data-dismiss="modal">是</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+</div><!-- ./wrapper -->

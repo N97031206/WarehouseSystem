@@ -1,0 +1,121 @@
+﻿@model WarehouseSystem.Models.ViewModel.AlarmMailViewModel
+
+@{
+    ViewBag.Title = "EditLocation";
+}
+
+<script>
+
+    var IsActive = '@Model.Alarm.Active';
+
+    $.fn.editable.defaults.mode = 'inline';
+
+    $(document).ready(function () {
+        // x-editable for user table
+        $('#DeviceName, #WarningDay, #Action').editable({
+            ajaxOptions: {
+                dataType: 'json' //assuming json response
+            },
+            success: function (response, newValue) {
+                $('#LastUpdateTime').html(response['Result'].LastUpdateTime);
+            }
+        });
+
+        if (IsActive == '1') {
+            $('#Active').text('Yes');
+        }
+        else {
+            $('#Active').text('No');
+        }
+        setSwitchEditable('#Active', '@Model.Alarm.Active');
+        setMailGroupEditable();
+    });
+
+    function setMailGroupEditable() {
+        $('#MailGroup').editable({
+            ajaxOptions: {
+                dataType: 'json' //assuming json response
+            },
+            value: '',
+            source: [
+                @foreach (var item in Model.MailGroup)
+            {
+                    <text>{ value: '@item.MailGroupID', text: '@item.GroupName' },</text>
+                }
+            ],
+            success: function (response, newValue) {
+                $('#LastUpdateTime').html(response['Result'].LastUpdateTime);
+            }
+        });
+    };
+
+    function setSwitchEditable(tag, state) {
+        $(tag).editable({
+            value: [state],
+            source: { 1: 'Yes' },
+            emptytext: 'No',
+
+            params: function (params) {
+                var data = {};
+                data['name'] = params.name;
+                data['pk'] = params.pk;
+                data['value'] = params.value.join(",");
+
+                return data;
+            },
+        });
+    };
+</script>
+
+<div class="wrapper">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>警示管理<small>警示維護</small></h1>
+            <ol class="breadcrumb">
+                @*<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+                    <li class="active">權限維護</li>*@
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="box box-success">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">警示維護</h3>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="form-group has-error">
+                                <label class="col-sm-2"></label>
+                                <label id="ErrorMessage" class="col-sm-10">@Model.ErrorMessage</label>
+                            </div>
+                            <table class="table table-striped table-hover table-bordered" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th class="col-md-4">屬性</th>
+                                        <th class="col-md-8">設定值</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>分鐘</td><td><a href="#" id="WarningDay" data-type="text" data-pk="@Model.Alarm.AlarmID" data-url="@Url.Content("Update")" data-title="輸入名稱">@Model.Alarm.WarningDay</a></td></tr>
+                                    <tr>
+                                        <td>Mail群組</td>
+                                        <td><a href="#" id="MailGroup" data-name="MailGroupID" data-type="select" data-pk="@Model.Alarm.AlarmID" data-url="@Url.Content("Update")" data-title="選擇Mail群組">@Model.GroupName</a></td>
+                                    </tr>
+                                    <tr><td>啟用</td><td><a href="#" id="Active" data-type="checklist" data-pk="@Model.Alarm.AlarmID" data-url="@Url.Content("Update")" data-title="啟用">@Model.Alarm.Active</a></td></tr>
+                                    <tr><td>建立時間</td><td>@Model.Alarm.CreateTime</td></tr>
+                                    <tr><td>最新異動時間</td><td id="LastUpdateTime">@Model.Alarm.LastUpdateTime</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div><!-- /.box -->
+                </div>
+            </div>
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+</div><!-- ./wrapper -->

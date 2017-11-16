@@ -1,0 +1,97 @@
+﻿@model WarehouseSystem.Models.ViewModel.RFIDViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<script>
+    var IsActive = '@Model.RFID.Active';
+
+    function setSwitchEditable(tag, state) {
+        $(tag).editable({
+            value: [state],
+            source: { 1: 'Yes' },
+            emptytext: 'No',
+
+            params: function (params) {
+                var data = {};
+                data['name'] = params.name;
+                data['pk'] = params.pk;
+                data['value'] = params.value.join(",");
+
+                return data;
+            },
+
+            success: function (response, newValue) {
+                $('#LastUpdateTime').html(response['Result'].LastUpdateTime);
+            }
+        });
+    };
+
+    $.fn.editable.defaults.mode = 'inline';
+
+    $(document).ready(function () {
+        // x-editable for user table
+        $('#RFIDNumber').editable({
+            ajaxOptions: {
+                dataType: 'json' //assuming json response
+            },
+            success: function (response, newValue) {
+                $('#LastUpdateTime').html(response['Result'].LastUpdateTime);
+            }
+        });
+        if (IsActive == '1') {
+            $('#Active').text('Yes');
+        }
+        else {
+            $('#Active').text('No');
+        }
+        setSwitchEditable('#Active', '@Model.RFID.Active');
+    });
+</script>
+
+<div class="wrapper">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>RFID管理<small>RFID編輯</small></h1>
+            <ol class="breadcrumb">
+                @*<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+                <li class="active">RFID管理</li>*@
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="box box-success">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">編輯RFID</h3>
+                        </div><!-- /.box-header -->
+
+                        <div class="box-body">
+                            <table class="table table-striped table-hover table-bordered" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th class="col-md-4">屬性</th>
+                                        <th class="col-md-8">設定值</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>RFID編號</td><td><a href="#" id="RFIDNumber" data-type="text" data-pk="@Model.RFID.RFIDID" data-url="@Url.Content("Update")" data-title="輸入編號">@Model.RFID.RFIDNumber</a></td></tr>
+                                    <tr><td>啟用</td><td><a href="#" id="Active" data-type="checklist" data-pk="@Model.RFID.RFIDID" data-url="@Url.Content("Update")" data-title="啟用">@Model.RFID.Active</a></td></tr>
+                                    <tr><td>建立時間</td><td>@Model.RFID.CreateTime</td></tr>
+                                    <tr><td>最新異動時間</td><td id="LastUpdateTime">@Model.RFID.LastUpdateTime</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div><!-- /.box -->
+                </div>
+            </div>
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+</div><!-- ./wrapper -->

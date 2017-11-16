@@ -1,0 +1,167 @@
+﻿<script>
+    var MainMenu = '@Session["MainMenu"]';
+    var SubMenu = '@Session["SubMenu"]';
+    var MinorMenu = '@Session["MinorMenu"]';
+
+    $(document).ready(function () {
+        if (MainMenu != '' || MainMenu != null) $('#' + MainMenu).addClass('active treeview');
+        if (SubMenu != '' || SubMenu != null) $('#' + SubMenu).addClass('active treeview');
+        if (MinorMenu != '' || MinorMenu != null) $('#' + MinorMenu).addClass('active');
+    });
+
+</script>
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+
+        @if (Context.User.Identity.IsAuthenticated == false)
+        {
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+            <ul class="sidebar-menu">
+                <li class="header" style="color:#FFFFFF; font-size: 24px;">功 能 列 表</li>
+                    <li class="treeview">
+
+            <a href="#"><i class="fa fa-dashboard"></i> <span>選單管理</span> <i class="fa fa-angle-left pull-right"></i></a>
+            <ul class="treeview-menu">
+                <li class="treeview">
+                    <a href="@Url.Action("TEST", "UserGroup")"><i class="fa fa-edit"></i> <span>主選單管理</span> <i class="fa fa-angle-left pull-right"></i></a>
+                </li>
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-edit"></i> <span>子選單管理</span> <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="@Url.Action("Create", "MainMenu")"><i class="fa fa-circle-o"></i>新增子主選單</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("List", "MainMenu")"><i class="fa fa-circle-o"></i>子選單列表</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-edit"></i> <span>次選單管理</span> <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="@Url.Action("Create", "MainMenu")"><i class="fa fa-circle-o"></i>新增次選單</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("List", "MainMenu")"><i class="fa fa-circle-o"></i>次選單列表</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+                <li class="treeview" id="T1">
+                    <a href="#"><i class="fa fa-dashboard"></i> <span>系統管理</span> <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li class="treeview">
+                            <a href="#"><i class="fa fa-edit"></i> <span>帳號管理</span> <i class="fa fa-angle-left pull-right"></i></a>
+                            <ul class="treeview-menu">
+                                <li class="">
+                                    <a href="@Url.Action("Create", "User")"><i class="fa fa-circle-o"></i>帳號列表</a>
+                                </li>
+                                <li>
+                                    @*<a href="@Url.Action("List", "User")"><i class="fa fa-circle-o"></i>帳號列表</a>*@
+                                    <a href="@Url.Content("/User/List?MinorMenu=T3")"><i class="fa fa-circle-o"></i>帳號列表</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("List", "User")"><i class="fa fa-circle-o"></i>權限列表</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("List", "User")"><i class="fa fa-circle-o"></i>修改密碼</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#"><i class="fa fa-edit"></i> <span>棧板管理</span> <i class="fa fa-angle-left pull-right"></i></a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <a href="@Url.Action("PalletTypeCreate", "Pallet")"><i class="fa fa-circle-o"></i>新增棧板類別</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Content("/Pallet/PalletTypeEdit?MainMenu=333&SubMenu=111&MinorMenu=22")"><i class="fa fa-circle-o"></i>棧板類別管理</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("PalletCreate", "Pallet")"><i class="fa fa-circle-o"></i>新增棧板資料</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("PalletList", "Pallet")"><i class="fa fa-circle-o"></i>棧板資料管理</a>
+                                </li>
+                            </ul>
+                            <a href="#"><i class="fa fa-edit"></i> <span>警示管理</span> <i class="fa fa-angle-left pull-right"></i></a>
+                            <ul class="treeview-menu"></ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-dashboard"></i> <span>圖資管理</span> <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li class="treeview">
+                            @*<a href="#"><i class="fa fa-edit"></i> <span>定位管理</span> <i class="fa fa-angle-left pull-right"></i></a>
+                                <ul class="treeview-menu">
+                                    <li>
+                                        <a href="@Url.Action("Add", "Card")"><i class="fa fa-circle-o"></i>新增定位卡</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("List", "Card")"><i class="fa fa-circle-o"></i>定位卡管理</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Add", "Card")"><i class="fa fa-circle-o"></i>新增定位接收器</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("List", "Card")"><i class="fa fa-circle-o"></i>定位接收器管理</a>
+                                    </li>
+                                </ul>*@
+                        </li>
+                        <li class="treeview">
+                            <a href="#"><i class="fa fa-edit"></i> <span>RFID管理</span> <i class="fa fa-angle-left pull-right"></i></a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <a href="@Url.Action("Create", "RFID")"><i class="fa fa-circle-o"></i>新增RFID卡</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("List", "RFID")"><i class="fa fa-circle-o"></i>RFID卡管理</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Create", "GateReader")"><i class="fa fa-circle-o"></i>新增RFID接收器</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("List", "GateReader")"><i class="fa fa-circle-o"></i>RFID接收器管理</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#"><i class="fa fa-edit"></i> <span>儲位管理</span> <i class="fa fa-angle-left pull-right"></i></a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <a href="@Url.Action("Add", "Field")"><i class="fa fa-circle-o"></i>新增儲位域區</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("List", "Field")"><i class="fa fa-circle-o"></i>儲位場區管理</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-dashboard"></i> <span>查詢管理</span> <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="@Url.Action("trackingMap", "tracking")"><i class="fa fa-circle-o"></i>棧板查詢</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("trackingCart", "tracking")"><i class="fa fa-circle-o"></i>Log查詢</a>
+                        </li>
+                        <li>
+                            @*<a href="@Url.Action("trackingTrajectory", "tracking")"><i class="fa fa-circle-o"></i>軌跡回放</a>*@
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        }
+
+    </section>
+    <!-- /.sidebar -->
+</aside>

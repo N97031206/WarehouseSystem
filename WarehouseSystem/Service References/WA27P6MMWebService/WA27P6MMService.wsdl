@@ -1,0 +1,1127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="ReturnToStock">
+        <s:complexType />
+      </s:element>
+      <s:element name="ReturnToStockResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnToStockResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetRemarkByReturnToStock">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Lot" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="PalletNo" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="PalletRFID" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="Flag" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetRemarkByReturnToStockResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetRemarkByReturnToStockResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReleasePalletAndReturnToStock">
+        <s:complexType />
+      </s:element>
+      <s:element name="ReleasePalletAndReturnToStockResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReleasePalletAndReturnToStockResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UndoReturnToStock">
+        <s:complexType />
+      </s:element>
+      <s:element name="UndoReturnToStockResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UndoReturnToStockResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStockInData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StockIn" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStockInDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStockInDataResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStockInDataByPallet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="palletNo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStockInDataByPalletResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStockInDataByPalletResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NoUsePlateNo">
+        <s:complexType />
+      </s:element>
+      <s:element name="NoUsePlateNoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NoUsePlateNoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Login">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="LoginResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStockOutData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StockOut" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStockOutDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStockOutDataResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetStockInData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Lot" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="PalletNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PalletRFID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetStockInDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetStockInDataResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetStockOutData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Lot" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="PalletNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PalletRFID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetStockOutDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetStockOutDataResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetPalletByLot">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Lot" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="PalletNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PalletRFID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetPalletByLotResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetPalletByLotResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetStorageByPallet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PalletNo" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="PalletRFID" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="Storage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StorageRFID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetStorageByPalletResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetStorageByPalletResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInventoryData">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetInventoryDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetInventoryDataResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLotDataByStockIn">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RFID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLotDataByStockInResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLotDataByStockInResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLotDataByStockOut">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RFID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLotDataByStockOutResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLotDataByStockOutResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckPalletDataIsNull">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PalletNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PalletRFID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckPalletDataIsNullResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckPalletDataIsNullResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetPalletByWIPLot">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Lot" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="SpecialPallet" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PalletNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PalletRFID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetPalletByWIPLotResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetPalletByWIPLotResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ClearPalletDataByPallet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PalletNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PalletRFID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ClearPalletDataByPalletResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ClearPalletDataByPalletResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLotData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RFID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLotDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLotDataResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLotData1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WKNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PNo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLotData1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLotData1Result">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetLotData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Lot" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LotRFID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PalletNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PalletRFID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetLotDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetLotDataResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetPalletAndGradeByWIPLot">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Lot" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="SpecialPallet" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PalletNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PalletRFID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Grade" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetPalletAndGradeByWIPLotResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetPalletAndGradeByWIPLotResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStartDate">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetStartDateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStartDateResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ReturnToStockSoapIn">
+    <wsdl:part name="parameters" element="tns:ReturnToStock" />
+  </wsdl:message>
+  <wsdl:message name="ReturnToStockSoapOut">
+    <wsdl:part name="parameters" element="tns:ReturnToStockResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetRemarkByReturnToStockSoapIn">
+    <wsdl:part name="parameters" element="tns:SetRemarkByReturnToStock" />
+  </wsdl:message>
+  <wsdl:message name="SetRemarkByReturnToStockSoapOut">
+    <wsdl:part name="parameters" element="tns:SetRemarkByReturnToStockResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReleasePalletAndReturnToStockSoapIn">
+    <wsdl:part name="parameters" element="tns:ReleasePalletAndReturnToStock" />
+  </wsdl:message>
+  <wsdl:message name="ReleasePalletAndReturnToStockSoapOut">
+    <wsdl:part name="parameters" element="tns:ReleasePalletAndReturnToStockResponse" />
+  </wsdl:message>
+  <wsdl:message name="UndoReturnToStockSoapIn">
+    <wsdl:part name="parameters" element="tns:UndoReturnToStock" />
+  </wsdl:message>
+  <wsdl:message name="UndoReturnToStockSoapOut">
+    <wsdl:part name="parameters" element="tns:UndoReturnToStockResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStockInDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStockInData" />
+  </wsdl:message>
+  <wsdl:message name="GetStockInDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStockInDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStockInDataByPalletSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStockInDataByPallet" />
+  </wsdl:message>
+  <wsdl:message name="GetStockInDataByPalletSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStockInDataByPalletResponse" />
+  </wsdl:message>
+  <wsdl:message name="NoUsePlateNoSoapIn">
+    <wsdl:part name="parameters" element="tns:NoUsePlateNo" />
+  </wsdl:message>
+  <wsdl:message name="NoUsePlateNoSoapOut">
+    <wsdl:part name="parameters" element="tns:NoUsePlateNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapIn">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStockOutDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStockOutData" />
+  </wsdl:message>
+  <wsdl:message name="GetStockOutDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStockOutDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetStockInDataSoapIn">
+    <wsdl:part name="parameters" element="tns:SetStockInData" />
+  </wsdl:message>
+  <wsdl:message name="SetStockInDataSoapOut">
+    <wsdl:part name="parameters" element="tns:SetStockInDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetStockOutDataSoapIn">
+    <wsdl:part name="parameters" element="tns:SetStockOutData" />
+  </wsdl:message>
+  <wsdl:message name="SetStockOutDataSoapOut">
+    <wsdl:part name="parameters" element="tns:SetStockOutDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetPalletByLotSoapIn">
+    <wsdl:part name="parameters" element="tns:SetPalletByLot" />
+  </wsdl:message>
+  <wsdl:message name="SetPalletByLotSoapOut">
+    <wsdl:part name="parameters" element="tns:SetPalletByLotResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetStorageByPalletSoapIn">
+    <wsdl:part name="parameters" element="tns:SetStorageByPallet" />
+  </wsdl:message>
+  <wsdl:message name="SetStorageByPalletSoapOut">
+    <wsdl:part name="parameters" element="tns:SetStorageByPalletResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetInventoryDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetInventoryData" />
+  </wsdl:message>
+  <wsdl:message name="GetInventoryDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetInventoryDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLotDataByStockInSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLotDataByStockIn" />
+  </wsdl:message>
+  <wsdl:message name="GetLotDataByStockInSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLotDataByStockInResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLotDataByStockOutSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLotDataByStockOut" />
+  </wsdl:message>
+  <wsdl:message name="GetLotDataByStockOutSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLotDataByStockOutResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckPalletDataIsNullSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckPalletDataIsNull" />
+  </wsdl:message>
+  <wsdl:message name="CheckPalletDataIsNullSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckPalletDataIsNullResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetPalletByWIPLotSoapIn">
+    <wsdl:part name="parameters" element="tns:SetPalletByWIPLot" />
+  </wsdl:message>
+  <wsdl:message name="SetPalletByWIPLotSoapOut">
+    <wsdl:part name="parameters" element="tns:SetPalletByWIPLotResponse" />
+  </wsdl:message>
+  <wsdl:message name="ClearPalletDataByPalletSoapIn">
+    <wsdl:part name="parameters" element="tns:ClearPalletDataByPallet" />
+  </wsdl:message>
+  <wsdl:message name="ClearPalletDataByPalletSoapOut">
+    <wsdl:part name="parameters" element="tns:ClearPalletDataByPalletResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLotDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLotData" />
+  </wsdl:message>
+  <wsdl:message name="GetLotDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLotDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLotData1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetLotData1" />
+  </wsdl:message>
+  <wsdl:message name="GetLotData1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetLotData1Response" />
+  </wsdl:message>
+  <wsdl:message name="SetLotDataSoapIn">
+    <wsdl:part name="parameters" element="tns:SetLotData" />
+  </wsdl:message>
+  <wsdl:message name="SetLotDataSoapOut">
+    <wsdl:part name="parameters" element="tns:SetLotDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetPalletAndGradeByWIPLotSoapIn">
+    <wsdl:part name="parameters" element="tns:SetPalletAndGradeByWIPLot" />
+  </wsdl:message>
+  <wsdl:message name="SetPalletAndGradeByWIPLotSoapOut">
+    <wsdl:part name="parameters" element="tns:SetPalletAndGradeByWIPLotResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStartDateSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStartDate" />
+  </wsdl:message>
+  <wsdl:message name="GetStartDateSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStartDateResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WA27P6MMServiceSoap">
+    <wsdl:operation name="ReturnToStock">
+      <wsdl:input message="tns:ReturnToStockSoapIn" />
+      <wsdl:output message="tns:ReturnToStockSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetRemarkByReturnToStock">
+      <wsdl:input message="tns:SetRemarkByReturnToStockSoapIn" />
+      <wsdl:output message="tns:SetRemarkByReturnToStockSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReleasePalletAndReturnToStock">
+      <wsdl:input message="tns:ReleasePalletAndReturnToStockSoapIn" />
+      <wsdl:output message="tns:ReleasePalletAndReturnToStockSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UndoReturnToStock">
+      <wsdl:input message="tns:UndoReturnToStockSoapIn" />
+      <wsdl:output message="tns:UndoReturnToStockSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStockInData">
+      <wsdl:input message="tns:GetStockInDataSoapIn" />
+      <wsdl:output message="tns:GetStockInDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStockInDataByPallet">
+      <wsdl:input message="tns:GetStockInDataByPalletSoapIn" />
+      <wsdl:output message="tns:GetStockInDataByPalletSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="NoUsePlateNo">
+      <wsdl:input message="tns:NoUsePlateNoSoapIn" />
+      <wsdl:output message="tns:NoUsePlateNoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input message="tns:LoginSoapIn" />
+      <wsdl:output message="tns:LoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStockOutData">
+      <wsdl:input message="tns:GetStockOutDataSoapIn" />
+      <wsdl:output message="tns:GetStockOutDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetStockInData">
+      <wsdl:input message="tns:SetStockInDataSoapIn" />
+      <wsdl:output message="tns:SetStockInDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetStockOutData">
+      <wsdl:input message="tns:SetStockOutDataSoapIn" />
+      <wsdl:output message="tns:SetStockOutDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetPalletByLot">
+      <wsdl:input message="tns:SetPalletByLotSoapIn" />
+      <wsdl:output message="tns:SetPalletByLotSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetStorageByPallet">
+      <wsdl:input message="tns:SetStorageByPalletSoapIn" />
+      <wsdl:output message="tns:SetStorageByPalletSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInventoryData">
+      <wsdl:input message="tns:GetInventoryDataSoapIn" />
+      <wsdl:output message="tns:GetInventoryDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLotDataByStockIn">
+      <wsdl:input message="tns:GetLotDataByStockInSoapIn" />
+      <wsdl:output message="tns:GetLotDataByStockInSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLotDataByStockOut">
+      <wsdl:input message="tns:GetLotDataByStockOutSoapIn" />
+      <wsdl:output message="tns:GetLotDataByStockOutSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckPalletDataIsNull">
+      <wsdl:input message="tns:CheckPalletDataIsNullSoapIn" />
+      <wsdl:output message="tns:CheckPalletDataIsNullSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetPalletByWIPLot">
+      <wsdl:input message="tns:SetPalletByWIPLotSoapIn" />
+      <wsdl:output message="tns:SetPalletByWIPLotSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ClearPalletDataByPallet">
+      <wsdl:input message="tns:ClearPalletDataByPalletSoapIn" />
+      <wsdl:output message="tns:ClearPalletDataByPalletSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLotData">
+      <wsdl:input message="tns:GetLotDataSoapIn" />
+      <wsdl:output message="tns:GetLotDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLotData1">
+      <wsdl:input message="tns:GetLotData1SoapIn" />
+      <wsdl:output message="tns:GetLotData1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetLotData">
+      <wsdl:input message="tns:SetLotDataSoapIn" />
+      <wsdl:output message="tns:SetLotDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetPalletAndGradeByWIPLot">
+      <wsdl:input message="tns:SetPalletAndGradeByWIPLotSoapIn" />
+      <wsdl:output message="tns:SetPalletAndGradeByWIPLotSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStartDate">
+      <wsdl:input message="tns:GetStartDateSoapIn" />
+      <wsdl:output message="tns:GetStartDateSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WA27P6MMServiceSoap" type="tns:WA27P6MMServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ReturnToStock">
+      <soap:operation soapAction="http://tempuri.org/ReturnToStock" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetRemarkByReturnToStock">
+      <soap:operation soapAction="http://tempuri.org/SetRemarkByReturnToStock" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReleasePalletAndReturnToStock">
+      <soap:operation soapAction="http://tempuri.org/ReleasePalletAndReturnToStock" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UndoReturnToStock">
+      <soap:operation soapAction="http://tempuri.org/UndoReturnToStock" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStockInData">
+      <soap:operation soapAction="http://tempuri.org/GetStockInData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStockInDataByPallet">
+      <soap:operation soapAction="http://tempuri.org/GetStockInDataByPallet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NoUsePlateNo">
+      <soap:operation soapAction="http://tempuri.org/NoUsePlateNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStockOutData">
+      <soap:operation soapAction="http://tempuri.org/GetStockOutData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetStockInData">
+      <soap:operation soapAction="http://tempuri.org/SetStockInData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetStockOutData">
+      <soap:operation soapAction="http://tempuri.org/SetStockOutData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPalletByLot">
+      <soap:operation soapAction="http://tempuri.org/SetPalletByLot" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetStorageByPallet">
+      <soap:operation soapAction="http://tempuri.org/SetStorageByPallet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInventoryData">
+      <soap:operation soapAction="http://tempuri.org/GetInventoryData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLotDataByStockIn">
+      <soap:operation soapAction="http://tempuri.org/GetLotDataByStockIn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLotDataByStockOut">
+      <soap:operation soapAction="http://tempuri.org/GetLotDataByStockOut" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckPalletDataIsNull">
+      <soap:operation soapAction="http://tempuri.org/CheckPalletDataIsNull" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPalletByWIPLot">
+      <soap:operation soapAction="http://tempuri.org/SetPalletByWIPLot" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClearPalletDataByPallet">
+      <soap:operation soapAction="http://tempuri.org/ClearPalletDataByPallet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLotData">
+      <soap:operation soapAction="http://tempuri.org/GetLotData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLotData1">
+      <soap:operation soapAction="http://tempuri.org/GetLotData1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetLotData">
+      <soap:operation soapAction="http://tempuri.org/SetLotData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPalletAndGradeByWIPLot">
+      <soap:operation soapAction="http://tempuri.org/SetPalletAndGradeByWIPLot" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStartDate">
+      <soap:operation soapAction="http://tempuri.org/GetStartDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WA27P6MMServiceSoap12" type="tns:WA27P6MMServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ReturnToStock">
+      <soap12:operation soapAction="http://tempuri.org/ReturnToStock" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetRemarkByReturnToStock">
+      <soap12:operation soapAction="http://tempuri.org/SetRemarkByReturnToStock" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReleasePalletAndReturnToStock">
+      <soap12:operation soapAction="http://tempuri.org/ReleasePalletAndReturnToStock" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UndoReturnToStock">
+      <soap12:operation soapAction="http://tempuri.org/UndoReturnToStock" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStockInData">
+      <soap12:operation soapAction="http://tempuri.org/GetStockInData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStockInDataByPallet">
+      <soap12:operation soapAction="http://tempuri.org/GetStockInDataByPallet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NoUsePlateNo">
+      <soap12:operation soapAction="http://tempuri.org/NoUsePlateNo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="http://tempuri.org/Login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStockOutData">
+      <soap12:operation soapAction="http://tempuri.org/GetStockOutData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetStockInData">
+      <soap12:operation soapAction="http://tempuri.org/SetStockInData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetStockOutData">
+      <soap12:operation soapAction="http://tempuri.org/SetStockOutData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPalletByLot">
+      <soap12:operation soapAction="http://tempuri.org/SetPalletByLot" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetStorageByPallet">
+      <soap12:operation soapAction="http://tempuri.org/SetStorageByPallet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInventoryData">
+      <soap12:operation soapAction="http://tempuri.org/GetInventoryData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLotDataByStockIn">
+      <soap12:operation soapAction="http://tempuri.org/GetLotDataByStockIn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLotDataByStockOut">
+      <soap12:operation soapAction="http://tempuri.org/GetLotDataByStockOut" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckPalletDataIsNull">
+      <soap12:operation soapAction="http://tempuri.org/CheckPalletDataIsNull" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPalletByWIPLot">
+      <soap12:operation soapAction="http://tempuri.org/SetPalletByWIPLot" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClearPalletDataByPallet">
+      <soap12:operation soapAction="http://tempuri.org/ClearPalletDataByPallet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLotData">
+      <soap12:operation soapAction="http://tempuri.org/GetLotData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLotData1">
+      <soap12:operation soapAction="http://tempuri.org/GetLotData1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetLotData">
+      <soap12:operation soapAction="http://tempuri.org/SetLotData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPalletAndGradeByWIPLot">
+      <soap12:operation soapAction="http://tempuri.org/SetPalletAndGradeByWIPLot" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStartDate">
+      <soap12:operation soapAction="http://tempuri.org/GetStartDate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WA27P6MMService">
+    <wsdl:port name="WA27P6MMServiceSoap" binding="tns:WA27P6MMServiceSoap">
+      <soap:address location="http://127.0.0.1/WA27P6MMService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WA27P6MMServiceSoap12" binding="tns:WA27P6MMServiceSoap12">
+      <soap12:address location="http://127.0.0.1/WA27P6MMService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

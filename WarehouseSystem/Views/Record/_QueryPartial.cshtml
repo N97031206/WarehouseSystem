@@ -1,0 +1,57 @@
+﻿@model WarehouseSystem.Models.ViewModel.RecordViewModel
+
+<script src="~/Scripts/jquery.dataTables.js"></script>
+<script src="~/Scripts/dataTables.buttons.js"></script>
+<script src="~/Scripts/jszip.min.js"></script>
+<script src="~/Scripts/pdfmake.min.js"></script>
+<script src="~/Scripts/vfs_fonts.js"></script>
+<script src="~/Scripts/buttons.html5.min.js"></script>
+
+<link href="~/Content/buttons.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
+
+<script>
+    $(document).ready(function () {
+        var fileName = '手持記錄查詢';
+        var table = $('#RecordTable').DataTable({
+            dom: "<'row'<'col-sm-1'l>>" + "<'row'<'col-sm-11'B>>" + "<'row'<'col-sm-12'tr>>" + "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+            //dom:'Bfrtip',
+            buttons: [
+                  { extend: 'excelHtml5', filename: fileName },
+                  { extend: 'csvHtml5', filename: fileName }
+            ],
+            searching: false,
+            pageLength: 10,
+        });
+    });
+</script>
+
+<div class="box-body">
+    <table id="RecordTable" class="row-border" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>工號</th>
+                <th>姓名</th>
+                <th>功能名稱</th>
+                <th>參數</th>
+                <th>新值</th>
+                <th>舊值</th>
+                <th>發生時間</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Lots)
+            {
+                <tr id="@item.SID">
+                    <td>@item.Code</td>
+                    <td>@item.Name</td>
+                    <td>@item.FunctionName</td>
+                    <td>@item.Parameter</td>
+                    <td>@item.NewValue</td>
+                    <td>@item.OldValue</td>
+                    <td>@item.CreateTime</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

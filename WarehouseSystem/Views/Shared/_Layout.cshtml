@@ -1,0 +1,16 @@
+﻿<!DOCTYPE html>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Html.Partial("resource")
+
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+        @Html.Partial("header")
+        @Html.Partial("_menu")
+        @RenderBody()
+        @RenderSection("scripts", required: false)
+        @Html.Partial("footer")
+    </div>
+</body>

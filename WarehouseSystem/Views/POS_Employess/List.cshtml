@@ -1,0 +1,117 @@
+﻿@model IEnumerable<WarehouseSystem.Models.ViewModel.UserViewModel>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<script>
+
+    var toDeleteUserId;
+
+    function storeId(userId) { toDeleteUserId = userId; };
+
+    $(function () {
+        function deleteUser() {
+            $.ajax({
+                type: "DELETE",
+                url: "@Url.Content("~/User/Delete")",
+                data: $.param({ "UserProfileID": toDeleteUserId }),
+
+            }).done(function (msg) {
+                $("#" + toDeleteUserId).remove();
+            })
+        };
+
+        $('#myModal .modal-footer button').on('click', function (e) {
+            var $target = $(e.target);
+            if ($target.index() == 1) {
+                deleteUser();
+            }
+        });
+    });
+</script>
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>帳號管理<small>帳號列表</small></h1>
+        <ol class="breadcrumb">
+            @*<li><a href="#"><i class="fa fa-dashboard"></i>home</a></li>
+                <li class="active">帳號管理</li>*@
+        </ol>
+    </section>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <a href="@Url.Action("Create")"><button class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-plus"> 新增</i></button></a>
+                </div>
+                <div class="box-body">
+                    <table id="userTable" class="row-border" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>帳號</th>
+                                <th>姓名</th>
+                                <th>工號</th>
+                                <th>職稱</th>
+                                <th>建立時間</th>
+                                <th>最後變更時間</th>
+                                <th>操作選項</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr id="@item.UserProfile.UserProfileID">
+                                    <td>@item.UserProfile.UserID</td>
+                                    <td>@item.UserProfile.Name</td>
+                                    <td>@item.UserProfile.Code</td>
+                                    <td>@item.UserProfile.UserTitleID</td>
+                                    <td>@item.UserProfile.CreateTime</td>
+                                    <td>@item.UserProfile.LastUpdateTime</td>
+
+                                    <td>
+                                        <a href="@Url.Action("Edit", new { UserProfileID = item.UserProfile.UserProfileID })">
+                                            <button class="btn btn-sm btn-primary">
+                                                <i class="glyphicon glyphicon-list-alt"></i>
+                                            </button>
+                                        </a>
+                                        <a href="#" data-toggle=modal data-target=#myModal>
+                                            <button class="btn btn-sm btn-danger" onclick="storeId('@item.UserProfile.UserProfileID')">
+                                                <i class="glyphicon glyphicon-remove"></i>
+                                            </button>
+                                        </a>
+
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal modal-success" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">刪除確認</h4>
+                </div>
+                <div class="modal-body">
+                    <p>是否刪除此使用者？刪除此使用者會將一併刪除所有的相關資料。</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">否</button>
+                    <button id="modalYes" type="button" class="btn btn-outline" data-dismiss="modal">是</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>
+

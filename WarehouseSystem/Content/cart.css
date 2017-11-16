@@ -1,0 +1,29 @@
+@CHARSET "UTF-8";
+
+.cartTypeDTW {
+	width: 8px;
+    height: 10px;
+    fill: #b9cde5;
+    stroke: #0000ff;
+	stroke-width: 2;
+}
+
+.cartTypeQ {
+    fill: #b9cde5;
+    stroke: #0000ff;
+	stroke-width: 2;
+}
+
+.cartTypeA {
+	fill: #00b050;
+    font-size: 14px;
+    stroke: #00b050;
+	stroke-width: 1;
+}
+
+.cartTypeC {
+	fill: #00b050;
+    font-size: 14px;
+    stroke: #00b050;
+	stroke-width: 1;
+}

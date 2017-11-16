@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "TestPanel";
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>查詢管理<small>棧板查詢</small></h1>
+        <ol class="breadcrumb">
+            @*<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+                <li class="active">Dashboard</li>*@
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br /><br /><br /><br /><br /><br /><br />
+        <div id="lotInfoPanel" class="col-md-6 centerScreen">
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    <h3 class="box-title">布疋批號內容</h3>
+                    @*<button class="btn pull-right" onclick="closeLotInfoPanel()"><i class="fa fa-close"></i></button>*@
+                </div>
+                <table id="lotTable" class="table table-bordered" cellspacing="0" width="100%">
+                    <tbody>
+                        <tr><td class="lotItemBackground col-md-2">工令</td><td id="WKNo" colspan="3"></td></tr>
+                        <tr><td class="lotItemBackground col-md-2">缸號</td><td id="LotNo" colspan="3"></td></tr>
+                        <tr><td class="lotItemBackground col-md-2">訂單</td><td id="Order" colspan="3"></td></tr>
+                        <tr><td class="lotItemBackground col-md-2">布別</td><td id="Fabric" colspan="3"></td></tr>
+                        <tr><td class="lotItemBackground col-md-2">顏色</td><td id="Color" colspan="3"></td></tr>
+                        <tr><td class="lotItemBackground col-md-2">幅寬</td><td id="Width"></td><td class="lotItemBackground col-md-2">碼重</td><td id="YdWt"></td></tr>
+                        <tr><td class="lotItemBackground col-md-2">重量</td><td id="Weight"></td><td class="lotItemBackground col-md-2">碼數</td><td id="Length"></td></tr>
+                        <tr><td class="lotItemBackground col-md-2">疋數</td><td id="PNo"></td><td class="lotItemBackground col-md-2">日期</td><td id="Date"></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+

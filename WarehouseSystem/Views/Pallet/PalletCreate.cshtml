@@ -1,0 +1,72 @@
+﻿@model WarehouseSystem.Models.ViewModel.PalletEditViewModel
+
+@{
+    ViewBag.Title = "PalletCreate";
+}
+<script>
+    function fieldValidation(field) {
+        if ($.trim($(field).val()) == '') {
+            $(field + 'Div').addClass('has-error');
+            $(field + 'Div').val('');
+            $('#ErrorMessage').text('欄位內容不得為空白');
+            return false;
+        } else {
+            $(field + 'Div').removeClass('has-error');
+        }
+        return true;
+    }
+
+    function formValidation() {
+        if (fieldValidation('#PalletNumber')) {
+            return true;
+        }
+
+        return false;
+    }
+</script>
+
+<div class="wrapper">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>棧板管理<small>新增棧板資料</small></h1>
+            <ol class="breadcrumb">
+                @*<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+                <li class="active">Dashboard</li>*@
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-6">
+                    <!-- general form elements -->
+                    <div class="box box-success">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">建立新的棧板資料</h3>
+                        </div><!-- /.box-header -->
+                        <!-- form start -->
+                        <form class="form-horizontal" method="post" action="@Url.Content("CreatePallet")" onsubmit="return formValidation();">
+                            <div class="form-group has-error">
+                                <label class="col-sm-2"></label>
+                                <label class="col-sm-10" id="ErrorMessage">@Model.ErrorMessage</label>
+                            </div>
+                            <div id="emailDiv" class="form-group">
+                                <label for="PalletNumber" class="col-sm-2 control-label">棧板編號</label>
+                                <div class="col-sm-10">
+                                    <input id="PalletNumber" type="text" class="form-control" name="PalletNumber" placeholder="輸入棧號編號" value="@Model.Pallet.PalletNumber" />
+                                </div>
+                            </div>
+
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-success">確定</button>
+                            </div>
+                        </form>
+                    </div><!-- /.box-body -->
+                 </div><!-- /.box -->
+            </div>
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+</div><!-- ./wrapper -->
