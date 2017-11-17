@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ad82dba21bcb4865bf700ad9c2767a06" Name="Diagram1" ZoomLevel="77">
+      <Diagram DiagramId="ad82dba21bcb4865bf700ad9c2767a06" Name="Diagram1" ZoomLevel="18">
         <EntityTypeShape EntityType="WarehouseServerModel.CST_ALARM" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="WarehouseServerModel.CST_BEACON" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="WarehouseServerModel.CST_BEACON_LOCATION" Width="1.5" PointX="2.75" PointY="3.75" />
@@ -51,12 +51,12 @@
         <EntityTypeShape EntityType="WarehouseServerModel.POS_RetailPurchase" Width="1.5" PointX="18.75" PointY="3.75" />
         <EntityTypeShape EntityType="WarehouseServerModel.POS_RetailSale" Width="1.5" PointX="18.75" PointY="6.75" />
         <EntityTypeShape EntityType="WarehouseServerModel.POS_Supplier" Width="1.5" PointX="18.75" PointY="9.75" />
-        <EntityTypeShape EntityType="WarehouseServerModel.POS_USER_PROFILE" Width="1.5" PointX="18.75" PointY="15.75" />
-        <EntityTypeShape EntityType="WarehouseServerModel.sysdiagram" Width="1.5" PointX="2.75" PointY="19.75" />
-        <EntityTypeShape EntityType="WarehouseServerModel.TEMP_ERP_INV_DTL" Width="1.5" PointX="4.75" PointY="19.75" />
-        <EntityTypeShape EntityType="WarehouseServerModel.POS_SaleList" Width="1.5" PointX="6.75" PointY="19.75" />
-        <EntityTypeShape EntityType="WarehouseServerModel.POS_Stock" Width="1.5" PointX="16.75" PointY="19.75" />
-        <EntityTypeShape EntityType="WarehouseServerModel.POS_UserLogin" Width="1.5" PointX="18.75" PointY="19.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.POS_USER_PROFILE" Width="1.5" PointX="18.75" PointY="14.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.sysdiagram" Width="1.5" PointX="16.75" PointY="18.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.TEMP_ERP_INV_DTL" Width="1.5" PointX="18.75" PointY="18.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.POS_SaleList" Width="1.5" PointX="2.75" PointY="19.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.POS_Stock" Width="1.5" PointX="4.75" PointY="19.75" />
+        <EntityTypeShape EntityType="WarehouseServerModel.POS_UserLogin" Width="1.5" PointX="6.75" PointY="19.75" />
         <EntityTypeShape EntityType="WarehouseServerModel.TEMP_ERP_STOCK_OUT" Width="1.5" PointX="20.75" PointY="0.75" />
         <EntityTypeShape EntityType="WarehouseServerModel.vw_Lots" Width="1.5" PointX="20.75" PointY="5.75" />
         <EntityTypeShape EntityType="WarehouseServerModel.vw_Record" Width="1.5" PointX="20.75" PointY="14.75" />

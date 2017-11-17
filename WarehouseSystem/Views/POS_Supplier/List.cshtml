@@ -14,8 +14,8 @@
         function deleteUser() {
             $.ajax({
                 type: "DELETE",
-                url: "@Url.Content("~/POS_Supplier/Delete")",
-                data: $.param({ "UserProfileID": toDeleteUserId }),
+                url: "@Url.Content("~/POS_Supllier/Delete")",
+                data: $.param({ "SupID": toDeleteUserId }),
 
             }).done(function (msg) {
                 $("#" + toDeleteUserId).remove();
@@ -29,11 +29,29 @@
             }
         });
     });
+
+    $(document).ready(function () {
+        $('#POSSupplierEditTable').DataTable({
+            "paging": true,
+            "info": true,
+            "searching": true,
+            "columnDefs": [
+                { "targets": 0, "width": "10%", "orderable": true },
+                { "targets": 1, "width": "10%", "orderable": false },
+                { "targets": 2, "width": "10%", "orderable": false },
+                { "targets": 3, "width": "10%", "orderable": false },
+                { "targets": 4, "width": "15%", "orderable": false },
+                { "targets": 5, "width": "15%", "orderable": false },
+                { "targets": 6, "width": "15%", "orderable": false },
+                { "targets": 7, "width": "10%", "orderable": false }
+            ],
+        });
+    });
 </script>
 
 <div class="content-wrapper">
     <section class="content-header">
-        <h1>帳號管理<small>帳號列表</small></h1>
+        <h1>供應商管理<small>供應商列表</small></h1>
         <ol class="breadcrumb">
             @*<li><a href="#"><i class="fa fa-dashboard"></i>home</a></li>
                 <li class="active">帳號管理</li>*@
@@ -47,15 +65,17 @@
                     <a href="@Url.Action("Create")"><button class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-plus"> 新增</i></button></a>
                 </div>
                 <div class="box-body">
-                    <table id="userTable" class="row-border" cellspacing="0" width="100%">
+                    <table id="POSSupplierEditTable" class="row-border" cellspacing="0" width="100%">
                         <thead>
                             <tr>
+                                <th>供應商編號</th>
                                 <th>供應商名稱</th>
-                                <th>供應商聯絡人</th>
+                                <th>聯絡人</th>
                                 <th>聯絡人職稱</th>
-                                @*<th>建立時間</th>
-                                <th>最後變更時間</th>
-                                <th>操作選項</th>*@
+                                <th>電話</th>
+                                <th>傳真</th>
+                                <th>電郵</th>
+                                <th>操作選項</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -63,13 +83,15 @@
                             @foreach (var item in Model)
                             {
                                 <tr id="@item.SupplierProfile.SupID">
+                                    <td>@item.SupplierProfile.SupID</td>
                                     <td>@item.SupplierProfile.CompanyName</td>
                                     <td>@item.SupplierProfile.ContactName</td>
                                     <td>@item.SupplierProfile.ContactTitle</td>
-                                    <td>@item.SupplierProfile.CreateTime</td>
-                                    <td>@item.SupplierProfile.LastUpdateTime</td>
+                                    <td>@item.SupplierProfile.Phone</td>
+                                    <td>@item.SupplierProfile.Fax</td>
+                                    <td>@item.SupplierProfile.EMail</td>
                                     <td>
-                                        <a href="@Url.Action("Edit", new { UserProfileID = item.SupplierProfile.SupID })">
+                                        <a href="@Url.Action("Edit", new { SupID = item.SupplierProfile.SupID })">
                                             <button class="btn btn-sm btn-primary">
                                                 <i class="glyphicon glyphicon-list-alt"></i>
                                             </button>
@@ -82,7 +104,6 @@
                                     </td>
                                 </tr>
                             }
-
                         </tbody>
                     </table>
                 </div>
@@ -110,3 +131,4 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 </div>
+

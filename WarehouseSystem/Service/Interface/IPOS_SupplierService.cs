@@ -17,7 +17,7 @@ namespace WarehouseSystem.Service.Interface
         /// <param name="Password"></param>
         /// <param name="SupID"></param>
         /// <returns></returns>
-        IResult Create(string UserID, string Password, ref string SupID);
+        IResult Create(string CompanyName, string SupID);
 
         /// <summary>
         /// 更新帳號資訊
@@ -35,18 +35,18 @@ namespace WarehouseSystem.Service.Interface
         /// <returns></returns>
         IResult Delete(string SupID);
 
-        /// <summary>
-        /// 確認帳號是否存在
-        /// </summary>
-        /// <param name="SupID"></param>
-        /// <returns></returns>
+        ///// <summary>
+        ///// 確認帳號是否存在
+        ///// </summary>
+        ///// <param name="SupID"></param>
+        ///// <returns></returns>
         bool IsExists(string SupID);
 
-        /// <summary>
-        /// 以SID取得帳號資料
-        /// </summary>
-        /// <param name="SupID"></param>
-        /// <returns></returns>
+        ///// <summary>
+        ///// 以SID取得帳號資料
+        ///// </summary>
+        ///// <param name="SupID"></param>
+        ///// <returns></returns>
         POS_Supplier GetBySID(string SupID);
 
         /// <summary>
@@ -58,8 +58,8 @@ namespace WarehouseSystem.Service.Interface
         /// <summary>
         /// 登入
         /// </summary>
-        /// <param name="UserID"></param>
-        /// <param name="Password"></param>
+        ///// <param name="UserID"></param>
+        ///// <param name="Password"></param>
         /// <returns></returns>
         //UserViewModel Login(string UserID, string Password);
 

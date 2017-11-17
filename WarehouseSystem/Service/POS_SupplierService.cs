@@ -20,34 +20,28 @@ namespace WarehouseSystem.Service
             _repository = repository;
         }
 
-        public IResult Create(string UserID, string Password, ref string SupID)
+        public IResult Create(string CompanyName, string SupID)
         {
-            if (string.IsNullOrEmpty(UserID) || string.IsNullOrEmpty(Password))
+            if (string.IsNullOrEmpty(CompanyName) || string.IsNullOrEmpty(SupID))
             {
                 throw new ArgumentNullException();
             }
 
             IResult pResult = new Result(false);
 
-            POS_Supplier UserProfile = new POS_Supplier();
+            POS_Supplier POSSuppierProfile = new POS_Supplier();
 
             try
             {
-                IdGenerator idg = new IdGenerator();
-                SupID = idg.GetSID();
-
-                Encrypt encoder = new Encrypt();
-                string EncodePassword = encoder.EncryptSHA(Password);
                 string InsertTime = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
 
-                UserProfile.UserProfileID = SupID;
-                UserProfile.UserID = UserID;
-                UserProfile.Password = EncodePassword;
-                UserProfile.Active = 1;
-                UserProfile.CreateTime = InsertTime;
-                UserProfile.LastUpdateTime = InsertTime;
+                POSSuppierProfile.SupID = SupID;
+                POSSuppierProfile.CompanyName = CompanyName;
+                POSSuppierProfile.Active = 1;
+                POSSuppierProfile.CreateTime = InsertTime;
+                POSSuppierProfile.LastUpdateTime = InsertTime;
 
-                _repository.Create(UserProfile);
+                _repository.Create(POSSuppierProfile);
 
                 pResult.Success = true;
             }
@@ -66,56 +60,55 @@ namespace WarehouseSystem.Service
 
         }
 
+        public IResult Update(string UserProfileID, string PropertyName, object Value)
+        {
+            Dictionary<string, object> DicUpdate = new Dictionary<string, object>();
 
-        //public IResult Update(string UserProfileID, string PropertyName, object Value)
-        //{
-        //    Dictionary<string, object> DicUpdate = new Dictionary<string, object>();
+            var instance = GetBySID(UserProfileID);
 
-        //    var instance = GetBySID(UserProfileID);
+            if (instance == null) throw new ArgumentNullException();
 
-        //    if (instance == null) throw new ArgumentNullException();
+            IResult Result = new Result(false);
 
-        //    IResult Result = new Result(false);
+            try
+            {
+                if (PropertyName == "Active")
+                {
+                    DicUpdate.Add(PropertyName, Convert.ToInt32(Value));
+                }
+                else
+                {
+                    DicUpdate.Add(PropertyName, Value);
+                }
+                var LastUpdateTime = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
 
-        //    try
-        //    {
-        //        if (PropertyName == "Active")
-        //        {
-        //            DicUpdate.Add(PropertyName, Convert.ToInt32(Value));
-        //        }
-        //        else
-        //        {
-        //            DicUpdate.Add(PropertyName, Value);
-        //        }
-        //        var LastUpdateTime = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+                DicUpdate.Add("LastUpdateTime", LastUpdateTime);
 
-        //        DicUpdate.Add("LastUpdateTime", LastUpdateTime);
+                _repository.Update(instance, DicUpdate);
 
-        //        _repository.Update(instance, DicUpdate);
+                //更新MailGroup資料
+                //if (PropertyName == "UserGroupID")
+                //{
+                //    var UserProfile = GetBySID(UserProfileID);
 
-        //        //更新MailGroup資料
-        //        if (PropertyName == "UserGroupID")
-        //        {
-        //            var UserProfile = GetBySID(UserProfileID);
+                //    CheckMailGroupDTL(UserProfile);
+                //}
 
-        //            CheckMailGroupDTL(UserProfile);
-        //        }
+                Result.Success = true;
 
-        //        Result.Success = true;
+                Result.LastUpdateTime = LastUpdateTime;
+            }
+            catch (Exception ex)
+            {
+                Result.Exception = ex;
+            }
 
-        //        Result.LastUpdateTime = LastUpdateTime;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Result.Exception = ex;
-        //    }
-
-        //    return Result;
-        //}
+            return Result;
+        }
 
         //private void CheckMailGroupDTL(POS_Supplier UserProfile)
         //{
-        //    string sqlString = "Select * From CST_MAIL_GRP_DTL Where UserProfileID = '" + UserProfile.UserProfileID + "'";
+        //    string sqlString = "Select * From CST_MAIL_GRP_DTL Where UserProfileID = '" + UserProfile.SupID + "'";
 
         //    using (WarehouseServerEntities db = new WarehouseServerEntities())
         //    {
@@ -159,16 +152,15 @@ namespace WarehouseSystem.Service
 
             if (!IsExists(SupID))
             {
-                result.Message = "找不到使用者資料";
+                result.Message = "找不到供應商資料";
             }
-
             try
             {
                 var instance = GetBySID(SupID);
 
                 _repository.Delete(instance);
 
-                string sqlString = string.Format(@"Delete CST_MAIL_GRP_DTL Where UserProfileID ='{0}'", SupID);
+                string sqlString = string.Format(@"Delete FROM POS_Supplier Where SupID ='{0}'", SupID);
 
                 using (WarehouseServerEntities db = new WarehouseServerEntities())
                 {
@@ -192,7 +184,7 @@ namespace WarehouseSystem.Service
 
         public POS_Supplier GetBySID(string SupID)
         {
-            return _repository.Get(x => x.UserProfileID == SupID);
+            return _repository.Get(x => x.SupID == SupID);
         }
 
         public POS_Supplier GetByUserID(string SupID)
@@ -204,6 +196,7 @@ namespace WarehouseSystem.Service
         {
             return _repository.GetAll();
         }
+
 
         //public UserViewModel Login(string UserID, string Password)
         //{
@@ -284,15 +277,15 @@ namespace WarehouseSystem.Service
 
         //    sqlString = string.Format(@"Select MenuGrp.*, Minor.Action as MinorAction, Minor.Controller as MinorController, Minor.[Order] as MinorOrder 
         //                    From (
-	       //                     Select MenuGrp.*, Sub.Action as SubAction, Sub.Controller as SubController, Sub.[Order] as SubOrder 
-	       //                     From (
-		      //                      Select MenuGrp.*, Main.Action as MainAction, Main.Controller as MainController, Main.[Order] as MainOrder 
-		      //                      From CST_MENU_GRP MenuGrp Left join CST_MENU_MAIN Main
-		      //                      on MenuGrp.MainMenuID = Main.MainMenuID
+        //                     Select MenuGrp.*, Sub.Action as SubAction, Sub.Controller as SubController, Sub.[Order] as SubOrder 
+        //                     From (
+        //                      Select MenuGrp.*, Main.Action as MainAction, Main.Controller as MainController, Main.[Order] as MainOrder 
+        //                      From CST_MENU_GRP MenuGrp Left join CST_MENU_MAIN Main
+        //                      on MenuGrp.MainMenuID = Main.MainMenuID
         //                            Where MenuGrp.UserGroupID = '{0}' And MenuGrp.active = '1'
-		      //                      ) MenuGrp Left join CST_MENU_SUB Sub
-	       //                     on MenuGrp.SubMenuID = Sub.SubMenuID
-	       //                     ) MenuGrp Left join CST_MENU_MINOR Minor
+        //                      ) MenuGrp Left join CST_MENU_SUB Sub
+        //                     on MenuGrp.SubMenuID = Sub.SubMenuID
+        //                     ) MenuGrp Left join CST_MENU_MINOR Minor
         //                    on MenuGrp.MinorMenuID = Minor.MinorMenuID
         //                    Order by MenuGrp.MainOrder, MenuGrp.SubOrder,  Minor.[Order]", UserGroupID);
 
@@ -302,11 +295,6 @@ namespace WarehouseSystem.Service
         //        return MenuList;
         //    }
         //}
-
-        public IResult Update(string UserProfileID, string PropertyName, object Value)
-        {
-            throw new NotImplementedException();
-        }
 
         //public IEnumerable<MenuGroupViewModel> GetMenuGroup(string UserGroupID)
         //{

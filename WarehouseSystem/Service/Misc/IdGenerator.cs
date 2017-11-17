@@ -18,6 +18,11 @@ namespace WarehouseSystem.Service.Misc
             return a.ToString("x8") + b.ToString("x5");
         }
 
+
+
+
+
+
         public string GetUserNewID()
         {
 

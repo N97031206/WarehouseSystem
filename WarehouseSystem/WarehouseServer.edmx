@@ -694,25 +694,19 @@
             <PropertyRef Name="SupID" />
           </Key>
           <Property Name="SupID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SupCode" Type="nchar" MaxLength="8" />
           <Property Name="CompanyName" Type="nvarchar" MaxLength="50" />
           <Property Name="ContactName" Type="nvarchar" MaxLength="50" />
           <Property Name="ContactTitle" Type="nvarchar" MaxLength="50" />
-          <Property Name="Region" Type="nvarchar" MaxLength="50" />
           <Property Name="Address" Type="nvarchar" MaxLength="50" />
           <Property Name="Phone" Type="nvarchar" MaxLength="50" />
           <Property Name="Fax" Type="nvarchar" MaxLength="50" />
           <Property Name="EMail" Type="nvarchar" MaxLength="50" />
-          <Property Name="UserProfileID" Type="nvarchar" MaxLength="23" />
-          <Property Name="UserID" Type="nvarchar" MaxLength="50" />
-          <Property Name="UserGroupID" Type="nvarchar" MaxLength="30" />
-          <Property Name="Password" Type="nvarchar" MaxLength="20" />
-          <Property Name="Name" Type="nvarchar" MaxLength="10" />
-          <Property Name="Code" Type="nchar" MaxLength="10" />
-          <Property Name="UserTitle" Type="nvarchar" MaxLength="20" />
           <Property Name="Active" Type="int" />
           <Property Name="IsDelete" Type="int" />
           <Property Name="CreateTime" Type="nvarchar" MaxLength="20" />
           <Property Name="LastUpdateTime" Type="nvarchar" MaxLength="20" />
+          <Property Name="UserGroupID" Type="nvarchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="POS_USER_PROFILE">
           <Key>
@@ -772,28 +766,6 @@
           <Property Name="ColorCode" Type="nvarchar" MaxLength="5" />
           <Property Name="Color" Type="nvarchar" MaxLength="5" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6013: 資料表/檢視 'WarehouseServer.dbo.TEMP_ERP_STOCK_IN' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-        <EntityType Name="TEMP_ERP_STOCK_IN">
-          <Property Name="Lot" Type="nvarchar" MaxLength="20" />
-          <Property Name="PalletRFID" Type="nvarchar" MaxLength="24" />
-          <Property Name="StockInNo" Type="nvarchar" MaxLength="20" />
-          <Property Name="WKNo" Type="nvarchar" MaxLength="20" />
-          <Property Name="LotNo" Type="nvarchar" MaxLength="20" />
-          <Property Name="Order" Type="nvarchar" MaxLength="30" />
-          <Property Name="InternalOrder" Type="nvarchar" MaxLength="15" />
-          <Property Name="Fabric" Type="nvarchar" MaxLength="20" />
-          <Property Name="Color" Type="nvarchar" MaxLength="20" />
-          <Property Name="Width" Type="nvarchar" MaxLength="20" />
-          <Property Name="YdWt" Type="nvarchar" MaxLength="20" />
-          <Property Name="Weight" Type="nvarchar" MaxLength="20" />
-          <Property Name="Length" Type="nvarchar" MaxLength="20" />
-          <Property Name="PNo" Type="nvarchar" MaxLength="20" />
-          <Property Name="Date" Type="nvarchar" MaxLength="20" />
-          <Property Name="RFID" Type="nvarchar" MaxLength="24" />
-          <Property Name="ColorCode" Type="nvarchar" MaxLength="20" />
-          <Property Name="PalletNumber" Type="nvarchar" MaxLength="20" />
-        </EntityType>-->
         <!--產生期間發現錯誤:
 警告 6002: 資料表/檢視 'WarehouseServer.dbo.TEMP_ERP_STOCK_OUT' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="TEMP_ERP_STOCK_OUT">
@@ -1791,25 +1763,19 @@
             <PropertyRef Name="SupID" />
           </Key>
           <Property Name="SupID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SupCode" Type="String" MaxLength="8" FixedLength="true" Unicode="true" />
           <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ContactName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ContactTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="EMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="UserProfileID" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
-          <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="UserGroupID" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Code" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="UserTitle" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Active" Type="Int32" />
           <Property Name="IsDelete" Type="Int32" />
           <Property Name="CreateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="LastUpdateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="UserGroupID" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="POS_USER_PROFILE">
           <Key>
@@ -2697,25 +2663,19 @@
           <EntitySetMapping Name="POS_Supplier">
             <EntityTypeMapping TypeName="WarehouseServerModel.POS_Supplier">
               <MappingFragment StoreEntitySet="POS_Supplier">
+                <ScalarProperty Name="UserGroupID" ColumnName="UserGroupID" />
                 <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
                 <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
                 <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="UserTitle" ColumnName="UserTitle" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="UserGroupID" ColumnName="UserGroupID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="UserProfileID" ColumnName="UserProfileID" />
                 <ScalarProperty Name="EMail" ColumnName="EMail" />
                 <ScalarProperty Name="Fax" ColumnName="Fax" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Region" ColumnName="Region" />
                 <ScalarProperty Name="ContactTitle" ColumnName="ContactTitle" />
                 <ScalarProperty Name="ContactName" ColumnName="ContactName" />
                 <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="SupCode" ColumnName="SupCode" />
                 <ScalarProperty Name="SupID" ColumnName="SupID" />
               </MappingFragment>
             </EntityTypeMapping>

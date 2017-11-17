@@ -10,7 +10,7 @@
     function SetUserGroupEditable() {
         $('#UserGroup').editable({
             ajaxOptions: {
-                //dataType: 'json' //assuming json response
+               // dataType: 'json' //assuming json response
             },
             value: '',
             source: [
@@ -53,7 +53,7 @@
         $('#Name, #Code, #Title, #Email, #UserGroupID, #LastUpdateTime').editable(
             {
                 ajaxOptions: {
-                    dataType: 'json' //assuming json response
+                    //dataType: 'json' //assuming json response
                 },
                 success: function (response, newValue) {
                     $('#LastUpdateTime').html(response['Result'].LastUpdateTime);
@@ -106,10 +106,10 @@
                                 <tr><td>帳號</td><td>@Model.UserProfile.UserID</td></tr>
                                 <tr><td>姓名</td><td><a href="#" id="Name" data-type="text" data-pk="@Model.UserProfile.UserProfileID" data-url="@Url.Action("Update")" data-title="輸入使用者名稱">@Model.UserProfile.Name</a></td></tr>
                                 <tr><td>工號</td><td><a href="#" id="Code" data-type="text" data-pk="@Model.UserProfile.UserProfileID" data-url="@Url.Action("Update")" data-title="輸入使用者名稱">@Model.UserProfile.Code</a></td></tr>
-                                <tr><td>職稱</td><td><a href="#" id="Title" data-type="text" data-pk="@Model.UserProfile.UserProfileID" data-url="@Url.Action("Update")" data-title="輸入職稱">@Model.UserProfile.UserTitleID</a></td></tr>
+                                <tr ><td >職稱</td><td><a href="#" id="Title" data-type="text" data-pk="@Model.UserProfile.UserProfileID" data-url="@Url.Action("Update")" data-title="輸入職稱">@Model.UserProfile.UserTitleID</a></td></tr>
                                 <tr><td>E-mail</td><td><a href="#" id="Email" data-type="text" data-pk="@Model.UserProfile.UserProfileID" data-url="@Url.Action("Update")" data-title="輸入電子郵件">@Model.UserProfile.Email</a></td></tr>
                                 <tr><td>啟用</td><td><a href="#" id="Active" data-name="Active" data-type="checklist" data-pk="@Model.UserProfile.UserProfileID" data-url="@Url.Action("Update")" data-title="啟用">@Model.UserProfile.Active</a></td></tr>
-                                <tr>
+                                <tr >
                                     <td>權限</td>
                                     <td><a href="#" id="UserGroup" data-name="UserGroupID" data-type="select" data-pk="@Model.UserProfile.UserProfileID" data-url="@Url.Content("Update")" data-title="選擇權限群組">@Model.UserGroupName</a></td>
                                 </tr>

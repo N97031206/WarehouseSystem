@@ -164,7 +164,6 @@ namespace WarehouseSystem.Controllers
                     return Json(new { Result = pResult.Success });
                 }
             }
-
             return Json(new { Result = false });
         }
 

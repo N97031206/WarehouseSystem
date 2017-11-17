@@ -15,24 +15,18 @@ namespace WarehouseSystem
     public partial class POS_Supplier
     {
         public string SupID { get; set; }
+        public string SupCode { get; set; }
         public string CompanyName { get; set; }
         public string ContactName { get; set; }
         public string ContactTitle { get; set; }
-        public string Region { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }
         public string Fax { get; set; }
         public string EMail { get; set; }
-        public string UserProfileID { get; set; }
-        public string UserID { get; set; }
-        public string UserGroupID { get; set; }
-        public string Password { get; set; }
-        public string Name { get; set; }
-        public string Code { get; set; }
-        public string UserTitle { get; set; }
         public Nullable<int> Active { get; set; }
         public Nullable<int> IsDelete { get; set; }
         public string CreateTime { get; set; }
         public string LastUpdateTime { get; set; }
+        public string UserGroupID { get; set; }
     }
 }

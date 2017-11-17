@@ -68,6 +68,7 @@ namespace WarehouseSystem
             container.RegisterType<IRepository<CST_STOCK_OUT>, GenericRepository<CST_STOCK_OUT>>();
             container.RegisterType<IRepository<CST_STOCK_OUT_LOG>, GenericRepository<CST_STOCK_OUT_LOG>>();
             container.RegisterType<IRepository<CST_WAREHOUSE_LOG>, GenericRepository<CST_WAREHOUSE_LOG>>();
+            container.RegisterType<IRepository<POS_Supplier>, GenericRepository<POS_Supplier>>();
 
             //Service
             container.RegisterType<IUserService, UserService>();
@@ -96,6 +97,7 @@ namespace WarehouseSystem
             container.RegisterType<IWarehouseLogService, WarehouseLogService>();
             container.RegisterType<IStockOutService, StockOutService>();
             container.RegisterType<IStockOutLogService, StockOutLogService>();
+            container.RegisterType<IPOS_SupplierService, POS_SupplierService>();
         }
     }
 }

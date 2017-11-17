@@ -53,7 +53,7 @@
         $('#Name, #Code, #Email, #UserGroupID, #LastUpdateTime').editable(
             {
                 ajaxOptions: {
-                    dataType: 'json' //assuming json response
+                    //dataType: 'json' //assuming json response
                 },
                 success: function (response, newValue) {
                     $('#LastUpdateTime').html(response['Result'].LastUpdateTime);
@@ -95,7 +95,7 @@
                         <h3 class="box-title">帳號資料編輯</h3>
                     </div><!-- /.box-header -->
                     <div class="box-body">
-                        <table class="table table-striped table-hover table-bordered" cellspacing="0" width="100%">
+                        <table class="table table-striped table-hover table-bordered" cellspacing="0" style=" width:100%">
                             <thead>
                                 <tr>
                                     <th class="col-md-4">屬性</th>

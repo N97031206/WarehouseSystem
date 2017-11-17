@@ -353,7 +353,6 @@
     <Compile Include="Models\ViewModel\InventoryViewModel.cs" />
     <Compile Include="Models\ViewModel\RecordViewModel.cs" />
     <Compile Include="Models\ViewModel\RFIDErrorViewModel.cs" />
-    <Compile Include="Models\ViewModel\SupplierViewModel.cs" />
     <Compile Include="Models\ViewModel\UserGroupViewModel.cs" />
     <Compile Include="Models\ViewModel\MenuGroupViewModel.cs" />
     <Compile Include="Models\ViewModel\SubMinorViewModel.cs" />
@@ -563,6 +562,7 @@
     <Content Include="Images\orderedList7.png" />
     <Content Include="Images\orderedList8.png" />
     <Content Include="Images\orderedList9.png" />
+    <Content Include="Images\POS.png" />
     <Content Include="jquery-easyui-1.5\changelog.txt" />
     <Content Include="jquery-easyui-1.5\demo-mobile\accordion\basic.html" />
     <Content Include="jquery-easyui-1.5\demo-mobile\accordion\header.html" />
@@ -2488,6 +2488,8 @@
     <Content Include="Views\POS_Employess\ModifyPassword.cshtml" />
     <Content Include="Views\POS_Employess\ChangePassword.cshtml" />
     <Content Include="Views\POS_Supplier\List.cshtml" />
+    <Content Include="Views\POS_Supplier\Edit.cshtml" />
+    <Content Include="Views\POS_Supplier\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
